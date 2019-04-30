@@ -1,13 +1,19 @@
 package br.edu.ifsc.lab.domain;
 
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 public class Endereco {
-	private Integer id;
+	private Integer idEndereco;
 	private String rua;
 	private String cep;
 	private Integer numero;
 	private String bairro;
 	
+	@ManyToOne()
+	@JoinColumn(name = "idCidade")
 	private Cidade cidade;
+	
 	
 	public Endereco() {
 		
@@ -15,7 +21,7 @@ public class Endereco {
 
 	public Endereco(Integer id, String rua, String cep, Integer numero, String bairro, Cidade cidade) {
 		super();
-		this.id = id;
+		this.idEndereco = id;
 		this.rua = rua;
 		this.cep = cep;
 		this.numero = numero;
@@ -23,12 +29,12 @@ public class Endereco {
 		this.cidade = cidade;
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getIdEndereco() {
+		return idEndereco;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setIdEndereco(Integer id) {
+		this.idEndereco = id;
 	}
 
 	public String getRua() {

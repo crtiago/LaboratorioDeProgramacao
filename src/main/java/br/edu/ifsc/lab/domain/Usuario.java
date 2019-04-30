@@ -5,15 +5,31 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CollectionTable;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
+@Entity
 public abstract class Usuario {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String login;
 	private String senha;
 	private String nome;
 	private String cpf;
 	
+	@OneToMany()
+	@JoinColumn(name = "idEndereco")
 	private List<Endereco> enderecos = new ArrayList<>();
 	
+	@ElementCollection
+	@CollectionTable(name = "TELEFONE")
 	private Set<String> telefones = new HashSet<>();
 	
 	public Usuario() {
