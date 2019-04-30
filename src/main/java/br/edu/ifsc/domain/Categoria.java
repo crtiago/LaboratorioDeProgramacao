@@ -1,5 +1,6 @@
 package br.edu.ifsc.domain;
 
+
 public class Categoria {
 
 	private Integer id;
