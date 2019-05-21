@@ -1,8 +1,7 @@
 package br.edu.ifsc.lab.domain;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CollectionTable;
@@ -11,22 +10,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 
 @Entity
-public abstract class Usuario {
-
+public abstract class Usuario implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	
 	private String login;
 	private String senha;
 	private String nome;
 	private String cpf;
 	
-	@OneToMany()
-	@JoinColumn(name = "idEndereco")
-	private List<Endereco> enderecos = new ArrayList<>();
+	//private List<Endereco> enderecos = new ArrayList<>();
 	
 	@ElementCollection
 	@CollectionTable(name = "TELEFONE")
@@ -36,8 +34,8 @@ public abstract class Usuario {
 		
 	}
 
-	public Usuario(String login, String senha, String nome, String cpf) {
-		super();
+	public Usuario(Integer id,String login, String senha, String nome, String cpf) {
+		this.id = id;
 		this.login = login;
 		this.senha = senha;
 		this.nome = nome;
@@ -76,13 +74,13 @@ public abstract class Usuario {
 		this.cpf = cpf;
 	}
 
-	public List<Endereco> getEnderecos() {
+	/*public List<Endereco> getEnderecos() {
 		return enderecos;
 	}
 
 	public void setEnderecos(List<Endereco> enderecos) {
 		this.enderecos = enderecos;
-	}
+	}*/
 
 	public Set<String> getTelefones() {
 		return telefones;
@@ -91,6 +89,16 @@ public abstract class Usuario {
 	public void setTelefones(Set<String> telefones) {
 		this.telefones = telefones;
 	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
+	
 	
 	
 	

@@ -5,6 +5,8 @@ import {
   Validators,
   FormControl
 } from "@angular/forms";
+import { CategoriaService } from "src/services/domain/categoria.service";
+import { NavController } from "@ionic/angular";
 
 @Component({
   selector: "app-login",
@@ -13,11 +15,19 @@ import {
 })
 export class LoginPage implements OnInit {
   authForm: FormGroup;
+  // authProviders = AuthProvider;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    public catServ: CategoriaService,
+    private navCtrl: NavController
+  ) {}
 
   ngOnInit(): void {
     this.createForm();
+    this.catServ.findAll().subscribe(res => {
+      console.log(res);
+    });
   }
 
   private createForm() {
@@ -25,6 +35,10 @@ export class LoginPage implements OnInit {
       email: ["", [Validators.required, Validators.email]],
       password: ["", [Validators.required, Validators.minLength(6)]]
     });
+  }
+
+  get name(): FormControl {
+    return <FormControl>this.authForm.get("name");
   }
 
   get email(): FormControl {
@@ -37,5 +51,6 @@ export class LoginPage implements OnInit {
 
   onSubmit(): void {
     console.log("authForm", this.authForm.value);
+    this.navCtrl.navigateRoot("/home");
   }
 }

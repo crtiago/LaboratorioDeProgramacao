@@ -1,3 +1,53 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-menu contentId="menu-content">
+
+    <ion-header>
+      <ion-toolbar color="dark">
+        <ion-chip>
+          <ion-avatar>
+            <img src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+          </ion-avatar>
+          <ion-label color="light">Usuario</ion-label>
+        </ion-chip>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content color="medium">
+      <ion-list>
+        <ion-menu-toggle color="light">
+          <ion-item color="dark" button (click)="onClick()">
+            <ion-icon slot="start" name="hammer"></ion-icon>
+            Manutenção
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+
+
+  </ion-menu>
+  <ion-router-outlet id="menu-content"></ion-router-outlet>
+  <ion-tabs slots="bottomstart">
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="home">
+        <ion-icon name="home"></ion-icon>
+        <ion-label>Home</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="carrinho">
+        <ion-icon name="cart"></ion-icon>
+        <ion-badge color="danger">1</ion-badge>
+        <ion-label>Carrinho</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="minha-conta">
+        <ion-icon name="contact"></ion-icon>
+        <ion-label>Minha Conta</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button tab="about">
+        <ion-icon name="information-circle"></ion-icon>
+        <ion-label>About</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
 </ion-app>

@@ -1,13 +1,15 @@
 package br.edu.ifsc.lab.domain;
 
-import java.util.ArrayList;
-import java.util.List;
 
-public class Vendedor extends Usuario{
+import javax.persistence.Entity;
+
+@Entity
+public class Vendedor extends Usuario  {
+	private static final long serialVersionUID = 1L;
 
 	private Float salario;
 
-	private List<Venda> HistoricoVenda = new ArrayList<>();
+	//private List<Venda> HistoricoVenda = new ArrayList<>();
 	
 	
 	
@@ -15,8 +17,8 @@ public class Vendedor extends Usuario{
 		
 	}
 
-	public Vendedor(String login, String senha, String nome, String cpf, Float salario) {
-		super(login, senha, nome, cpf);
+	public Vendedor(Integer id,String login, String senha, String nome, String cpf, Float salario) {
+		super(id, login, senha, nome, cpf);
 		this.salario = salario;
 	}
 	
@@ -30,13 +32,13 @@ public class Vendedor extends Usuario{
 		this.salario = salario;
 	}
 
-	public List<Venda> getHistoricoVenda() {
+	/*public List<Venda> getHistoricoVenda() {
 		return HistoricoVenda;
 	}
 
 	public void setHistoricoVenda(List<Venda> historicoVenda) {
 		HistoricoVenda = historicoVenda;
-	}
+	}*/
 	
 	
 	

@@ -13,9 +13,9 @@ public class ProdutoCliente extends Produto {
 
 	}
 
-	public ProdutoCliente(Integer idProduto, String marca, String modelo, String defeito, Date dataEntrada,
+	public ProdutoCliente(Integer id, String marca, String modelo, String defeito, Date dataEntrada,
 			Date dataSaida, Cliente cliente) {
-		super(idProduto, marca, modelo);
+		super(id, marca, modelo);
 		this.defeito = defeito;
 		this.dataEntrada = dataEntrada;
 		this.dataSaida = dataSaida;

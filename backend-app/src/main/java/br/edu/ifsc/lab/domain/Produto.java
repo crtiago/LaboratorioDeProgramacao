@@ -1,5 +1,6 @@
 package br.edu.ifsc.lab.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,11 +13,12 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
 @Entity
-public abstract class Produto {
+public abstract class Produto implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idProduto;
+	private Integer id;
 	private String marca;
 	private String modelo;
 
@@ -34,17 +36,17 @@ public abstract class Produto {
 
 	public Produto(Integer idProduto, String marca, String modelo) {
 		super();
-		this.idProduto = idProduto;
+		this.id = idProduto;
 		this.marca = marca;
 		this.modelo = modelo;
 	}
 
 	public Integer getIdProduto() {
-		return idProduto;
+		return id;
 	}
 
 	public void setIdProduto(Integer idProduto) {
-		this.idProduto = idProduto;
+		this.id = idProduto;
 	}
 
 	public String getMarca() {

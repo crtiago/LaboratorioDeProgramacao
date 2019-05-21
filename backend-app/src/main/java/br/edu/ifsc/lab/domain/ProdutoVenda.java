@@ -10,9 +10,9 @@ public class ProdutoVenda extends Produto {
 
 	}
 
-	public ProdutoVenda(Integer idProduto, String marca, String modelo, Double valor, String especificacoes,
+	public ProdutoVenda(Integer id, String marca, String modelo, Double valor, String especificacoes,
 			Integer estoque) {
-		super(idProduto, marca, modelo);
+		super(id, marca, modelo);
 		this.valor = valor;
 		this.especificacoes = especificacoes;
 		this.estoque = estoque;

@@ -1,10 +1,23 @@
 package br.edu.ifsc.lab.domain;
 
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-public class Endereco {
-	private Integer idEndereco;
+
+@Entity
+public class Endereco implements Serializable {
+	private static final long serialVersionUID = 1L;
+	
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 	private String rua;
 	private String cep;
 	private Integer numero;
@@ -15,13 +28,15 @@ public class Endereco {
 	private Cidade cidade;
 	
 	
+	private Usuario usuario;
+	
 	public Endereco() {
 		
 	}
 
 	public Endereco(Integer id, String rua, String cep, Integer numero, String bairro, Cidade cidade) {
 		super();
-		this.idEndereco = id;
+		this.id = id;
 		this.rua = rua;
 		this.cep = cep;
 		this.numero = numero;
@@ -30,11 +45,11 @@ public class Endereco {
 	}
 
 	public Integer getIdEndereco() {
-		return idEndereco;
+		return id;
 	}
 
 	public void setIdEndereco(Integer id) {
-		this.idEndereco = id;
+		this.id = id;
 	}
 
 	public String getRua() {

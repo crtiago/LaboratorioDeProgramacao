@@ -8,6 +8,8 @@ public class ProjetoLaboratorioProgramacaoApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetoLaboratorioProgramacaoApplication.class, args);
+		
+		System.out.println("OIIIIIIIIIIIIIIIIIII");
 	}
 
 }

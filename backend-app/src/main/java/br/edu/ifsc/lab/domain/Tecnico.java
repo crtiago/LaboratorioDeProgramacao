@@ -1,13 +1,18 @@
 package br.edu.ifsc.lab.domain;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Tecnico extends Usuario {
+import javax.persistence.Entity;
+
+@Entity
+public class Tecnico extends Usuario implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	private Float salario;
-	private List<Orcamento> orcamentos = new ArrayList<>();
-	private List<Servico> servicos = new ArrayList<>();
+	//private List<Orcamento> orcamentos = new ArrayList<>();
+	//private List<Servico> servicos = new ArrayList<>();
 	
 	public Tecnico() {
 		
@@ -26,7 +31,7 @@ public class Tecnico extends Usuario {
 	public void setSalario(Float salario) {
 		this.salario = salario;
 	}
-	public List<Orcamento> getOrcamentos() {
+	/*public List<Orcamento> getOrcamentos() {
 		return orcamentos;
 	}
 	public void setOrcamentos(List<Orcamento> orcamentos) {
@@ -37,7 +42,7 @@ public class Tecnico extends Usuario {
 	}
 	public void setServicos(List<Servico> servicos) {
 		this.servicos = servicos;
-	}
+	}*/
 	
 	
 }

@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-title>Cadastro</ion-title>
+</ion-header>
+
+
+<ion-content color='dark' padding>
+
+  <ion-grid>
+    <ion-row justify-content-center>
+      <ion-col size-sm="8" size-md="4" size-lg="3" size-xl="3">
+
+        <h1 text-center>
+          <ion-icon name="contact" color="primary" class="icon-7em"></ion-icon>
+        </h1>
+
+
+        <ion-item>
+          <ion-icon name="person" color="primary" slot="start"></ion-icon>
+          <ion-input type="text" placeholder="Nome Completo"></ion-input>
+          <ion-note slot="end" color="danger" *ngIf="name.dirty && name.hasError('required')">
+            Campo obrigatório
+          </ion-note>
+          <ion-note slot="end" color="danger" *ngIf="name.dirty && name.hasError('minlength')">
+            Min 3 characters
+          </ion-note>
+        </ion-item>
+
+
+        <ion-item>
+          <ion-icon name="mail" color="primary" slot="start"></ion-icon>
+          <ion-input type="email" color="dark" placeholder="Email"  inputmode="email"
+            autofocus="true">
+          </ion-input>
+          <ion-note slot="end" color="danger" *ngIf="email.dirty && email.hasError('required')">
+            Required
+          </ion-note>
+          <ion-note slot="end" color="danger" *ngIf="email.dirty && email.hasError('email')">
+            Invalid email
+          </ion-note>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="phone-portrait" color="primary" slot="start"></ion-icon>
+          <ion-input type="number" color="dark" placeholder="Telefone"  inputmode="email"
+            autofocus="true">
+          </ion-input>
+          <ion-note slot="end" color="danger" *ngIf="email.dirty && email.hasError('required')">
+            Campo Obrigatório
+          </ion-note>
+          <ion-note slot="end" color="danger" *ngIf="email.dirty && email.hasError('email')">
+            Telefone Invalido
+          </ion-note>
+        </ion-item>
+
+        <ion-item>
+          <ion-icon name="lock" color="dark" slot="start"></ion-icon>
+          <ion-input type="password" placeholder="Password" ></ion-input>
+          <ion-note slot="end" color="danger" *ngIf="password.dirty && password.hasError('required')">
+            Required
+          </ion-note>
+          <ion-note slot="end" color="danger" *ngIf="password.dirty && password.hasError('minlength')">
+            Min 6 characters
+          </ion-note>
+        </ion-item>
+
+        <ion-button expand="block" fill="clear"  (click)="cancelar()">Cancelar</ion-button>
+
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
