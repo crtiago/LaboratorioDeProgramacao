@@ -23,11 +23,7 @@ public abstract class Produto implements Serializable {
 	private String modelo;
 
 	@ManyToMany
-	@JoinTable(
-			name = "PRODUTO_CATEGORIA",
-			joinColumns = @JoinColumn(name = "idProduto"),
-			inverseJoinColumns = @JoinColumn(name = "idCategoria")
-		)
+	@JoinTable(name = "PRODUTO_CATEGORIA", joinColumns = @JoinColumn(name = "idProduto"), inverseJoinColumns = @JoinColumn(name = "idCategoria"))
 	private List<Categoria> categorias = new ArrayList<>();
 
 	public Produto() {
@@ -71,6 +67,31 @@ public abstract class Produto implements Serializable {
 
 	public void setCategorias(List<Categoria> categorias) {
 		this.categorias = categorias;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Produto other = (Produto) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
 
 }

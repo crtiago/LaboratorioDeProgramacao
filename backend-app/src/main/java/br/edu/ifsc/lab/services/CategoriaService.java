@@ -24,7 +24,7 @@ public class CategoriaService {
 	/*
 	 * Criar uma operação capaz de buscar uma categoria por código
 	 */
-	public Categoria buscar(Integer id) throws ObjectNotFoundException {
+	public Categoria find(Integer id) throws ObjectNotFoundException {
 		Optional<Categoria> obj = rep.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"" + "Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()));
