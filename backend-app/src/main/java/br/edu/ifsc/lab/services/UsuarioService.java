@@ -24,7 +24,7 @@ public class UsuarioService {
 	/*
 	 * Criar uma operação capaz de buscar uma categoria por código
 	 */
-	public Usuario buscar(Integer id) throws ObjectNotFoundException {
+	public Usuario find(Integer id) throws ObjectNotFoundException {
 		Optional<Usuario> obj = rep.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"" + "Objeto não encontrado! Id: " + id + ", Tipo: " + Usuario.class.getName()));
