@@ -3,7 +3,8 @@ package br.edu.ifsc.lab.domain;
 import java.util.Date;
 
 public class ProdutoCliente extends Produto {
-
+	private static final long serialVersionUID = 1L;
+	
 	private String defeito;
 	private Date dataEntrada;
 	private Date dataSaida;

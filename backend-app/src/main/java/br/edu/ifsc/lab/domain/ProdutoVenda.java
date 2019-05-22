@@ -1,7 +1,8 @@
 package br.edu.ifsc.lab.domain;
 
 public class ProdutoVenda extends Produto {
-
+	private static final long serialVersionUID = 1L;
+	
 	private Double valor;
 	private String especificacoes;
 	private Integer estoque;

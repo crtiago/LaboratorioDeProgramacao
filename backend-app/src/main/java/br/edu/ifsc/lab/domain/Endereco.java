@@ -28,7 +28,7 @@ public class Endereco implements Serializable {
 	private Cidade cidade;
 	
 	
-	private Usuario usuario;
+	//private Usuario usuario;
 	
 	public Endereco() {
 		

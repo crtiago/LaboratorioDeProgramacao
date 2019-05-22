@@ -3,7 +3,8 @@ package br.edu.ifsc.lab.domain;
 import br.edu.ifsc.lab.domain.enums.EstadoPagamento;
 
 public class PagamentoCartao extends Pagamento {
-
+	private static final long serialVersionUID = 1L;
+	
 	private Integer parcelas;
 
 	public PagamentoCartao() {

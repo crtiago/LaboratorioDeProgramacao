@@ -5,6 +5,7 @@ import java.util.Date;
 import br.edu.ifsc.lab.domain.enums.EstadoPagamento;
 
 public class PagamentoBoleto extends Pagamento {
+	private static final long serialVersionUID = 1L;
 
 	private Date dataVencimento;
 
