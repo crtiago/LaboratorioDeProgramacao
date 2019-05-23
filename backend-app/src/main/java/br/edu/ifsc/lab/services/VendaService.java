@@ -24,7 +24,7 @@ public class VendaService {
 	/*
 	 * Criar uma operação capaz de buscar uma categoria por código
 	 */
-	public Venda buscar(Integer id) throws ObjectNotFoundException {
+	public Venda find(Integer id) throws ObjectNotFoundException {
 		Optional<Venda> obj = rep.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"" + "Objeto não encontrado! Id: " + id + ", Tipo: " + Venda.class.getName()));

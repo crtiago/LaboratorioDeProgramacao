@@ -24,7 +24,7 @@ public class EnderecoService {
 	/*
 	 * Criar uma operação capaz de buscar uma categoria por código
 	 */
-	public Endereco buscar(Integer id) throws ObjectNotFoundException {
+	public Endereco find(Integer id) throws ObjectNotFoundException {
 		Optional<Endereco> obj = rep.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"" + "Objeto não encontrado! Id: " + id + ", Tipo: " + Endereco.class.getName()));

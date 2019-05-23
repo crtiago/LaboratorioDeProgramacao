@@ -24,7 +24,7 @@ public class PagamentoService {
 	/*
 	 * Criar uma operação capaz de buscar uma categoria por código
 	 */
-	public Pagamento buscar(Integer id) throws ObjectNotFoundException {
+	public Pagamento find(Integer id) throws ObjectNotFoundException {
 		Optional<Pagamento> obj = rep.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"" + "Objeto não encontrado! Id: " + id + ", Tipo: " + Pagamento.class.getName()));

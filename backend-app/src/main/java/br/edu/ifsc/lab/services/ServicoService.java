@@ -24,7 +24,7 @@ public class ServicoService {
 	/*
 	 * Criar uma operação capaz de buscar uma categoria por código
 	 */
-	public Servico buscar(Integer id) throws ObjectNotFoundException {
+	public Servico find(Integer id) throws ObjectNotFoundException {
 		Optional<Servico> obj = rep.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"" + "Objeto não encontrado! Id: " + id + ", Tipo: " + Servico.class.getName()));

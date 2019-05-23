@@ -24,7 +24,7 @@ public class ProdutoService {
 	/*
 	 * Criar uma operação capaz de buscar uma categoria por código
 	 */
-	public Produto buscar(Integer id) throws ObjectNotFoundException {
+	public Produto find(Integer id) throws ObjectNotFoundException {
 		Optional<Produto> obj = rep.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"" + "Objeto não encontrado! Id: " + id + ", Tipo: " + Produto.class.getName()));

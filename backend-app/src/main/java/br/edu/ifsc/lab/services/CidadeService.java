@@ -24,7 +24,7 @@ public class CidadeService {
 	/*
 	 * Criar uma operação capaz de buscar uma categoria por código
 	 */
-	public Cidade buscar(Integer id) throws ObjectNotFoundException {
+	public Cidade find(Integer id) throws ObjectNotFoundException {
 		Optional<Cidade> obj = rep.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"" + "Objeto não encontrado! Id: " + id + ", Tipo: " + Cidade.class.getName()));

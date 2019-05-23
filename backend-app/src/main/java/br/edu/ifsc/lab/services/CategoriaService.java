@@ -39,6 +39,16 @@ public class CategoriaService {
 		obj.setId(null);
 		return rep.save(obj);
 	}
+	
+	/*
+	 * Método para atualizar uma categoria
+	 */
+
+	public Categoria update(Categoria obj) throws ObjectNotFoundException {
+		find(obj.getId());
+		return rep.save(obj);
+	}
+
 
 	/*
 	 * Método auxiliar,para que a partir de um objeto CategoriaDTO vai ser

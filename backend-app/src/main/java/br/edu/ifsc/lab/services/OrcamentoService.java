@@ -24,7 +24,7 @@ public class OrcamentoService {
 	/*
 	 * Criar uma operação capaz de buscar uma categoria por código
 	 */
-	public Orcamento buscar(Integer id) throws ObjectNotFoundException {
+	public Orcamento find(Integer id) throws ObjectNotFoundException {
 		Optional<Orcamento> obj = rep.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"" + "Objeto não encontrado! Id: " + id + ", Tipo: " + Orcamento.class.getName()));

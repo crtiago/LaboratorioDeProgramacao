@@ -24,7 +24,7 @@ public class EstadoService {
 	/*
 	 * Criar uma operação capaz de buscar uma categoria por código
 	 */
-	public Estado buscar(Integer id) throws ObjectNotFoundException {
+	public Estado find(Integer id) throws ObjectNotFoundException {
 		Optional<Estado> obj = rep.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"" + "Objeto não encontrado! Id: " + id + ", Tipo: " + Estado.class.getName()));
