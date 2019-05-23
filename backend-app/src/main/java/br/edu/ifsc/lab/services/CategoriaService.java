@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.ifsc.lab.domain.Categoria;
+import br.edu.ifsc.lab.dto.CategoriaDTO;
 import br.edu.ifsc.lab.repository.CategoriaRepository;
 import javassist.tools.rmi.ObjectNotFoundException;
 
@@ -29,4 +30,22 @@ public class CategoriaService {
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"" + "Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()));
 	}
+
+	/*
+	 * Método para inserir uma categoria utilizando o repositório
+	 */
+
+	public Categoria insert(Categoria obj) {
+		obj.setId(null);
+		return rep.save(obj);
+	}
+
+	/*
+	 * Método auxiliar,para que a partir de um objeto CategoriaDTO vai ser
+	 * construido um objeto Categoria Intancia uma categoria a partir de um DTO
+	 */
+	public Categoria fromDTO(CategoriaDTO objDto) {
+		return new Categoria(objDto.getId(), objDto.getNome());
+	}
+
 }

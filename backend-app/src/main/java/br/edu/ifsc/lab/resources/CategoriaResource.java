@@ -1,13 +1,20 @@
 package br.edu.ifsc.lab.resources;
 
+import java.net.URI;
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.edu.ifsc.lab.domain.Categoria;
+import br.edu.ifsc.lab.dto.CategoriaDTO;
 import br.edu.ifsc.lab.services.CategoriaService;
 import javassist.tools.rmi.ObjectNotFoundException;
 
@@ -30,6 +37,18 @@ public class CategoriaResource {
 	public ResponseEntity<Categoria> find(@PathVariable Integer id) throws ObjectNotFoundException {
 		Categoria obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
+	}
+	
+	/*
+	 * Método pra receber uma categoria no formato de Jsom e inserir essa categoria
+	 * no banco de dados
+	 */
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<Void> insert(@Valid @RequestBody CategoriaDTO objDto) {
+		Categoria obj = service.fromDTO(objDto);
+		obj = service.insert(obj);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+		return ResponseEntity.created(uri).build();
 	}
 
 	

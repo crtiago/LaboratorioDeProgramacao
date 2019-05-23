@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import br.edu.ifsc.lab.domain.Categoria;
 import br.edu.ifsc.lab.domain.Cliente;
+import br.edu.ifsc.lab.domain.Tecnico;
 import br.edu.ifsc.lab.domain.Usuario;
 import br.edu.ifsc.lab.repository.CategoriaRepository;
 import br.edu.ifsc.lab.repository.UsuarioRepository;
@@ -33,10 +34,14 @@ public class ProjetoLaboratorioProgramacaoApplication implements CommandLineRunn
 			
 		categoriarepository.saveAll(Arrays.asList(cat1,cat2));
 		
-		Usuario user1 = new Cliente(null, "Cesar", "teste1", "Cesar A", "453534535353");
-		Usuario user2 = new Cliente(null, "Carlos", "teste2", "Carlos B", "34234324242424");
+		Usuario cli1 = new Cliente(null, "Cesar", "teste1", "Cesar A", "453534535353");
+		Usuario cli2 = new Cliente(null, "Carlos", "teste2", "Carlos B", "34234324242424");
 		
-		usuariorepository.saveAll(Arrays.asList(user1,user2));
+		Usuario tec1 = new Tecnico(null, "Carol", "7465783465", "Carol L", "473647864726", (float) 2.000);
+		Usuario tec2 = new Tecnico(null, "Osmar", "567834756374", "Osmar H", "457485757", (float) 3.000);
+
+		
+		usuariorepository.saveAll(Arrays.asList(cli1,cli2,tec1,tec2));
 
 	}
 
