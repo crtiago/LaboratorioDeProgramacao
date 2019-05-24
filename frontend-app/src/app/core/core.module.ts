@@ -4,8 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { RouteReuseStrategy } from '@angular/router';
-import { CategoriaService } from 'src/services/domain/categoria.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { CategoriaService } from 'src/services/domain/categoria.service';
+import { UsuarioService } from 'src/services/domain/usuario.service';
 
 @NgModule({
   imports: [
@@ -21,6 +23,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     StatusBar,
     SplashScreen,
     CategoriaService,
+    UsuarioService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
 })
