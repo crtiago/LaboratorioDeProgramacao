@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button defaultHref="/home"></ion-back-button>
+        </ion-buttons>
+    <ion-title>Produtos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list lines="inset">
+    <ion-item class="item">
+      <ion-card buttom [routerLink]="['/manutencao-item']" routerLinkActive="router-link-active">
+        <ion-card-header>
+          <ion-card-subtitle>Xiaomi Mi8</ion-card-subtitle>
+          <ion-card-title>Em manutencao</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-progress-bar value="0.5"></ion-progress-bar>
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+
+    <ion-item padding>
+      <ion-card buttom padding>
+        <ion-card-header>
+          <ion-card-subtitle>Asus Zenfone 5</ion-card-subtitle>
+          <ion-card-title>Finalizado</ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-progress-bar value="1"></ion-progress-bar>
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+</ion-content>

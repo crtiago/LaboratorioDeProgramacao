@@ -6,7 +6,7 @@ import {
   FormControl
 } from "@angular/forms";
 import { CategoriaService } from "src/services/domain/categoria.service";
-import { NavController } from "@ionic/angular";
+import { NavController, MenuController } from "@ionic/angular";
 
 @Component({
   selector: "app-login",
@@ -20,7 +20,8 @@ export class LoginPage implements OnInit {
   constructor(
     private fb: FormBuilder,
     public catServ: CategoriaService,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private menuCtrl: MenuController
   ) {}
 
   ngOnInit(): void {
@@ -28,6 +29,7 @@ export class LoginPage implements OnInit {
     this.catServ.findAll().subscribe(res => {
       console.log(res);
     });
+    this.menuCtrl.enable(false);
   }
 
   private createForm() {

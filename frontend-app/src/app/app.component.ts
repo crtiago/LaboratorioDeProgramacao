@@ -30,8 +30,4 @@ export class AppComponent {
       this.splashScreen.hide();
     });
   }
-
-  onClick(){
-    console.log('funfa');
-  }
 }

@@ -12,6 +12,7 @@ export class HomePage {
 
   constructor(private menuCtrl: MenuController) {
     this.initializeItems();
+    this.menuCtrl.enable(true);
   }
 
   initializeItems() {

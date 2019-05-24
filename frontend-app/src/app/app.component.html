@@ -15,7 +15,7 @@
     <ion-content color="medium">
       <ion-list>
         <ion-menu-toggle color="light">
-          <ion-item color="dark" button (click)="onClick()">
+          <ion-item color="dark" button [routerLink]="['/manutencao-lista']" routerLinkActive="router-link-active" >
             <ion-icon slot="start" name="hammer"></ion-icon>
             Manutenção
           </ion-item>
@@ -23,8 +23,8 @@
       </ion-list>
     </ion-content>
 
-
   </ion-menu>
+  
   <ion-router-outlet id="menu-content"></ion-router-outlet>
   <ion-tabs slots="bottomstart">
     <ion-tab-bar slot="bottom">
