@@ -1,6 +1,8 @@
 package br.edu.ifsc.lab.resources;
 
 import java.net.URI;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -73,6 +75,18 @@ public class CategoriaResource {
 		service.delete(id);
 
 		return ResponseEntity.noContent().build();
+	}
+	
+	/*
+	 * Método buscar a lista de categorias
+	 */
+	
+	@RequestMapping(method = RequestMethod.GET)
+	public ResponseEntity<List<CategoriaDTO>> findAll() {
+		List<Categoria> list = service.findAll();
+		// Convertendo uma lista (list) para outra lista (listDTO)
+		List<CategoriaDTO> listDTO = list.stream().map(obj -> new CategoriaDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDTO);
 	}
 
 }

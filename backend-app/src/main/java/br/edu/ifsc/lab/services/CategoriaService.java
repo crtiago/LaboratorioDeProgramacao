@@ -1,5 +1,6 @@
 package br.edu.ifsc.lab.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,6 +71,14 @@ public class CategoriaService {
 		} catch (DataIntegrityViolationException e) {
 			throw new DataIntegrityException("Não é possível excluir uma categoria que possui produtos");
 		}
+	}
+	
+	/*
+	 * Método para buscar a lista de categorias
+	 */
+
+	public List<Categoria> findAll() {
+		return rep.findAll();
 	}
 
 }
