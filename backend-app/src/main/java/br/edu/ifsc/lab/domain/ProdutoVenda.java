@@ -2,7 +2,7 @@ package br.edu.ifsc.lab.domain;
 
 public class ProdutoVenda extends Produto {
 	private static final long serialVersionUID = 1L;
-	
+
 	private Double valor;
 	private String especificacoes;
 	private Integer estoque;
@@ -11,9 +11,9 @@ public class ProdutoVenda extends Produto {
 
 	}
 
-	public ProdutoVenda(Integer id, String marca, String modelo, Double valor, String especificacoes,
+	public ProdutoVenda(Integer idProduto, String marca, String modelo, Double valor, String especificacoes,
 			Integer estoque) {
-		super(id, marca, modelo);
+		super(idProduto, marca, modelo);
 		this.valor = valor;
 		this.especificacoes = especificacoes;
 		this.estoque = estoque;
