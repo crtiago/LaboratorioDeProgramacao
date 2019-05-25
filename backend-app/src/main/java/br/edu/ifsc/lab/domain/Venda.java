@@ -15,8 +15,8 @@ public class Venda implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private Cliente cliente;
-	private Vendedor vendedor;
+	private UsuarioCliente usuarioCliente;
+	private UsuarioVendedor usuarioVendedor;
 	private Produto produto;
 	private Servico servico;
 	private Date dataVenda;
@@ -26,12 +26,12 @@ public class Venda implements Serializable {
 		
 	}
 
-	public Venda(Integer id, Cliente cliente, Vendedor vendedor, Produto produto, Servico servico, Date dataVenda,
+	public Venda(Integer id, UsuarioCliente usuarioCliente, UsuarioVendedor usuarioVendedor, Produto produto, Servico servico, Date dataVenda,
 			Float valorTotal) {
 		super();
 		this.id = id;
-		this.cliente = cliente;
-		this.vendedor = vendedor;
+		this.usuarioCliente = usuarioCliente;
+		this.usuarioVendedor = usuarioVendedor;
 		this.produto = produto;
 		this.servico = servico;
 		this.dataVenda = dataVenda;
@@ -46,20 +46,20 @@ public class Venda implements Serializable {
 		this.id = id;
 	}
 
-	public Cliente getCliente() {
-		return cliente;
+	public UsuarioCliente getCliente() {
+		return usuarioCliente;
 	}
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	public void setCliente(UsuarioCliente usuarioCliente) {
+		this.usuarioCliente = usuarioCliente;
 	}
 
-	public Vendedor getVendedor() {
-		return vendedor;
+	public UsuarioVendedor getVendedor() {
+		return usuarioVendedor;
 	}
 
-	public void setVendedor(Vendedor vendedor) {
-		this.vendedor = vendedor;
+	public void setVendedor(UsuarioVendedor usuarioVendedor) {
+		this.usuarioVendedor = usuarioVendedor;
 	}
 
 	public Produto getProduto() {

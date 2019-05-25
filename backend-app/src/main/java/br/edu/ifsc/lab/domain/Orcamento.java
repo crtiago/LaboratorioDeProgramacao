@@ -15,18 +15,18 @@ public class Orcamento implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private Produto produtoCliente;
-	private Tecnico tecnico;
+	private UsuarioTecnico usuarioTecnico;
 	private Float valor;
 
 	public Orcamento() {
 
 	}
 
-	public Orcamento(Integer id, Produto produtoCliente, Tecnico tecnico, Float valor) {
+	public Orcamento(Integer id, Produto produtoCliente, UsuarioTecnico usuarioTecnico, Float valor) {
 		super();
 		this.id = id;
 		this.setProdutoCliente(produtoCliente);
-		this.tecnico = tecnico;
+		this.usuarioTecnico = usuarioTecnico;
 		this.valor = valor;
 	}
 
@@ -38,12 +38,12 @@ public class Orcamento implements Serializable {
 		this.id = id;
 	}
 
-	public Tecnico getTecnico() {
-		return tecnico;
+	public UsuarioTecnico getTecnico() {
+		return usuarioTecnico;
 	}
 
-	public void setTecnico(Tecnico tecnico) {
-		this.tecnico = tecnico;
+	public void setTecnico(UsuarioTecnico usuarioTecnico) {
+		this.usuarioTecnico = usuarioTecnico;
 	}
 
 	public Float getValor() {

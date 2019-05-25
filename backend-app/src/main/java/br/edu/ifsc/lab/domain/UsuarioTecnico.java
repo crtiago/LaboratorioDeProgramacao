@@ -3,20 +3,22 @@ package br.edu.ifsc.lab.domain;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
-public class Tecnico extends Usuario implements Serializable {
+@PrimaryKeyJoinColumn(name = "id_usuario")
+public class UsuarioTecnico extends Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Float salario;
 	// private List<Orcamento> orcamentos = new ArrayList<>();
 	// private List<Servico> servicos = new ArrayList<>();
 
-	public Tecnico() {
+	public UsuarioTecnico() {
 
 	}
 
-	public Tecnico(Integer id, String login, String senha, String nome, String cpf, float salario) {
+	public UsuarioTecnico(Integer id, String login, String senha, String nome, String cpf, float salario) {
 		super(id, login, senha, nome, cpf);
 		this.salario = salario;
 	}

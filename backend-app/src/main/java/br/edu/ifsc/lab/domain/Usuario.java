@@ -10,31 +10,34 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	private String login;
 	private String senha;
 	private String nome;
 	private String cpf;
-	
-	//private List<Endereco> enderecos = new ArrayList<>();
-	
+
+	// private List<Endereco> enderecos = new ArrayList<>();
+
 	@ElementCollection
 	@CollectionTable(name = "TELEFONE")
 	private Set<String> telefones = new HashSet<>();
-	
+
 	public Usuario() {
-		
+
 	}
 
-	public Usuario(Integer id,String login, String senha, String nome, String cpf) {
+	public Usuario(Integer id, String login, String senha, String nome, String cpf) {
 		this.id = id;
 		this.login = login;
 		this.senha = senha;
@@ -74,13 +77,12 @@ public abstract class Usuario implements Serializable {
 		this.cpf = cpf;
 	}
 
-	/*public List<Endereco> getEnderecos() {
-		return enderecos;
-	}
-
-	public void setEnderecos(List<Endereco> enderecos) {
-		this.enderecos = enderecos;
-	}*/
+	/*
+	 * public List<Endereco> getEnderecos() { return enderecos; }
+	 * 
+	 * public void setEnderecos(List<Endereco> enderecos) { this.enderecos =
+	 * enderecos; }
+	 */
 
 	public Set<String> getTelefones() {
 		return telefones;
@@ -97,9 +99,5 @@ public abstract class Usuario implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
-	
-	
-	
-	
+
 }

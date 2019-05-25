@@ -6,26 +6,25 @@ import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
-@PrimaryKeyJoinColumn(name="id_produto")
+@PrimaryKeyJoinColumn(name = "id_produto")
 public class ProdutoCliente extends Produto {
 	private static final long serialVersionUID = 1L;
-	
+
 	private String defeito;
 	private Date dataEntrada;
 	private Date dataSaida;
-	private Cliente cliente;
+//	private UsuarioCliente cliente;
 
 	public ProdutoCliente() {
 
 	}
 
-	public ProdutoCliente(Integer id, String marca, String modelo, String defeito, Date dataEntrada,
-			Date dataSaida, Cliente cliente) {
+	public ProdutoCliente(Integer id, String marca, String modelo, String defeito, Date dataEntrada, Date dataSaida) {
 		super(id, marca, modelo);
 		this.defeito = defeito;
 		this.dataEntrada = dataEntrada;
 		this.dataSaida = dataSaida;
-		this.cliente = cliente;
+		// this.cliente = cliente;
 	}
 
 	public String getDefeito() {
@@ -52,12 +51,10 @@ public class ProdutoCliente extends Produto {
 		this.dataSaida = dataSaida;
 	}
 
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
+	/*
+	 * public UsuarioCliente getCliente() { return cliente; }
+	 * 
+	 * public void setCliente(UsuarioCliente cliente) { this.cliente = cliente; }
+	 */
 
 }

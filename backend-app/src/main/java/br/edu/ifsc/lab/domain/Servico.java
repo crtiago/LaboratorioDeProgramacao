@@ -18,7 +18,7 @@ public class Servico implements Serializable {
 	private String descServico;
 	private Float valor;
 	private String etapa;
-	private Tecnico tecnico;
+	private UsuarioTecnico usuarioTecnico;
 	
 
 	public Servico() {
@@ -26,14 +26,14 @@ public class Servico implements Serializable {
 	}
 
 
-	public Servico(Integer id, Produto produtoCliente, String descServico, Float valor, String etapa, Tecnico tecnico) {
+	public Servico(Integer id, Produto produtoCliente, String descServico, Float valor, String etapa, UsuarioTecnico usuarioTecnico) {
 		super();
 		this.id = id;
 		this.produtoCliente = produtoCliente;
 		this.descServico = descServico;
 		this.valor = valor;
 		this.etapa = etapa;
-		this.tecnico = tecnico;
+		this.usuarioTecnico = usuarioTecnico;
 	}
 
 
@@ -87,13 +87,13 @@ public class Servico implements Serializable {
 	}
 
 
-	public Tecnico getTecnico() {
-		return tecnico;
+	public UsuarioTecnico getTecnico() {
+		return usuarioTecnico;
 	}
 
 
-	public void setTecnico(Tecnico tecnico) {
-		this.tecnico = tecnico;
+	public void setTecnico(UsuarioTecnico usuarioTecnico) {
+		this.usuarioTecnico = usuarioTecnico;
 	}
 	
 	
