@@ -11,11 +11,13 @@ import br.edu.ifsc.lab.domain.Categoria;
 import br.edu.ifsc.lab.domain.Cidade;
 import br.edu.ifsc.lab.domain.Cliente;
 import br.edu.ifsc.lab.domain.Estado;
+import br.edu.ifsc.lab.domain.ProdutoVenda;
 import br.edu.ifsc.lab.domain.Tecnico;
 import br.edu.ifsc.lab.domain.Usuario;
 import br.edu.ifsc.lab.repository.CategoriaRepository;
 import br.edu.ifsc.lab.repository.CidadeRepository;
 import br.edu.ifsc.lab.repository.EstadoRepository;
+import br.edu.ifsc.lab.repository.ProdutoRepository;
 import br.edu.ifsc.lab.repository.UsuarioRepository;
 
 @SpringBootApplication
@@ -29,6 +31,8 @@ public class ProjetoLaboratorioProgramacaoApplication implements CommandLineRunn
 	private EstadoRepository estadorepository;
 	@Autowired
 	private CidadeRepository cidaderepository;
+	@Autowired
+	private ProdutoRepository produtorepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetoLaboratorioProgramacaoApplication.class, args);
@@ -60,6 +64,10 @@ public class ProjetoLaboratorioProgramacaoApplication implements CommandLineRunn
 
 		estadorepository.saveAll(Arrays.asList(est1, est2));
 		cidaderepository.saveAll(Arrays.asList(c1, c2));
+
+		ProdutoVenda p1 = new ProdutoVenda(null, "Z", "T", (double) 2000, "T", 10);
+
+		produtorepository.saveAll(Arrays.asList(p1));
 
 	}
 

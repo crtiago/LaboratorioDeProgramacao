@@ -2,6 +2,11 @@ package br.edu.ifsc.lab.domain;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
+
+@Entity
+@PrimaryKeyJoinColumn(name="id_produto")
 public class ProdutoCliente extends Produto {
 	private static final long serialVersionUID = 1L;
 	
