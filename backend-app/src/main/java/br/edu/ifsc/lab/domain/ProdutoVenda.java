@@ -1,13 +1,11 @@
 package br.edu.ifsc.lab.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "id_produto")
@@ -18,25 +16,26 @@ public class ProdutoVenda extends Produto {
 	private String especificacoes;
 	private Integer estoque;
 
-	@ManyToMany
-
-	@JoinTable(name = "PRODUTO_CATEGORIA", joinColumns = @JoinColumn(name = "idProduto"), inverseJoinColumns = @JoinColumn(name = "idCategoria"))
-	private List<Categoria> categorias = new ArrayList<>();
+	@ManyToOne
+	@JsonIgnore
+	@JoinColumn(name = "categoria_id")
+	private Categoria categoria = new Categoria();
 
 	public ProdutoVenda() {
 
 	}
 
-	public ProdutoVenda(Integer idProduto, String marca, String modelo, Double valor, String especificacoes,
-			Integer estoque) {
-		super(idProduto, marca, modelo);
+	public Double getValor() {
+		return valor;
+	}
+
+	public ProdutoVenda(Integer id, String marca, String modelo, Double valor, String especificacoes, Integer estoque,
+			Categoria categoria) {
+		super(id, marca, modelo);
 		this.valor = valor;
 		this.especificacoes = especificacoes;
 		this.estoque = estoque;
-	}
-
-	public Double getValor() {
-		return valor;
+		this.categoria = categoria;
 	}
 
 	public void setValor(Double valor) {
@@ -59,12 +58,12 @@ public class ProdutoVenda extends Produto {
 		this.estoque = estoque;
 	}
 
-	public List<Categoria> getCategorias() {
-		return categorias;
+	public Categoria getCategoria() {
+		return categoria;
 	}
 
-	public void setCategorias(List<Categoria> categorias) {
-		this.categorias = categorias;
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
 	}
 
 }

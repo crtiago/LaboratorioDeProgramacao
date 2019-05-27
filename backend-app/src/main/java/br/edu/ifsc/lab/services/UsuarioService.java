@@ -20,4 +20,5 @@ public class UsuarioService {
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"" + "Objeto não encontrado! Id: " + id + ", Tipo: " + Usuario.class.getName()));
 	}
+
 }

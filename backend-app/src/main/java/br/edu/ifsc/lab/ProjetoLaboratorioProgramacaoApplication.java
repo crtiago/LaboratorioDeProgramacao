@@ -11,13 +11,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import br.edu.ifsc.lab.domain.Categoria;
 import br.edu.ifsc.lab.domain.Cidade;
-import br.edu.ifsc.lab.domain.UsuarioCliente;
 import br.edu.ifsc.lab.domain.Estado;
 import br.edu.ifsc.lab.domain.ProdutoCliente;
 import br.edu.ifsc.lab.domain.ProdutoVenda;
+import br.edu.ifsc.lab.domain.Usuario;
+import br.edu.ifsc.lab.domain.UsuarioCliente;
 import br.edu.ifsc.lab.domain.UsuarioTecnico;
 import br.edu.ifsc.lab.domain.UsuarioVendedor;
-import br.edu.ifsc.lab.domain.Usuario;
 import br.edu.ifsc.lab.repository.CategoriaRepository;
 import br.edu.ifsc.lab.repository.CidadeRepository;
 import br.edu.ifsc.lab.repository.EstadoRepository;
@@ -47,8 +47,6 @@ public class ProjetoLaboratorioProgramacaoApplication implements CommandLineRunn
 		Categoria cat1 = new Categoria(null, "Informática");
 		Categoria cat2 = new Categoria(null, "Escritório");
 
-		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
-
 		Usuario cli1 = new UsuarioCliente(null, "Cesar", "teste1", "Cesar A", "453534535353");
 		Usuario cli2 = new UsuarioCliente(null, "Carlos", "teste2", "Carlos B", "34234324242424");
 
@@ -74,12 +72,11 @@ public class ProjetoLaboratorioProgramacaoApplication implements CommandLineRunn
 		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 		Date data = formato.parse("23/11/2015");
 
-		ProdutoVenda p1 = new ProdutoVenda(null, "Asus", "Zenfone 5", (double) 2000, "Excelente", 10);
+		ProdutoVenda p1 = new ProdutoVenda(null, "J", "T", 2000.00, "TTT", 10, cat1);
 		ProdutoCliente p2 = new ProdutoCliente(null, "Motorola", "Moto E", "Microfone", data, data);
 
-		cat1.setProdutos(Arrays.asList(p1));
-
-		p1.setCategorias(Arrays.asList(cat1, cat2));
+		cat1.getProdutos().addAll(Arrays.asList(p1));
+		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
 
 		produtoRepository.saveAll(Arrays.asList(p1, p2));
 
