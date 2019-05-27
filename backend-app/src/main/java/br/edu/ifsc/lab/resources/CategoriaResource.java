@@ -28,23 +28,11 @@ public class CategoriaResource {
 	private CategoriaService service;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	/*
-	 * Para que o Spring saiba que o id da URL->value="/(id)" tem que ir pro id da
-	 * variável -> Integer id tem que incluir a anotação @PathVariable
-	 * 
-	 * ResponseEntity é um tipo especial do Spring que já encapsula/armazena várias
-	 * informações de uma resposta http para o serviço REST,coloca uma interrogação
-	 * no tipo para dizer que pode ser qualquer tipo
-	 */
-	public ResponseEntity<Categoria> find(@PathVariable Integer id){
+	public ResponseEntity<Categoria> find(@PathVariable Integer id) {
 		Categoria obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 	}
 
-	/*
-	 * Método pra receber uma categoria no formato de Jsom e inserir essa categoria
-	 * no banco de dados
-	 */
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody CategoriaDTO objDto) {
 		Categoria obj = service.fromDTO(objDto);
@@ -52,10 +40,6 @@ public class CategoriaResource {
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
-
-	/*
-	 * Método pra atualizar uma categoria no banco de dados
-	 */
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> update(@Valid @RequestBody CategoriaDTO objDto, @PathVariable Integer id)
@@ -67,24 +51,16 @@ public class CategoriaResource {
 		return ResponseEntity.noContent().build();
 	}
 
-	/*
-	 * Método para deletar uma categoria do BD
-	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<Void> delete(@PathVariable Integer id){
+	public ResponseEntity<Void> delete(@PathVariable Integer id) {
 		service.delete(id);
 
 		return ResponseEntity.noContent().build();
 	}
-	
-	/*
-	 * Método buscar a lista de categorias
-	 */
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<CategoriaDTO>> findAll() {
 		List<Categoria> list = service.findAll();
-		// Convertendo uma lista (list) para outra lista (listDTO)
 		List<CategoriaDTO> listDTO = list.stream().map(obj -> new CategoriaDTO(obj)).collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDTO);
 	}

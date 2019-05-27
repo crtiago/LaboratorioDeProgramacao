@@ -12,18 +12,9 @@ import javassist.tools.rmi.ObjectNotFoundException;
 @Service
 public class ProdutoService {
 
-	/*
-	 * Declarar uma dependencia de um objeto do tipo ProdutoBaseRepository Para
-	 * instanciar esse repositorio usa @Autowired,com isso essa dependencia vai ser
-	 * automaticamente instanciada pelo Spring
-	 */
-
 	@Autowired
 	private ProdutoRepository rep;
 
-	/*
-	 * Criar uma operação capaz de buscar uma categoria por código
-	 */
 	public Produto find(Integer id) throws ObjectNotFoundException {
 		Optional<Produto> obj = rep.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(

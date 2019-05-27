@@ -13,20 +13,12 @@ import javassist.tools.rmi.ObjectNotFoundException;
 
 @RestController
 @RequestMapping(value = "/usuarios")
-public class UsuarioResource{
+public class UsuarioResource {
 
 	@Autowired
 	private UsuarioService service;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	/*
-	 * Para que o Spring saiba que o id da URL->value="/(id)" tem que ir pro id da
-	 * variável -> Integer id tem que incluir a anotação @PathVariable
-	 * 
-	 * ResponseEntity é um tipo especial do Spring que já encapsula/armazena várias
-	 * informações de uma resposta http para o serviço REST,coloca uma interrogação
-	 * no tipo para dizer que pode ser qualquer tipo
-	 */
 	public ResponseEntity<Usuario> find(@PathVariable Integer id) throws ObjectNotFoundException {
 		Usuario obj = service.find(id);
 		return ResponseEntity.ok().body(obj);

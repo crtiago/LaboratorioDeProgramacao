@@ -12,10 +12,6 @@ import br.edu.ifsc.lab.services.exceptions.DataIntegrityException;
 import br.edu.ifsc.lab.services.exceptions.ObjectNotFoundException;
 
 public class ResourceExceptionHandler {
-	/*
-	 * Implementando uma classe auxiliar que vai interceptar as exceções,e
-	 * obrigatoriamente dentro do framework ela tem que ter essa assinatura
-	 */
 
 	@ExceptionHandler(ObjectNotFoundException.class)
 	public ResponseEntity<StandardError> objectNotFound(ObjectNotFoundException e, HttpServletRequest request) {
@@ -39,10 +35,6 @@ public class ResourceExceptionHandler {
 
 		ValidationError err = new ValidationError(HttpStatus.BAD_REQUEST.value(), "Erro de Validação",
 				System.currentTimeMillis());
-
-		/*
-		 * Pegando a lista de erros
-		 */
 
 		for (FieldError x : e.getBindingResult().getFieldErrors()) {
 			err.addError(x.getField(), x.getDefaultMessage());

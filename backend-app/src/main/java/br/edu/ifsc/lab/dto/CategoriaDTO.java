@@ -8,11 +8,6 @@ import org.hibernate.validator.constraints.Length;
 
 import br.edu.ifsc.lab.domain.Categoria;
 
-/*
- * Classe para listar apenas o id e nome da categoria,
- * sem precisar listar os produtos pertencentes a ela
- */
-
 public class CategoriaDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -26,10 +21,6 @@ public class CategoriaDTO implements Serializable {
 
 	}
 
-	/*
-	 * Esse construtor vai ser responsável por instanciar o DTO a partir de um
-	 * objeto Categoria
-	 */
 	public CategoriaDTO(Categoria obj) {
 		this.id = obj.getId();
 		this.nome = obj.getNome();

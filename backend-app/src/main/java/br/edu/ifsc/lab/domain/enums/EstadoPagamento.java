@@ -7,9 +7,6 @@ public enum EstadoPagamento {
 	private int cod;
 	private String descricao;
 
-	/*
-	 * Construtor do tipo enumerado é private
-	 */
 	private EstadoPagamento(int cod, String descricao) {
 		this.cod = cod;
 		this.descricao = descricao;
@@ -23,10 +20,6 @@ public enum EstadoPagamento {
 		return descricao;
 	}
 
-	/*
-	 * Static porque essa operação vai te que ser possivel de ser executada mesmo
-	 * sem instanciar objetos
-	 */
 	public static EstadoPagamento toEnum(Integer cod) {
 		if (cod == null) {
 			return null;

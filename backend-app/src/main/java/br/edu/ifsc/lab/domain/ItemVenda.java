@@ -14,5 +14,5 @@ public class ItemVenda implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	//Discutir com a dupla
+
 }
