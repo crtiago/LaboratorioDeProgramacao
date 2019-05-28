@@ -12,7 +12,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import br.edu.ifsc.lab.domain.Categoria;
 import br.edu.ifsc.lab.domain.Cidade;
 import br.edu.ifsc.lab.domain.Estado;
-import br.edu.ifsc.lab.domain.ProdutoCliente;
 import br.edu.ifsc.lab.domain.ProdutoVenda;
 import br.edu.ifsc.lab.domain.Usuario;
 import br.edu.ifsc.lab.domain.UsuarioCliente;
@@ -21,7 +20,7 @@ import br.edu.ifsc.lab.domain.UsuarioVendedor;
 import br.edu.ifsc.lab.repository.CategoriaRepository;
 import br.edu.ifsc.lab.repository.CidadeRepository;
 import br.edu.ifsc.lab.repository.EstadoRepository;
-import br.edu.ifsc.lab.repository.ProdutoRepository;
+import br.edu.ifsc.lab.repository.ProdutoVendaRepository;
 import br.edu.ifsc.lab.repository.UsuarioRepository;
 
 @SpringBootApplication
@@ -36,7 +35,7 @@ public class ProjetoLaboratorioProgramacaoApplication implements CommandLineRunn
 	@Autowired
 	private CidadeRepository cidadeRepository;
 	@Autowired
-	private ProdutoRepository produtoRepository;
+	private ProdutoVendaRepository produtoVendaRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetoLaboratorioProgramacaoApplication.class, args);
@@ -73,12 +72,13 @@ public class ProjetoLaboratorioProgramacaoApplication implements CommandLineRunn
 		Date data = formato.parse("23/11/2015");
 
 		ProdutoVenda p1 = new ProdutoVenda(null, "J", "T", 2000.00, "TTT", 10, cat1);
-		ProdutoCliente p2 = new ProdutoCliente(null, "Motorola", "Moto E", "Microfone", data, data);
+		// ProdutoCliente p2 = new ProdutoCliente(null, "Motorola", "Moto E",
+		// "Microfone", data, data);
 
 		cat1.getProdutos().addAll(Arrays.asList(p1));
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
 
-		produtoRepository.saveAll(Arrays.asList(p1, p2));
+		produtoVendaRepository.saveAll(Arrays.asList(p1));
 
 	}
 
