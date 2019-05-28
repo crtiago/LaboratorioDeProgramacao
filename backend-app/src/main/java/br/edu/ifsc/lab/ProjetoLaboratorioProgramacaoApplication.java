@@ -72,13 +72,14 @@ public class ProjetoLaboratorioProgramacaoApplication implements CommandLineRunn
 		Date data = formato.parse("23/11/2015");
 
 		ProdutoVenda p1 = new ProdutoVenda(null, "J", "T", 2000.00, "TTT", 10, cat1);
+		ProdutoVenda p2 = new ProdutoVenda(null, "iAGO", "OSMAR", 2000.00, "E", 20, cat1);
 		// ProdutoCliente p2 = new ProdutoCliente(null, "Motorola", "Moto E",
 		// "Microfone", data, data);
 
-		cat1.getProdutos().addAll(Arrays.asList(p1));
+		cat1.getProdutos().addAll(Arrays.asList(p1,p2));
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
 
-		produtoVendaRepository.saveAll(Arrays.asList(p1));
+		produtoVendaRepository.saveAll(Arrays.asList(p1,p2));
 
 	}
 
