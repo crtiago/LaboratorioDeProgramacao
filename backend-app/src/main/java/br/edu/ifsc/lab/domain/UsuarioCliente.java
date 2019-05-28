@@ -1,6 +1,8 @@
 package br.edu.ifsc.lab.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
@@ -10,7 +12,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 public class UsuarioCliente extends Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	// List<Venda> historicoVendas = new ArrayList<>();
+	List<Venda> historicoVendas = new ArrayList<>();
 
 	public UsuarioCliente() {
 		super();
@@ -20,12 +22,5 @@ public class UsuarioCliente extends Usuario implements Serializable {
 		super(id, login, senha, nome, cpf);
 		// TODO Auto-generated constructor stub
 	}
-
-	/*
-	 * public List<Venda> getHistoricoVendas() { return historicoVendas; }
-	 * 
-	 * public void setHistoricoVendas(List<Venda> historicoVendas) {
-	 * this.historicoVendas = historicoVendas; }
-	 */
 
 }

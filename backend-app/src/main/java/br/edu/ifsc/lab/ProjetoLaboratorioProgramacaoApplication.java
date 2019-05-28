@@ -76,10 +76,10 @@ public class ProjetoLaboratorioProgramacaoApplication implements CommandLineRunn
 		// ProdutoCliente p2 = new ProdutoCliente(null, "Motorola", "Moto E",
 		// "Microfone", data, data);
 
-		cat1.getProdutos().addAll(Arrays.asList(p1,p2));
+		cat1.getProdutos().addAll(Arrays.asList(p1, p2));
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
 
-		produtoVendaRepository.saveAll(Arrays.asList(p1,p2));
+		produtoVendaRepository.saveAll(Arrays.asList(p1, p2));
 
 	}
 
