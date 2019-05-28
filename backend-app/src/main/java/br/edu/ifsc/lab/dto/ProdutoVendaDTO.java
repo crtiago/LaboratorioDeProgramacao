@@ -2,7 +2,7 @@ package br.edu.ifsc.lab.dto;
 
 import java.io.Serializable;
 
-import br.edu.ifsc.lab.domain.Produto;
+import br.edu.ifsc.lab.domain.ProdutoVenda;
 
 public class ProdutoVendaDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -14,10 +14,13 @@ public class ProdutoVendaDTO implements Serializable {
 	private String especificacoes;
 	private Integer estoque;
 
-	public ProdutoVendaDTO(Produto prod) {
+	public ProdutoVendaDTO(ProdutoVenda prod) {
 		this.id = prod.getIdProduto();
 		this.marca = prod.getMarca();
 		this.modelo = prod.getModelo();
+		this.valor = prod.getValor();
+		this.especificacoes = prod.getEspecificacoes();
+		this.estoque = prod.getEstoque();
 	}
 
 	public Integer getId() {
