@@ -33,11 +33,11 @@ public class Cidade implements Serializable {
 		this.estado = estado;
 	}
 
-	public Integer getIdCidade() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setIdCidade(Integer id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -47,6 +47,14 @@ public class Cidade implements Serializable {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public Estado getEstado() {
+		return estado;
+	}
+
+	public void setEstado(Estado estado) {
+		this.estado = estado;
 	}
 
 	@Override

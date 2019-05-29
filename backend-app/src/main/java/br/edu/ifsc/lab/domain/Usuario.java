@@ -1,7 +1,9 @@
 package br.edu.ifsc.lab.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CollectionTable;
@@ -12,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -22,12 +25,12 @@ public abstract class Usuario implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	private String login;
-	private String senha;
+	private String email;
 	private String nome;
 	private String cpf;
 
-	// private List<Endereco> enderecos = new ArrayList<>();
+	@OneToMany(mappedBy="usuario")
+	private List<Endereco> enderecos = new ArrayList<>();
 
 	@ElementCollection
 	@CollectionTable(name = "TELEFONE")
@@ -37,28 +40,19 @@ public abstract class Usuario implements Serializable {
 
 	}
 
-	public Usuario(Integer id, String login, String senha, String nome, String cpf) {
+	public Usuario(Integer id, String email, String nome, String cpf) {
 		this.id = id;
-		this.login = login;
-		this.senha = senha;
+		this.email = email;
 		this.nome = nome;
 		this.cpf = cpf;
 	}
 
-	public String getLogin() {
-		return login;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getNome() {
@@ -91,6 +85,14 @@ public abstract class Usuario implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public List<Endereco> getEnderecos() {
+		return enderecos;
+	}
+
+	public void setEnderecos(List<Endereco> enderecos) {
+		this.enderecos = enderecos;
 	}
 
 	@Override

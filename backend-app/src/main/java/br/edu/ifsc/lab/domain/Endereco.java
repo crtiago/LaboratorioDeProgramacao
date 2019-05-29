@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Endereco implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -21,31 +23,35 @@ public class Endereco implements Serializable {
 	private Integer numero;
 	private String bairro;
 
-	@ManyToOne()
-	@JoinColumn(name = "idCidade")
-	private Cidade cidade;
+	@ManyToOne
+	@JsonIgnore
+	@JoinColumn(name = "usuario_id")
+	private Usuario usuario;
 
-	// private Usuario usuario;
+	@ManyToOne()
+	@JoinColumn(name = "cidade_id")
+	private Cidade cidade;
 
 	public Endereco() {
 
 	}
 
-	public Endereco(Integer id, String rua, String cep, Integer numero, String bairro, Cidade cidade) {
+	public Endereco(Integer id, String rua, String cep, Integer numero, String bairro, Usuario usuario, Cidade cidade) {
 		super();
 		this.id = id;
 		this.rua = rua;
 		this.cep = cep;
 		this.numero = numero;
 		this.bairro = bairro;
+		this.usuario = usuario;
 		this.cidade = cidade;
 	}
 
-	public Integer getIdEndereco() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setIdEndereco(Integer id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -57,11 +63,11 @@ public class Endereco implements Serializable {
 		this.rua = rua;
 	}
 
-	public String getcep() {
+	public String getCep() {
 		return cep;
 	}
 
-	public void setcep(String cEP) {
+	public void setCep(String cEP) {
 		cep = cEP;
 	}
 
@@ -79,6 +85,14 @@ public class Endereco implements Serializable {
 
 	public void setBairro(String bairro) {
 		this.bairro = bairro;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public Cidade getCidade() {

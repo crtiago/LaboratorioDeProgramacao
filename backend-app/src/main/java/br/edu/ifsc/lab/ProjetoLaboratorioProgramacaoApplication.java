@@ -9,17 +9,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import br.edu.ifsc.lab.domain.Categoria;
 import br.edu.ifsc.lab.domain.Cidade;
+import br.edu.ifsc.lab.domain.Endereco;
 import br.edu.ifsc.lab.domain.Estado;
 import br.edu.ifsc.lab.domain.ProdutoVenda;
-import br.edu.ifsc.lab.domain.Usuario;
 import br.edu.ifsc.lab.domain.UsuarioCliente;
-import br.edu.ifsc.lab.domain.UsuarioTecnico;
-import br.edu.ifsc.lab.domain.UsuarioVendedor;
 import br.edu.ifsc.lab.repository.CategoriaRepository;
 import br.edu.ifsc.lab.repository.CidadeRepository;
+import br.edu.ifsc.lab.repository.EnderecoRepository;
 import br.edu.ifsc.lab.repository.EstadoRepository;
 import br.edu.ifsc.lab.repository.ProdutoVendaRepository;
-import br.edu.ifsc.lab.repository.UsuarioRepository;
+import br.edu.ifsc.lab.repository.UsuarioClienteRepository;
 
 @SpringBootApplication
 public class ProjetoLaboratorioProgramacaoApplication implements CommandLineRunner {
@@ -27,13 +26,15 @@ public class ProjetoLaboratorioProgramacaoApplication implements CommandLineRunn
 	@Autowired
 	private CategoriaRepository categoriaRepository;
 	@Autowired
-	private UsuarioRepository usuarioRepository;
-	@Autowired
 	private EstadoRepository estadoRepository;
 	@Autowired
 	private CidadeRepository cidadeRepository;
 	@Autowired
 	private ProdutoVendaRepository produtoVendaRepository;
+	@Autowired
+	private UsuarioClienteRepository usuarioClienteRepository;
+	@Autowired
+	private EnderecoRepository enderecoRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetoLaboratorioProgramacaoApplication.class, args);
@@ -43,16 +44,6 @@ public class ProjetoLaboratorioProgramacaoApplication implements CommandLineRunn
 	public void run(String... args) throws Exception {
 		Categoria cat1 = new Categoria(null, "Informática");
 		Categoria cat2 = new Categoria(null, "Escritório");
-
-		Usuario cli1 = new UsuarioCliente(null, "Cesar", "teste1", "Cesar A", "453534535353");
-		Usuario cli2 = new UsuarioCliente(null, "Carlos", "teste2", "Carlos B", "34234324242424");
-
-		Usuario tec1 = new UsuarioTecnico(null, "Carol", "7465783465", "Carol L", "473647864726", (float) 2.000);
-		Usuario tec2 = new UsuarioTecnico(null, "Osmar", "567834756374", "Osmar H", "457485757", (float) 3.000);
-
-		Usuario vend1 = new UsuarioVendedor(null, "Isabely", "hsgdfdg", "Isabely C R", "099876788388", (float) 2.000);
-
-		usuarioRepository.saveAll(Arrays.asList(cli1, cli2, tec1, tec2, vend1));
 
 		Estado est1 = new Estado(null, "Santa Catarina");
 		Estado est2 = new Estado(null, "Rio Grande do Sul");
@@ -70,18 +61,24 @@ public class ProjetoLaboratorioProgramacaoApplication implements CommandLineRunn
 		estadoRepository.saveAll(Arrays.asList(est1, est2, est3, est4, est5));
 		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
 
-		// SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-		// Date data = formato.parse("23/11/2015");
-
 		ProdutoVenda p1 = new ProdutoVenda(null, "J", "T", 2000.00, "TTT", 10, cat1);
 		ProdutoVenda p2 = new ProdutoVenda(null, "Asus", "Z", 2000.00, "E", 20, cat1);
-		// ProdutoCliente p2 = new ProdutoCliente(null, "Motorola", "Moto E",
-		// "Microfone", data, data);
 
 		cat1.getProdutos().addAll(Arrays.asList(p1, p2));
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
 
 		produtoVendaRepository.saveAll(Arrays.asList(p1, p2));
+
+		UsuarioCliente cli1 = new UsuarioCliente(null, "maria@gmail.com", "Maria Silva", "09890877684");
+		cli1.getTelefones().addAll(Arrays.asList("49988769006", "49998095647"));
+
+		Endereco e1 = new Endereco(null, "Rua Flores", "88095387", 42, "Habitação", cli1, c1);
+		Endereco e2 = new Endereco(null, "Rua Sergio", "99087666", 57, "Popular", cli1, c2);
+
+		cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
+
+		usuarioClienteRepository.saveAll(Arrays.asList(cli1));
+		enderecoRepository.saveAll(Arrays.asList(e1, e2));
 
 	}
 

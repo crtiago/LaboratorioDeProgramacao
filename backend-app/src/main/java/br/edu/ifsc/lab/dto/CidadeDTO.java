@@ -15,7 +15,7 @@ public class CidadeDTO implements Serializable {
 	}
 
 	public CidadeDTO(Cidade cidade) {
-		this.id = cidade.getIdCidade();
+		this.id = cidade.getId();
 		this.nome = cidade.getNome();
 	}
 

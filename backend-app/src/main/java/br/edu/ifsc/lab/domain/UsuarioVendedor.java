@@ -16,8 +16,8 @@ public class UsuarioVendedor extends Usuario {
 
 	}
 
-	public UsuarioVendedor(Integer id, String login, String senha, String nome, String cpf, Float salario) {
-		super(id, login, senha, nome, cpf);
+	public UsuarioVendedor(Integer id, String email, String nome, String cpf, Float salario) {
+		super(id, email, nome, cpf);
 		this.salario = salario;
 	}
 
