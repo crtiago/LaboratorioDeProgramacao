@@ -1,8 +1,6 @@
 package br.edu.ifsc.lab;
 
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -58,21 +56,25 @@ public class ProjetoLaboratorioProgramacaoApplication implements CommandLineRunn
 
 		Estado est1 = new Estado(null, "Santa Catarina");
 		Estado est2 = new Estado(null, "Rio Grande do Sul");
+		Estado est3 = new Estado(null, "Brasilia");
+		Estado est4 = new Estado(null, "Mato Grosso do Sul");
+		Estado est5 = new Estado(null, "São Paulo");
 
 		Cidade c1 = new Cidade(null, "Lages", est1);
 		Cidade c2 = new Cidade(null, "Gramado", est2);
+		Cidade c3 = new Cidade(null, " Painel", est1);
 
-		est1.getCidades().addAll(Arrays.asList(c1));
+		est1.getCidades().addAll(Arrays.asList(c1, c3));
 		est2.getCidades().addAll(Arrays.asList(c2));
 
-		estadoRepository.saveAll(Arrays.asList(est1, est2));
-		cidadeRepository.saveAll(Arrays.asList(c1, c2));
+		estadoRepository.saveAll(Arrays.asList(est1, est2, est3, est4, est5));
+		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
 
-		SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-		Date data = formato.parse("23/11/2015");
+		// SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+		// Date data = formato.parse("23/11/2015");
 
 		ProdutoVenda p1 = new ProdutoVenda(null, "J", "T", 2000.00, "TTT", 10, cat1);
-		ProdutoVenda p2 = new ProdutoVenda(null, "iAGO", "OSMAR", 2000.00, "E", 20, cat1);
+		ProdutoVenda p2 = new ProdutoVenda(null, "Asus", "Z", 2000.00, "E", 20, cat1);
 		// ProdutoCliente p2 = new ProdutoCliente(null, "Motorola", "Moto E",
 		// "Microfone", data, data);
 

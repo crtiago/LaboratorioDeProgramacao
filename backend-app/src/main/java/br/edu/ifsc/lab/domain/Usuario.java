@@ -1,9 +1,7 @@
 package br.edu.ifsc.lab.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CollectionTable;
@@ -29,7 +27,7 @@ public abstract class Usuario implements Serializable {
 	private String nome;
 	private String cpf;
 
-	private List<Endereco> enderecos = new ArrayList<>();
+	// private List<Endereco> enderecos = new ArrayList<>();
 
 	@ElementCollection
 	@CollectionTable(name = "TELEFONE")
@@ -77,14 +75,6 @@ public abstract class Usuario implements Serializable {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
-	}
-
-	public List<Endereco> getEnderecos() {
-		return enderecos;
-	}
-
-	public void setEnderecos(List<Endereco> enderecos) {
-		this.enderecos = enderecos;
 	}
 
 	public Set<String> getTelefones() {
