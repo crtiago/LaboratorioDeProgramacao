@@ -13,12 +13,16 @@ import br.edu.ifsc.lab.domain.Endereco;
 import br.edu.ifsc.lab.domain.Estado;
 import br.edu.ifsc.lab.domain.ProdutoVenda;
 import br.edu.ifsc.lab.domain.UsuarioCliente;
+import br.edu.ifsc.lab.domain.UsuarioTecnico;
+import br.edu.ifsc.lab.domain.UsuarioVendedor;
 import br.edu.ifsc.lab.repository.CategoriaRepository;
 import br.edu.ifsc.lab.repository.CidadeRepository;
 import br.edu.ifsc.lab.repository.EnderecoRepository;
 import br.edu.ifsc.lab.repository.EstadoRepository;
 import br.edu.ifsc.lab.repository.ProdutoVendaRepository;
 import br.edu.ifsc.lab.repository.UsuarioClienteRepository;
+import br.edu.ifsc.lab.repository.UsuarioTecnicoRepository;
+import br.edu.ifsc.lab.repository.UsuarioVendedorRepository;
 
 @SpringBootApplication
 public class ProjetoLaboratorioProgramacaoApplication implements CommandLineRunner {
@@ -33,6 +37,10 @@ public class ProjetoLaboratorioProgramacaoApplication implements CommandLineRunn
 	private ProdutoVendaRepository produtoVendaRepository;
 	@Autowired
 	private UsuarioClienteRepository usuarioClienteRepository;
+	@Autowired
+	private UsuarioTecnicoRepository usuarioTecnicoRepository;
+	@Autowired
+	private UsuarioVendedorRepository usuarioVendedorRepository;
 	@Autowired
 	private EnderecoRepository enderecoRepository;
 
@@ -70,15 +78,26 @@ public class ProjetoLaboratorioProgramacaoApplication implements CommandLineRunn
 		produtoVendaRepository.saveAll(Arrays.asList(p1, p2));
 
 		UsuarioCliente cli1 = new UsuarioCliente(null, "maria@gmail.com", "Maria Silva", "09890877684");
-		cli1.getTelefones().addAll(Arrays.asList("49988769006", "49998095647"));
+		cli1.getTelefones().addAll(Arrays.asList("49988769006"));
+
+		UsuarioTecnico tec1 = new UsuarioTecnico(null, "lucas@gmail.com", "Lucas Loregian", "09878964734", 3000);
+		tec1.getTelefones().addAll(Arrays.asList("49987899987"));
+
+		UsuarioVendedor vend1 = new UsuarioVendedor(null, "paola@gmail.com", "Paola Santos", "9009988998",(float) 2000);
+		vend1.getTelefones().addAll(Arrays.asList("49998095647"));
 
 		Endereco e1 = new Endereco(null, "Rua Flores", "88095387", 42, "Habitação", cli1, c1);
-		Endereco e2 = new Endereco(null, "Rua Sergio", "99087666", 57, "Popular", cli1, c2);
+		Endereco e2 = new Endereco(null, "Rua Sergio", "99087666", 57, "Popular", tec1, c2);
+		Endereco e3 = new Endereco(null, "Av Getulio", "99643309", 21, "São Paulo", vend1, c3);
 
-		cli1.getEnderecos().addAll(Arrays.asList(e1, e2));
+		cli1.getEnderecos().addAll(Arrays.asList(e1));
+		tec1.getEnderecos().addAll(Arrays.asList(e2));
+		vend1.getEnderecos().addAll(Arrays.asList(e3));
 
 		usuarioClienteRepository.saveAll(Arrays.asList(cli1));
-		enderecoRepository.saveAll(Arrays.asList(e1, e2));
+		usuarioTecnicoRepository.saveAll(Arrays.asList(tec1));
+		usuarioVendedorRepository.saveAll(Arrays.asList(vend1));
+		enderecoRepository.saveAll(Arrays.asList(e1, e2, e3));
 
 	}
 
