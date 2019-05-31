@@ -1,8 +1,14 @@
 package br.edu.ifsc.lab.domain;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -20,6 +26,9 @@ public class ProdutoVenda extends Produto {
 	@JsonIgnore
 	@JoinColumn(name = "categoria_id")
 	private Categoria categoria = new Categoria();
+	
+	@OneToMany(mappedBy = "id.produtoVenda")
+	private Set<ItemVenda> itens = new HashSet<>();
 
 	public ProdutoVenda() {
 
@@ -36,6 +45,14 @@ public class ProdutoVenda extends Produto {
 		this.especificacoes = especificacoes;
 		this.estoque = estoque;
 		this.categoria = categoria;
+	}
+
+	public List<Venda> getVendas() {
+		List<Venda> lista = new ArrayList<>();
+		for (ItemVenda x : itens) {
+			lista.add(x.getVenda());
+		}
+		return lista;
 	}
 
 	public void setValor(Double valor) {
@@ -64,6 +81,14 @@ public class ProdutoVenda extends Produto {
 
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
+	}
+
+	public Set<ItemVenda> getItens() {
+		return itens;
+	}
+
+	public void setItens(Set<ItemVenda> itens) {
+		this.itens = itens;
 	}
 
 }

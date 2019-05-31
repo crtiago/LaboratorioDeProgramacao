@@ -3,11 +3,12 @@ package br.edu.ifsc.lab.domain;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
 
 import br.edu.ifsc.lab.domain.enums.EstadoPagamento;
 
@@ -17,10 +18,12 @@ public abstract class Pagamento implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private Integer estadoPagamento;
 
+	@OneToOne
+	@JoinColumn(name = "pedido_id")
+	@MapsId
 	private Venda venda;
 
 	public Pagamento() {
@@ -42,12 +45,12 @@ public abstract class Pagamento implements Serializable {
 		this.id = id;
 	}
 
-	public Integer getEstadoPagamento() {
-		return estadoPagamento;
+	public EstadoPagamento getEstadoPagamento() {
+		return EstadoPagamento.toEnum(estadoPagamento);
 	}
 
-	public void setEstadoPagamento(Integer estadoPagamento) {
-		this.estadoPagamento = estadoPagamento;
+	public void setEstadoPagamento(EstadoPagamento estadoPagamento) {
+		this.estadoPagamento = estadoPagamento.getCod();
 	}
 
 	public Venda getVenda() {

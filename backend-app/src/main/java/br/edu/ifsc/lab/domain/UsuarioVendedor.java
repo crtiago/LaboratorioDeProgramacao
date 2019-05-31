@@ -1,6 +1,10 @@
 package br.edu.ifsc.lab.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
@@ -10,7 +14,8 @@ public class UsuarioVendedor extends Usuario {
 
 	private Float salario;
 
-	// private List<Venda> HistoricoVenda = new ArrayList<>();
+	@OneToMany(mappedBy = "usuarioVendedor")
+	private List<Venda> historicoVenda = new ArrayList<>();
 
 	public UsuarioVendedor() {
 
@@ -29,11 +34,12 @@ public class UsuarioVendedor extends Usuario {
 		this.salario = salario;
 	}
 
-	/*
-	 * public List<Venda> getHistoricoVenda() { return HistoricoVenda; }
-	 * 
-	 * public void setHistoricoVenda(List<Venda> historicoVenda) { HistoricoVenda =
-	 * historicoVenda; }
-	 */
+	public List<Venda> getHistoricoVenda() {
+		return historicoVenda;
+	}
+
+	public void setHistoricoVenda(List<Venda> historicoVenda) {
+		this.historicoVenda = historicoVenda;
+	}
 
 }

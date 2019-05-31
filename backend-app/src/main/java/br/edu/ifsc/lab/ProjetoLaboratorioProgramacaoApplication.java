@@ -1,5 +1,6 @@
 package br.edu.ifsc.lab;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,18 +12,26 @@ import br.edu.ifsc.lab.domain.Categoria;
 import br.edu.ifsc.lab.domain.Cidade;
 import br.edu.ifsc.lab.domain.Endereco;
 import br.edu.ifsc.lab.domain.Estado;
+import br.edu.ifsc.lab.domain.ItemVenda;
+import br.edu.ifsc.lab.domain.Pagamento;
+import br.edu.ifsc.lab.domain.PagamentoCartao;
 import br.edu.ifsc.lab.domain.ProdutoVenda;
 import br.edu.ifsc.lab.domain.UsuarioCliente;
 import br.edu.ifsc.lab.domain.UsuarioTecnico;
 import br.edu.ifsc.lab.domain.UsuarioVendedor;
+import br.edu.ifsc.lab.domain.Venda;
+import br.edu.ifsc.lab.domain.enums.EstadoPagamento;
 import br.edu.ifsc.lab.repository.CategoriaRepository;
 import br.edu.ifsc.lab.repository.CidadeRepository;
 import br.edu.ifsc.lab.repository.EnderecoRepository;
 import br.edu.ifsc.lab.repository.EstadoRepository;
+import br.edu.ifsc.lab.repository.ItemVendaRepository;
+import br.edu.ifsc.lab.repository.PagamentoRepository;
 import br.edu.ifsc.lab.repository.ProdutoVendaRepository;
 import br.edu.ifsc.lab.repository.UsuarioClienteRepository;
 import br.edu.ifsc.lab.repository.UsuarioTecnicoRepository;
 import br.edu.ifsc.lab.repository.UsuarioVendedorRepository;
+import br.edu.ifsc.lab.repository.VendaRepository;
 
 @SpringBootApplication
 public class ProjetoLaboratorioProgramacaoApplication implements CommandLineRunner {
@@ -43,6 +52,12 @@ public class ProjetoLaboratorioProgramacaoApplication implements CommandLineRunn
 	private UsuarioVendedorRepository usuarioVendedorRepository;
 	@Autowired
 	private EnderecoRepository enderecoRepository;
+	@Autowired
+	private VendaRepository vendaRepository;
+	@Autowired
+	private PagamentoRepository pagamentoRepository;
+	@Autowired
+	private ItemVendaRepository itemVendaRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetoLaboratorioProgramacaoApplication.class, args);
@@ -70,7 +85,7 @@ public class ProjetoLaboratorioProgramacaoApplication implements CommandLineRunn
 		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
 
 		ProdutoVenda p1 = new ProdutoVenda(null, "J", "T", 2000.00, "TTT", 10, cat1);
-		ProdutoVenda p2 = new ProdutoVenda(null, "Asus", "Z", 2000.00, "E", 20, cat1);
+		ProdutoVenda p2 = new ProdutoVenda(null, "Asus", "Z", 80.00, "E", 20, cat1);
 
 		cat1.getProdutos().addAll(Arrays.asList(p1, p2));
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
@@ -83,7 +98,8 @@ public class ProjetoLaboratorioProgramacaoApplication implements CommandLineRunn
 		UsuarioTecnico tec1 = new UsuarioTecnico(null, "lucas@gmail.com", "Lucas Loregian", "09878964734", 3000);
 		tec1.getTelefones().addAll(Arrays.asList("49987899987"));
 
-		UsuarioVendedor vend1 = new UsuarioVendedor(null, "paola@gmail.com", "Paola Santos", "9009988998",(float) 2000);
+		UsuarioVendedor vend1 = new UsuarioVendedor(null, "paola@gmail.com", "Paola Santos", "9009988998",
+				(float) 2000);
 		vend1.getTelefones().addAll(Arrays.asList("49998095647"));
 
 		Endereco e1 = new Endereco(null, "Rua Flores", "88095387", 42, "Habitação", cli1, c1);
@@ -98,6 +114,28 @@ public class ProjetoLaboratorioProgramacaoApplication implements CommandLineRunn
 		usuarioTecnicoRepository.saveAll(Arrays.asList(tec1));
 		usuarioVendedorRepository.saveAll(Arrays.asList(vend1));
 		enderecoRepository.saveAll(Arrays.asList(e1, e2, e3));
+
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+
+		Venda venda1 = new Venda(null, cli1, vend1, sdf.parse("30/09/2017 10:32"), (float) 2000);
+
+		Pagamento pagto1 = new PagamentoCartao(null, EstadoPagamento.QUITADO, venda1, 6);
+		venda1.setPagamento(pagto1);
+
+		cli1.getVendas().addAll(Arrays.asList(venda1));
+
+		vendaRepository.saveAll(Arrays.asList(venda1));
+		pagamentoRepository.saveAll(Arrays.asList(pagto1));
+
+		ItemVenda iv1 = new ItemVenda(venda1, p1, 1, 2000.00);
+		ItemVenda iv2 = new ItemVenda(venda1, p2, 2, 80.00);
+
+		venda1.getItens().addAll(Arrays.asList(iv1, iv2));
+
+		p1.getItens().addAll(Arrays.asList(iv1));
+		p2.getItens().addAll(Arrays.asList(iv2));
+
+		itemVendaRepository.saveAll(Arrays.asList(iv1, iv2));
 
 	}
 
