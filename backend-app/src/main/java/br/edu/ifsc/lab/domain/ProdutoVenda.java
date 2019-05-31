@@ -26,17 +26,13 @@ public class ProdutoVenda extends Produto {
 	@JsonIgnore
 	@JoinColumn(name = "categoria_id")
 	private Categoria categoria = new Categoria();
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "id.produtoVenda")
 	private Set<ItemVenda> itens = new HashSet<>();
 
 	public ProdutoVenda() {
 
-	}
-
-	public Double getValor() {
-		return valor;
 	}
 
 	public ProdutoVenda(Integer id, String marca, String modelo, Double valor, String especificacoes, Integer estoque,
@@ -55,6 +51,10 @@ public class ProdutoVenda extends Produto {
 			lista.add(x.getVenda());
 		}
 		return lista;
+	}
+
+	public Double getValor() {
+		return valor;
 	}
 
 	public void setValor(Double valor) {

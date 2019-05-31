@@ -17,6 +17,10 @@ public class UsuarioCliente extends Usuario implements Serializable {
 	@OneToMany(mappedBy = "usuarioCliente")
 	private List<Venda> vendas = new ArrayList<>();
 
+	@JsonIgnore
+	@OneToMany(mappedBy = "usuarioCliente")
+	private List<ProdutoCliente> produtoCliente = new ArrayList<>();
+
 	public UsuarioCliente() {
 		super();
 	}
@@ -32,6 +36,14 @@ public class UsuarioCliente extends Usuario implements Serializable {
 
 	public void setVendas(List<Venda> vendas) {
 		this.vendas = vendas;
+	}
+
+	public List<ProdutoCliente> getProdutoCliente() {
+		return produtoCliente;
+	}
+
+	public void setProdutoCliente(List<ProdutoCliente> produtoCliente) {
+		this.produtoCliente = produtoCliente;
 	}
 
 }

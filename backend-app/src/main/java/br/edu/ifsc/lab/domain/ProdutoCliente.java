@@ -2,34 +2,45 @@ package br.edu.ifsc.lab.domain;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
-import br.edu.ifsc.lab.domain.enums.StatusServico;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@PrimaryKeyJoinColumn(name = "id_produto")
 public class ProdutoCliente extends Produto {
 	private static final long serialVersionUID = 1L;
 
 	private String defeito;
+
+	@JsonFormat(pattern = "dd/MM/yyyy  HH:mm")
 	private Date dataEntrada;
+
+	@JsonFormat(pattern = "dd/MM/yyyy  HH:mm")
 	private Date dataSaida;
-	private Integer statusServico;
-	private UsuarioCliente cliente;
+
+	@ManyToOne
+	@JoinColumn(name = "cliente_id")
+	private UsuarioCliente usuarioCliente;
+
+	@OneToOne(mappedBy = "produtoCliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)	
+	private Servico servico;
 
 	public ProdutoCliente() {
 
 	}
 
 	public ProdutoCliente(Integer id, String marca, String modelo, String defeito, Date dataEntrada, Date dataSaida,
-			StatusServico statusServico, UsuarioCliente cliente) {
+			UsuarioCliente usuarioCliente) {
 		super(id, marca, modelo);
 		this.defeito = defeito;
 		this.dataEntrada = dataEntrada;
 		this.dataSaida = dataSaida;
-		this.statusServico = statusServico.getCod();
-		this.cliente = cliente;
+		this.usuarioCliente = usuarioCliente;
 	}
 
 	public String getDefeito() {
@@ -56,20 +67,20 @@ public class ProdutoCliente extends Produto {
 		this.dataSaida = dataSaida;
 	}
 
-	public Integer getStatusServico() {
-		return statusServico;
+	public UsuarioCliente getUsuarioCliente() {
+		return usuarioCliente;
 	}
 
-	public void setStatusServico(Integer statusServico) {
-		this.statusServico = statusServico;
+	public void setUsuarioCliente(UsuarioCliente usuarioCliente) {
+		this.usuarioCliente = usuarioCliente;
 	}
 
-	public UsuarioCliente getCliente() {
-		return cliente;
+	public Servico getServico() {
+		return servico;
 	}
 
-	public void setCliente(UsuarioCliente cliente) {
-		this.cliente = cliente;
+	public void setServico(Servico servico) {
+		this.servico = servico;
 	}
 
 }

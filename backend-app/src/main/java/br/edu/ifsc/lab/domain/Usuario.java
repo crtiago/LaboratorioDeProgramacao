@@ -23,13 +23,13 @@ public abstract class Usuario implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Integer id_usuario;
 
 	private String email;
 	private String nome;
 	private String cpf;
 
-	@OneToMany(mappedBy="usuario")
+	@OneToMany(mappedBy = "usuario")
 	private List<Endereco> enderecos = new ArrayList<>();
 
 	@ElementCollection
@@ -41,7 +41,7 @@ public abstract class Usuario implements Serializable {
 	}
 
 	public Usuario(Integer id, String email, String nome, String cpf) {
-		this.id = id;
+		this.id_usuario = id;
 		this.email = email;
 		this.nome = nome;
 		this.cpf = cpf;
@@ -80,11 +80,11 @@ public abstract class Usuario implements Serializable {
 	}
 
 	public Integer getId() {
-		return id;
+		return id_usuario;
 	}
 
 	public void setId(Integer id) {
-		this.id = id;
+		this.id_usuario = id;
 	}
 
 	public List<Endereco> getEnderecos() {
@@ -99,7 +99,7 @@ public abstract class Usuario implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((id_usuario == null) ? 0 : id_usuario.hashCode());
 		return result;
 	}
 
@@ -112,10 +112,10 @@ public abstract class Usuario implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Usuario other = (Usuario) obj;
-		if (id == null) {
-			if (other.id != null)
+		if (id_usuario == null) {
+			if (other.id_usuario != null)
 				return false;
-		} else if (!id.equals(other.id))
+		} else if (!id_usuario.equals(other.id_usuario))
 			return false;
 		return true;
 	}

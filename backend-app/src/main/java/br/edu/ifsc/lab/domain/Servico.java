@@ -3,9 +3,16 @@ package br.edu.ifsc.lab.domain;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
+
+import br.edu.ifsc.lab.domain.enums.StatusServico;
 
 @Entity
 public class Servico implements Serializable {
@@ -14,24 +21,31 @@ public class Servico implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private Produto produtoCliente;
 	private String descServico;
 	private Float valor;
-	private String etapa;
+	private Integer status;
+
+	@MapsId
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "PK_PRODUTO")
+	private Produto produtoCliente;
+
+	@ManyToOne
+	@JoinColumn(name = "tecnico_id")
 	private UsuarioTecnico usuarioTecnico;
 
 	public Servico() {
 
 	}
 
-	public Servico(Integer id, Produto produtoCliente, String descServico, Float valor, String etapa,
+	public Servico(Integer id, Produto produtoCliente, String descServico, Float valor, StatusServico status,
 			UsuarioTecnico usuarioTecnico) {
 		super();
 		this.id = id;
 		this.produtoCliente = produtoCliente;
 		this.descServico = descServico;
 		this.valor = valor;
-		this.etapa = etapa;
+		this.status = status.getCod();
 		this.usuarioTecnico = usuarioTecnico;
 	}
 
@@ -67,12 +81,12 @@ public class Servico implements Serializable {
 		this.valor = valor;
 	}
 
-	public String getEtapa() {
-		return etapa;
+	public StatusServico getStatus() {
+		return StatusServico.toEnum(status);
 	}
 
-	public void setEtapa(String etapa) {
-		this.etapa = etapa;
+	public void setStatus(StatusServico status) {
+		this.status = status.getCod();
 	}
 
 	public UsuarioTecnico getTecnico() {
@@ -80,6 +94,14 @@ public class Servico implements Serializable {
 	}
 
 	public void setTecnico(UsuarioTecnico usuarioTecnico) {
+		this.usuarioTecnico = usuarioTecnico;
+	}
+
+	public UsuarioTecnico getUsuarioTecnico() {
+		return usuarioTecnico;
+	}
+
+	public void setUsuarioTecnico(UsuarioTecnico usuarioTecnico) {
 		this.usuarioTecnico = usuarioTecnico;
 	}
 

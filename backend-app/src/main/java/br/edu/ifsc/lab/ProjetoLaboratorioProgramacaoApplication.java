@@ -15,19 +15,24 @@ import br.edu.ifsc.lab.domain.Estado;
 import br.edu.ifsc.lab.domain.ItemVenda;
 import br.edu.ifsc.lab.domain.Pagamento;
 import br.edu.ifsc.lab.domain.PagamentoCartao;
+import br.edu.ifsc.lab.domain.ProdutoCliente;
 import br.edu.ifsc.lab.domain.ProdutoVenda;
+import br.edu.ifsc.lab.domain.Servico;
 import br.edu.ifsc.lab.domain.UsuarioCliente;
 import br.edu.ifsc.lab.domain.UsuarioTecnico;
 import br.edu.ifsc.lab.domain.UsuarioVendedor;
 import br.edu.ifsc.lab.domain.Venda;
 import br.edu.ifsc.lab.domain.enums.EstadoPagamento;
+import br.edu.ifsc.lab.domain.enums.StatusServico;
 import br.edu.ifsc.lab.repository.CategoriaRepository;
 import br.edu.ifsc.lab.repository.CidadeRepository;
 import br.edu.ifsc.lab.repository.EnderecoRepository;
 import br.edu.ifsc.lab.repository.EstadoRepository;
 import br.edu.ifsc.lab.repository.ItemVendaRepository;
 import br.edu.ifsc.lab.repository.PagamentoRepository;
+import br.edu.ifsc.lab.repository.ProdutoClienteRepository;
 import br.edu.ifsc.lab.repository.ProdutoVendaRepository;
+import br.edu.ifsc.lab.repository.ServicoRepository;
 import br.edu.ifsc.lab.repository.UsuarioClienteRepository;
 import br.edu.ifsc.lab.repository.UsuarioTecnicoRepository;
 import br.edu.ifsc.lab.repository.UsuarioVendedorRepository;
@@ -58,6 +63,10 @@ public class ProjetoLaboratorioProgramacaoApplication implements CommandLineRunn
 	private PagamentoRepository pagamentoRepository;
 	@Autowired
 	private ItemVendaRepository itemVendaRepository;
+	@Autowired
+	private ServicoRepository servicoRepository;
+	@Autowired
+	private ProdutoClienteRepository produtoClienteRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetoLaboratorioProgramacaoApplication.class, args);
@@ -137,6 +146,18 @@ public class ProjetoLaboratorioProgramacaoApplication implements CommandLineRunn
 
 		itemVendaRepository.saveAll(Arrays.asList(iv1, iv2));
 
+		ProdutoCliente prodc1 = new ProdutoCliente(null, "Asus", "Z5", "Microfone", sdf.parse("31/05/2019 10:32"), null,
+				cli1);
+		Servico serv1 = new Servico(null, prodc1, "Arrumar microfone", (float) 2.000, StatusServico.ANALISE, tec1);
+
+		cli1.getProdutoCliente().addAll(Arrays.asList(prodc1));
+		prodc1.setServico(serv1);
+		serv1.setProdutoCliente(prodc1);
+
+		tec1.getServicos().addAll(Arrays.asList(serv1));
+
+		produtoClienteRepository.saveAll(Arrays.asList(prodc1));
+		servicoRepository.saveAll(Arrays.asList(serv1));
 	}
 
 }
