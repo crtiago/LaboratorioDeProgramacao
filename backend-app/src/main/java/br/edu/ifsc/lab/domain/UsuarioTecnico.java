@@ -43,7 +43,5 @@ public class UsuarioTecnico extends Usuario implements Serializable {
 	public void setServicos(List<Servico> servicos) {
 		this.servicos = servicos;
 	}
-	
-	
 
 }

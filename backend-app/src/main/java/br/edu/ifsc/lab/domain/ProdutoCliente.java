@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class ProdutoCliente extends Produto {
@@ -27,7 +28,8 @@ public class ProdutoCliente extends Produto {
 	@JoinColumn(name = "cliente_id")
 	private UsuarioCliente usuarioCliente;
 
-	@OneToOne(mappedBy = "produtoCliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)	
+	@JsonIgnore
+	@OneToOne(mappedBy = "produtoCliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
 	private Servico servico;
 
 	public ProdutoCliente() {
@@ -67,6 +69,7 @@ public class ProdutoCliente extends Produto {
 		this.dataSaida = dataSaida;
 	}
 
+	@JsonIgnore
 	public UsuarioCliente getUsuarioCliente() {
 		return usuarioCliente;
 	}

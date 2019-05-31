@@ -44,11 +44,21 @@ public class ProjetoLaboratorioProgramacaoApplication implements CommandLineRunn
 	@Autowired
 	private CategoriaRepository categoriaRepository;
 	@Autowired
-	private EstadoRepository estadoRepository;
-	@Autowired
 	private CidadeRepository cidadeRepository;
 	@Autowired
+	private EnderecoRepository enderecoRepository;
+	@Autowired
+	private EstadoRepository estadoRepository;
+	@Autowired
+	private ItemVendaRepository itemVendaRepository;
+	@Autowired
+	private PagamentoRepository pagamentoRepository;
+	@Autowired
+	private ProdutoClienteRepository produtoClienteRepository;
+	@Autowired
 	private ProdutoVendaRepository produtoVendaRepository;
+	@Autowired
+	private ServicoRepository servicoRepository;
 	@Autowired
 	private UsuarioClienteRepository usuarioClienteRepository;
 	@Autowired
@@ -56,17 +66,7 @@ public class ProjetoLaboratorioProgramacaoApplication implements CommandLineRunn
 	@Autowired
 	private UsuarioVendedorRepository usuarioVendedorRepository;
 	@Autowired
-	private EnderecoRepository enderecoRepository;
-	@Autowired
 	private VendaRepository vendaRepository;
-	@Autowired
-	private PagamentoRepository pagamentoRepository;
-	@Autowired
-	private ItemVendaRepository itemVendaRepository;
-	@Autowired
-	private ServicoRepository servicoRepository;
-	@Autowired
-	private ProdutoClienteRepository produtoClienteRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(ProjetoLaboratorioProgramacaoApplication.class, args);
@@ -155,6 +155,9 @@ public class ProjetoLaboratorioProgramacaoApplication implements CommandLineRunn
 		serv1.setProdutoCliente(prodc1);
 
 		tec1.getServicos().addAll(Arrays.asList(serv1));
+		serv1.setVenda(venda1);
+
+		venda1.getServico().addAll(Arrays.asList(serv1));
 
 		produtoClienteRepository.saveAll(Arrays.asList(prodc1));
 		servicoRepository.saveAll(Arrays.asList(serv1));

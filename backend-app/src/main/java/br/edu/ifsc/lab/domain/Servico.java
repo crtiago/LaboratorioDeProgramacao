@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.edu.ifsc.lab.domain.enums.StatusServico;
 
 @Entity
@@ -28,17 +30,22 @@ public class Servico implements Serializable {
 	@MapsId
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "PK_PRODUTO")
-	private Produto produtoCliente;
+	private ProdutoCliente produtoCliente;
 
 	@ManyToOne
 	@JoinColumn(name = "tecnico_id")
 	private UsuarioTecnico usuarioTecnico;
 
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "venda_id")
+	private Venda venda;
+
 	public Servico() {
 
 	}
 
-	public Servico(Integer id, Produto produtoCliente, String descServico, Float valor, StatusServico status,
+	public Servico(Integer id, ProdutoCliente produtoCliente, String descServico, Float valor, StatusServico status,
 			UsuarioTecnico usuarioTecnico) {
 		super();
 		this.id = id;
@@ -57,11 +64,11 @@ public class Servico implements Serializable {
 		this.id = id;
 	}
 
-	public Produto getProdutoCliente() {
+	public ProdutoCliente getProdutoCliente() {
 		return produtoCliente;
 	}
 
-	public void setProdutoCliente(Produto produtoCliente) {
+	public void setProdutoCliente(ProdutoCliente produtoCliente) {
 		this.produtoCliente = produtoCliente;
 	}
 
@@ -89,6 +96,7 @@ public class Servico implements Serializable {
 		this.status = status.getCod();
 	}
 
+	@JsonIgnore
 	public UsuarioTecnico getTecnico() {
 		return usuarioTecnico;
 	}
@@ -103,6 +111,14 @@ public class Servico implements Serializable {
 
 	public void setUsuarioTecnico(UsuarioTecnico usuarioTecnico) {
 		this.usuarioTecnico = usuarioTecnico;
+	}
+
+	public Venda getVenda() {
+		return venda;
+	}
+
+	public void setVenda(Venda venda) {
+		this.venda = venda;
 	}
 
 	@Override

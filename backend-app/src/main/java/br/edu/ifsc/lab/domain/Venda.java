@@ -1,8 +1,10 @@
 package br.edu.ifsc.lab.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -26,7 +28,6 @@ public class Venda implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	// private Servico servico;
 	@JsonFormat(pattern = "dd/MM/yyyy  HH:mm")
 	private Date dataVenda;
 	private Float valorTotal;
@@ -44,6 +45,9 @@ public class Venda implements Serializable {
 
 	@OneToMany(mappedBy = "id.venda")
 	private Set<ItemVenda> itens = new HashSet<>();
+	
+	@OneToMany(mappedBy = "venda")
+	private List<Servico> servico = new ArrayList<>();
 
 	public Venda() {
 
@@ -55,7 +59,6 @@ public class Venda implements Serializable {
 		this.id = id;
 		this.usuarioCliente = usuarioCliente;
 		this.usuarioVendedor = usuarioVendedor;
-		// this.servico = servico;
 		this.dataVenda = dataVenda;
 		this.valorTotal = valorTotal;
 	}
@@ -67,7 +70,7 @@ public class Venda implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+
 	@JsonIgnore
 	public UsuarioCliente getCliente() {
 		return usuarioCliente;
@@ -128,6 +131,14 @@ public class Venda implements Serializable {
 
 	public Set<ItemVenda> getItens() {
 		return itens;
+	}
+
+	public List<Servico> getServico() {
+		return servico;
+	}
+
+	public void setServico(List<Servico> servico) {
+		this.servico = servico;
 	}
 
 	public void setItens(Set<ItemVenda> itens) {
