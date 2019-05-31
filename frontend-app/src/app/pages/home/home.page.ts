@@ -1,22 +1,34 @@
 import { Component, OnInit } from "@angular/core";
 import { MenuController } from '@ionic/angular';
+import { ProdutoVendaDTO } from 'src/models/produtoVenda.dto';
+import { ProdutoVendaService } from 'src/services/domain/produtoVenda.service';
 
 @Component({
   selector: "app-home",
   templateUrl: "./home.page.html",
   styleUrls: ["./home.page.scss"]
 })
-export class HomePage {
+export class HomePage implements OnInit {
   searchQuery: string = "";
   items: string[];
+  produtos: ProdutoVendaDTO[];
 
-  constructor(private menuCtrl: MenuController) {
+
+
+  constructor(private menuCtrl: MenuController, private prodService: ProdutoVendaService) {
     this.initializeItems();
     this.menuCtrl.enable(true);
   }
 
   initializeItems() {
     this.items = ["Amsterdam", "Bogota"];
+  }
+
+  ngOnInit() {
+    this.prodService.findAll().subscribe(res => {
+      this.produtos = res;
+      console.log(this.produtos);
+    })
   }
 
   getItems(ev: any) {
@@ -34,7 +46,7 @@ export class HomePage {
     }
   }
 
-  toggleMenu(){
+  toggleMenu() {
     this.menuCtrl.toggle();
   }
 }

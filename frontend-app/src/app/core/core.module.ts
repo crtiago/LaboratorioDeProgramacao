@@ -6,8 +6,13 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { RouteReuseStrategy } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import localePt from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localePt);
+
 import { CategoriaService } from 'src/services/domain/categoria.service';
 import { UsuarioService } from 'src/services/domain/usuario.service';
+import { ProdutoVendaService } from 'src/services/domain/produtoVenda.service'
 
 @NgModule({
   imports: [
@@ -24,6 +29,7 @@ import { UsuarioService } from 'src/services/domain/usuario.service';
     SplashScreen,
     CategoriaService,
     UsuarioService,
+    ProdutoVendaService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
 })

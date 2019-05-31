@@ -12,18 +12,17 @@
 <ion-content padding color="dark">
   <div scrollY="true" id="myFixZone">
     <ion-list>
-      <ion-card color="dark" *ngFor="let item of items">
+      <ion-card color="dark" *ngFor="let prod of produtos">
         <img src="https://www.dicasdemulher.com.br/wp-content/uploads/2016/08/roupa-diy-transforme-um-vestido-branco.jpg" />
         <ion-card-content>
           <ion-card-title>
-            {{item}}
+            {{ prod.marca}} {{prod.modelo}}
           </ion-card-title>
           <p>
-            The most popular industrial group ever, and largely
-            responsible for bringing the music to a mass audience.
+            {{prod.especificacoes}}
           </p>
           <ion-button color="light" fill="outline" slot="start" [routerLink]="['/produto']" routerLinkActive="router-link-active" >Ver Mais</ion-button>
-          <ion-button color="light" fill="outline" slot="end"> ADD
+          <ion-button color="light" fill="outline" slot="end"> {{prod.valor | currency:'BRL':'symbol':'0.1-2':'pt'}}
               <ion-icon name="cart" slot="end" color="light"></ion-icon>
           </ion-button>
         </ion-card-content>
