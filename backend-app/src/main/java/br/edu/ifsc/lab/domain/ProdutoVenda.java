@@ -27,6 +27,7 @@ public class ProdutoVenda extends Produto {
 	@JoinColumn(name = "categoria_id")
 	private Categoria categoria = new Categoria();
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "id.produtoVenda")
 	private Set<ItemVenda> itens = new HashSet<>();
 
@@ -47,6 +48,7 @@ public class ProdutoVenda extends Produto {
 		this.categoria = categoria;
 	}
 
+	@JsonIgnore
 	public List<Venda> getVendas() {
 		List<Venda> lista = new ArrayList<>();
 		for (ItemVenda x : itens) {

@@ -15,6 +15,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Venda implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -24,6 +27,7 @@ public class Venda implements Serializable {
 	private Integer id;
 
 	// private Servico servico;
+	@JsonFormat(pattern = "dd/MM/yyyy  HH:mm")
 	private Date dataVenda;
 	private Float valorTotal;
 
@@ -63,7 +67,8 @@ public class Venda implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
+	
+	@JsonIgnore
 	public UsuarioCliente getCliente() {
 		return usuarioCliente;
 	}
@@ -72,6 +77,7 @@ public class Venda implements Serializable {
 		this.usuarioCliente = usuarioCliente;
 	}
 
+	@JsonIgnore
 	public UsuarioVendedor getVendedor() {
 		return usuarioVendedor;
 	}

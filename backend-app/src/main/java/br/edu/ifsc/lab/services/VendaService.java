@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import br.edu.ifsc.lab.domain.Venda;
 import br.edu.ifsc.lab.repository.VendaRepository;
-import javassist.tools.rmi.ObjectNotFoundException;
+import br.edu.ifsc.lab.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class VendaService {
@@ -15,7 +15,7 @@ public class VendaService {
 	@Autowired
 	private VendaRepository rep;
 
-	public Venda find(Integer id) throws ObjectNotFoundException {
+	public Venda find(Integer id) {
 		Optional<Venda> obj = rep.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"" + "Objeto não encontrado! Id: " + id + ", Tipo: " + Venda.class.getName()));

@@ -6,13 +6,14 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@PrimaryKeyJoinColumn(name = "id_usuario")
 public class UsuarioCliente extends Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "usuarioCliente")
 	private List<Venda> vendas = new ArrayList<>();
 

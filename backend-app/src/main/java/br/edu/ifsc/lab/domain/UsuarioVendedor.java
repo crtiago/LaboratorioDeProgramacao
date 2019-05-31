@@ -5,15 +5,16 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@PrimaryKeyJoinColumn(name = "id_usuario")
 public class UsuarioVendedor extends Usuario {
 	private static final long serialVersionUID = 1L;
 
 	private Float salario;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "usuarioVendedor")
 	private List<Venda> historicoVenda = new ArrayList<>();
 
