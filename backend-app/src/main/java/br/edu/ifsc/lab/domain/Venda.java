@@ -30,7 +30,6 @@ public class Venda implements Serializable {
 
 	@JsonFormat(pattern = "dd/MM/yyyy  HH:mm")
 	private Date dataVenda;
-	private Float valorTotal;
 
 	@ManyToOne
 	@JoinColumn(name = "vendedor_id")
@@ -59,7 +58,6 @@ public class Venda implements Serializable {
 		this.usuarioCliente = usuarioCliente;
 		this.usuarioVendedor = usuarioVendedor;
 		this.dataVenda = dataVenda;
-		this.valorTotal = getValorTotal();
 	}
 
 	public Integer getId() {
@@ -97,26 +95,15 @@ public class Venda implements Serializable {
 	}
 
 	public Float getValorTotal() {
-		if (!itens.isEmpty()) {
-			for (ItemVenda itemVenda : itens) {
-				valorTotal = valorTotal + itemVenda.getPreco();
-				System.out.println("Valor total for itemVenda:" + valorTotal);
-			}
+		float valorTotal = (float) 0;
+		for (ItemVenda itemVenda : itens) {
+			valorTotal = valorTotal + itemVenda.getSubTotal();
 		}
-		if (!servico.isEmpty()) {
-			for (Servico servico : servico) {
-				valorTotal = valorTotal + servico.getValor();
-				System.out.println("Valor total for servico:" + valorTotal);
-			}
-		}
-		if (itens.isEmpty() && servico.isEmpty()) {
-			return valorTotal = (float) 0;
+
+		for (Servico servico : servico) {
+			valorTotal = valorTotal + servico.getValor();
 		}
 		return valorTotal;
-	}
-
-	public void setValorTotal(Float valorTotal) {
-		this.valorTotal = valorTotal;
 	}
 
 	public UsuarioCliente getUsuarioCliente() {

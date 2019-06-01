@@ -93,8 +93,8 @@ public class ProjetoLaboratorioProgramacaoApplication implements CommandLineRunn
 		estadoRepository.saveAll(Arrays.asList(est1, est2, est3, est4, est5));
 		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
 
-		ProdutoVenda p1 = new ProdutoVenda(null, "J", "T",(float) 1000, "TTT", 10, cat1);
-		ProdutoVenda p2 = new ProdutoVenda(null, "Asus", "Z",(float) 500, "E", 20, cat1);
+		ProdutoVenda p1 = new ProdutoVenda(null, "J", "T", (float) 50, "TTT", 10, cat1);
+		ProdutoVenda p2 = new ProdutoVenda(null, "Asus", "Z", (float) 100, "E", 20, cat1);
 
 		cat1.getProdutos().addAll(Arrays.asList(p1, p2));
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
@@ -146,9 +146,9 @@ public class ProjetoLaboratorioProgramacaoApplication implements CommandLineRunn
 
 		itemVendaRepository.saveAll(Arrays.asList(iv1, iv2));
 
-		ProdutoCliente prodc1 = new ProdutoCliente(null, "Asus", "Z5", "Microfone", sdf.parse("31/05/2019 10:32"), sdf.parse("05/06/2019 13:40"),
-				cli1);
-		Servico serv1 = new Servico(null, prodc1, "Arrumar microfone", (float) 200, StatusServico.ANALISE, tec1);
+		ProdutoCliente prodc1 = new ProdutoCliente(null, "Asus", "Z5", "Microfone", sdf.parse("31/05/2019 10:32"),
+				sdf.parse("05/06/2019 13:40"), cli1);
+		Servico serv1 = new Servico(null, prodc1, "Arrumar microfone", (float) 100, StatusServico.ANALISE, tec1);
 
 		cli1.getProdutoCliente().addAll(Arrays.asList(prodc1));
 		prodc1.setServico(serv1);

@@ -27,7 +27,11 @@ public class ItemVenda implements Serializable {
 		id.setVenda(venda);
 		id.setProdutoVenda(produtoVenda);
 		this.quantidade = quantidade;
-		this.preco = produtoVenda.getValor() * getQuantidade();
+		this.preco = produtoVenda.getValor();
+	}
+
+	public float getSubTotal() {
+		return (preco * quantidade);
 	}
 
 	@JsonIgnore
