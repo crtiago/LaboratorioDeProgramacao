@@ -93,8 +93,8 @@ public class ProjetoLaboratorioProgramacaoApplication implements CommandLineRunn
 		estadoRepository.saveAll(Arrays.asList(est1, est2, est3, est4, est5));
 		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
 
-		ProdutoVenda p1 = new ProdutoVenda(null, "J", "T", 2000.00, "TTT", 10, cat1);
-		ProdutoVenda p2 = new ProdutoVenda(null, "Asus", "Z", 80.00, "E", 20, cat1);
+		ProdutoVenda p1 = new ProdutoVenda(null, "J", "T",(float) 1000, "TTT", 10, cat1);
+		ProdutoVenda p2 = new ProdutoVenda(null, "Asus", "Z",(float) 500, "E", 20, cat1);
 
 		cat1.getProdutos().addAll(Arrays.asList(p1, p2));
 		categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
@@ -126,7 +126,7 @@ public class ProjetoLaboratorioProgramacaoApplication implements CommandLineRunn
 
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
-		Venda venda1 = new Venda(null, cli1, vend1, sdf.parse("30/09/2017 10:32"), (float) 2000);
+		Venda venda1 = new Venda(null, cli1, vend1, sdf.parse("30/09/2017 10:32"));
 
 		Pagamento pagto1 = new PagamentoCartao(null, EstadoPagamento.QUITADO, venda1, 6);
 		venda1.setPagamento(pagto1);
@@ -136,8 +136,8 @@ public class ProjetoLaboratorioProgramacaoApplication implements CommandLineRunn
 		vendaRepository.saveAll(Arrays.asList(venda1));
 		pagamentoRepository.saveAll(Arrays.asList(pagto1));
 
-		ItemVenda iv1 = new ItemVenda(venda1, p1, 1, 2000.00);
-		ItemVenda iv2 = new ItemVenda(venda1, p2, 2, 80.00);
+		ItemVenda iv1 = new ItemVenda(venda1, p1, 2);
+		ItemVenda iv2 = new ItemVenda(venda1, p2, 1);
 
 		venda1.getItens().addAll(Arrays.asList(iv1, iv2));
 
@@ -146,9 +146,9 @@ public class ProjetoLaboratorioProgramacaoApplication implements CommandLineRunn
 
 		itemVendaRepository.saveAll(Arrays.asList(iv1, iv2));
 
-		ProdutoCliente prodc1 = new ProdutoCliente(null, "Asus", "Z5", "Microfone", sdf.parse("31/05/2019 10:32"), null,
+		ProdutoCliente prodc1 = new ProdutoCliente(null, "Asus", "Z5", "Microfone", sdf.parse("31/05/2019 10:32"), sdf.parse("05/06/2019 13:40"),
 				cli1);
-		Servico serv1 = new Servico(null, prodc1, "Arrumar microfone", (float) 2.000, StatusServico.ANALISE, tec1);
+		Servico serv1 = new Servico(null, prodc1, "Arrumar microfone", (float) 200, StatusServico.ANALISE, tec1);
 
 		cli1.getProdutoCliente().addAll(Arrays.asList(prodc1));
 		prodc1.setServico(serv1);

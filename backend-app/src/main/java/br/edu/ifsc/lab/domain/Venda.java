@@ -45,7 +45,7 @@ public class Venda implements Serializable {
 
 	@OneToMany(mappedBy = "id.venda")
 	private Set<ItemVenda> itens = new HashSet<>();
-	
+
 	@OneToMany(mappedBy = "venda")
 	private List<Servico> servico = new ArrayList<>();
 
@@ -53,14 +53,13 @@ public class Venda implements Serializable {
 
 	}
 
-	public Venda(Integer id, UsuarioCliente usuarioCliente, UsuarioVendedor usuarioVendedor, Date dataVenda,
-			Float valorTotal) {
+	public Venda(Integer id, UsuarioCliente usuarioCliente, UsuarioVendedor usuarioVendedor, Date dataVenda) {
 		super();
 		this.id = id;
 		this.usuarioCliente = usuarioCliente;
 		this.usuarioVendedor = usuarioVendedor;
 		this.dataVenda = dataVenda;
-		this.valorTotal = valorTotal;
+		this.valorTotal = getValorTotal();
 	}
 
 	public Integer getId() {
@@ -98,6 +97,21 @@ public class Venda implements Serializable {
 	}
 
 	public Float getValorTotal() {
+		if (!itens.isEmpty()) {
+			for (ItemVenda itemVenda : itens) {
+				valorTotal = valorTotal + itemVenda.getPreco();
+				System.out.println("Valor total for itemVenda:" + valorTotal);
+			}
+		}
+		if (!servico.isEmpty()) {
+			for (Servico servico : servico) {
+				valorTotal = valorTotal + servico.getValor();
+				System.out.println("Valor total for servico:" + valorTotal);
+			}
+		}
+		if (itens.isEmpty() && servico.isEmpty()) {
+			return valorTotal = (float) 0;
+		}
 		return valorTotal;
 	}
 

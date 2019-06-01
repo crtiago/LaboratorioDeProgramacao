@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class ProdutoVenda extends Produto {
 	private static final long serialVersionUID = 1L;
 
-	private Double valor;
+	private Float valor;
 	private String especificacoes;
 	private Integer estoque;
 
@@ -35,7 +35,7 @@ public class ProdutoVenda extends Produto {
 
 	}
 
-	public ProdutoVenda(Integer id, String marca, String modelo, Double valor, String especificacoes, Integer estoque,
+	public ProdutoVenda(Integer id, String marca, String modelo, Float valor, String especificacoes, Integer estoque,
 			Categoria categoria) {
 		super(id, marca, modelo);
 		this.valor = valor;
@@ -53,11 +53,11 @@ public class ProdutoVenda extends Produto {
 		return lista;
 	}
 
-	public Double getValor() {
+	public Float getValor() {
 		return valor;
 	}
 
-	public void setValor(Double valor) {
+	public void setValor(Float valor) {
 		this.valor = valor;
 	}
 

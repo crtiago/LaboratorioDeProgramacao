@@ -26,11 +26,11 @@ public class UsuarioVendedorResource {
 	private UsuarioVendedorService service;
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ResponseEntity<UsuarioVendedor> find(@PathVariable Integer id) throws ObjectNotFoundException {
+	public ResponseEntity<UsuarioVendedor> find(@PathVariable Integer id) {
 		UsuarioVendedor obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 	}
-	
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> update(@Valid @RequestBody UsuarioVendedorDTO objDto, @PathVariable Integer id)
 			throws ObjectNotFoundException {
@@ -51,7 +51,8 @@ public class UsuarioVendedorResource {
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<UsuarioVendedorDTO>> findAll() {
 		List<UsuarioVendedor> list = service.findAll();
-		List<UsuarioVendedorDTO> listDTO = list.stream().map(obj -> new UsuarioVendedorDTO(obj)).collect(Collectors.toList());
+		List<UsuarioVendedorDTO> listDTO = list.stream().map(obj -> new UsuarioVendedorDTO(obj))
+				.collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDTO);
 	}
 

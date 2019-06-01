@@ -10,7 +10,7 @@ public class ProdutoVendaDTO implements Serializable {
 	private Integer id;
 	private String marca;
 	private String modelo;
-	private Double valor;
+	private Float valor;
 	private String especificacoes;
 	private Integer estoque;
 
@@ -47,11 +47,11 @@ public class ProdutoVendaDTO implements Serializable {
 		this.modelo = modelo;
 	}
 
-	public Double getValor() {
+	public Float getValor() {
 		return valor;
 	}
 
-	public void setValor(Double valor) {
+	public void setValor(Float valor) {
 		this.valor = valor;
 	}
 

@@ -16,18 +16,18 @@ public class ItemVenda implements Serializable {
 	private ItemVendaPK id = new ItemVendaPK();
 
 	private Integer quantidade;
-	private Double preco;
+	private Float preco;
 
 	public ItemVenda() {
 
 	}
 
-	public ItemVenda(Venda venda, ProdutoVenda produtoVenda, Integer quantidade, Double preco) {
+	public ItemVenda(Venda venda, ProdutoVenda produtoVenda, Integer quantidade) {
 		super();
 		id.setVenda(venda);
 		id.setProdutoVenda(produtoVenda);
 		this.quantidade = quantidade;
-		this.preco = preco;
+		this.preco = produtoVenda.getValor() * getQuantidade();
 	}
 
 	@JsonIgnore
@@ -55,11 +55,11 @@ public class ItemVenda implements Serializable {
 		this.quantidade = quantidade;
 	}
 
-	public Double getPreco() {
+	public Float getPreco() {
 		return preco;
 	}
 
-	public void setPreco(Double preco) {
+	public void setPreco(Float preco) {
 		this.preco = preco;
 	}
 

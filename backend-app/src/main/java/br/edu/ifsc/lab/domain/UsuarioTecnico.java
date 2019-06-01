@@ -28,6 +28,7 @@ public class UsuarioTecnico extends Usuario implements Serializable {
 		this.salario = salario;
 	}
 
+	@JsonIgnore
 	public Float getSalario() {
 		return salario;
 	}
