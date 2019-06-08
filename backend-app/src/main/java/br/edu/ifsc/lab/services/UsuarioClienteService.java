@@ -26,12 +26,9 @@ public class UsuarioClienteService {
 	}
 
 	public UsuarioCliente update(UsuarioCliente obj) {
-		find(obj.getId());
-		return rep.save(obj);
-	}
-
-	public UsuarioCliente fromDTO(UsuarioClienteDTO objDto) {
-		throw new UnsupportedOperationException();
+		UsuarioCliente newObj = find(obj.getId());
+		updateData(newObj, obj);
+		return rep.save(newObj);
 	}
 
 	public void delete(Integer id) {
@@ -39,12 +36,21 @@ public class UsuarioClienteService {
 		try {
 			rep.deleteById(id);
 		} catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityException("Não é possível excluir uma categoria que possui produtos");
+			throw new DataIntegrityException("Não é possível excluir porque há pedidos relacionados");
 		}
 	}
 
 	public List<UsuarioCliente> findAll() {
 		return rep.findAll();
+	}
+
+	public UsuarioCliente fromDTO(UsuarioClienteDTO objDto) {
+		return new UsuarioCliente(objDto.getId(), objDto.getNome(), objDto.getEmail(), null);
+	}
+
+	private void updateData(UsuarioCliente newObj, UsuarioCliente obj) {
+		newObj.setNome(obj.getNome());
+		newObj.setEmail(obj.getEmail());
 	}
 
 }

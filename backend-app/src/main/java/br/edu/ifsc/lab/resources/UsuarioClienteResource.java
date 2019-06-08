@@ -30,7 +30,7 @@ public class UsuarioClienteResource {
 		UsuarioCliente obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 	}
-	
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> update(@Valid @RequestBody UsuarioClienteDTO objDto, @PathVariable Integer id)
 			throws ObjectNotFoundException {
@@ -44,14 +44,14 @@ public class UsuarioClienteResource {
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<Void> delete(@PathVariable Integer id) {
 		service.delete(id);
-
 		return ResponseEntity.noContent().build();
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<UsuarioClienteDTO>> findAll() {
 		List<UsuarioCliente> list = service.findAll();
-		List<UsuarioClienteDTO> listDTO = list.stream().map(obj -> new UsuarioClienteDTO(obj)).collect(Collectors.toList());
+		List<UsuarioClienteDTO> listDTO = list.stream().map(obj -> new UsuarioClienteDTO(obj))
+				.collect(Collectors.toList());
 		return ResponseEntity.ok().body(listDTO);
 	}
 

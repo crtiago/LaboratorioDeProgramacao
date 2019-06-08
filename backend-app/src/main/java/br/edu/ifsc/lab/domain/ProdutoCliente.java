@@ -11,8 +11,10 @@ import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 @Entity
+@JsonTypeName("produtoCliente")
 public class ProdutoCliente extends Produto {
 	private static final long serialVersionUID = 1L;
 

@@ -8,8 +8,10 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 @Entity
+@JsonTypeName("usuarioTecnico")
 public class UsuarioTecnico extends Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 

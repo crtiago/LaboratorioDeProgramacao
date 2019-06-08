@@ -9,12 +9,12 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 @Entity
-@PrimaryKeyJoinColumn(name = "id_produto")
+@JsonTypeName("pagamentoVenda")
 public class ProdutoVenda extends Produto {
 	private static final long serialVersionUID = 1L;
 
