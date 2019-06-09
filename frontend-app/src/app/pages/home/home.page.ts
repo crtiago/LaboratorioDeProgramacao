@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { MenuController } from '@ionic/angular';
 import { ProdutoVendaDTO } from 'src/models/produtoVenda.dto';
 import { ProdutoVendaService } from 'src/services/domain/produtoVenda.service';
+import { StorageDataService } from 'src/services/storageData.service';
 
 @Component({
   selector: "app-home",
@@ -15,7 +16,7 @@ export class HomePage implements OnInit {
 
 
 
-  constructor(private menuCtrl: MenuController, private prodService: ProdutoVendaService) {
+  constructor(private menuCtrl: MenuController, private prodService: ProdutoVendaService, private storage: StorageDataService) {
     this.initializeItems();
     this.menuCtrl.enable(true);
   }
@@ -48,5 +49,9 @@ export class HomePage implements OnInit {
 
   toggleMenu() {
     this.menuCtrl.toggle();
+  }
+
+  passData(prod: ProdutoVendaDTO) {
+    this.storage.setData(prod.id, prod);
   }
 }

@@ -1,9 +1,28 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>meus-pedidos</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Meus Pedidos</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <!-- List of Text Items -->
+  <ion-list>
+    <ion-item>
+      <ion-card button padding [routerLink]="['/pedido']" routerLinkActive="router-link-active">
+        <ion-item>
+          <ion-icon name="basket" slot="start"></ion-icon>
+          <ion-label>Pedido N: xxx</ion-label>
+        </ion-item>
 
+        <ion-card-content>
+          <p>Status do pedido:</p>
+          <p>Data do pedido:</p>
+          <p>Status do pagamento:</p>
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+  </ion-list>
 </ion-content>

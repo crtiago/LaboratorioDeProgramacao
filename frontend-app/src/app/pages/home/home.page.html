@@ -21,7 +21,7 @@
           <p>
             {{prod.especificacoes}}
           </p>
-          <ion-button color="light" fill="outline" slot="start" [routerLink]="['/produto']" routerLinkActive="router-link-active" >Ver Mais</ion-button>
+          <ion-button color="light" fill="outline" slot="start" [routerLink]="['/produto', prod.id]" (click)="passData(prod)">Ver Mais</ion-button>
           <ion-button color="light" fill="outline" slot="end"> {{prod.valor | currency:'BRL':'symbol':'0.1-2':'pt'}}
               <ion-icon name="cart" slot="end" color="light"></ion-icon>
           </ion-button>
