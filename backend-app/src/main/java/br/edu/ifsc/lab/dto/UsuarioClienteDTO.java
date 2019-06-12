@@ -29,7 +29,7 @@ public class UsuarioClienteDTO implements Serializable {
 	}
 
 	public UsuarioClienteDTO(UsuarioCliente cliente) {
-		id = cliente.getId();
+		id = cliente.getId_usuario();
 		nome = cliente.getNome();
 		email = cliente.getEmail();
 		senha = cliente.getSenha();

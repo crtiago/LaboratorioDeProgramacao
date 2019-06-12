@@ -26,7 +26,7 @@ public class UsuarioClienteService {
 	}
 
 	public UsuarioCliente update(UsuarioCliente obj) {
-		UsuarioCliente newObj = find(obj.getId());
+		UsuarioCliente newObj = find(obj.getId_usuario());
 		updateData(newObj, obj);
 		return rep.save(newObj);
 	}

@@ -27,7 +27,7 @@ public class UsuarioVendedorDTO implements Serializable {
 	}
 
 	public UsuarioVendedorDTO(UsuarioVendedor cliente) {
-		id = cliente.getId();
+		id = cliente.getId_usuario();
 		nome = cliente.getNome();
 		email = cliente.getEmail();
 	}

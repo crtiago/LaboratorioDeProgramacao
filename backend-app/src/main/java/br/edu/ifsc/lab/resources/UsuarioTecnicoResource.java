@@ -35,7 +35,7 @@ public class UsuarioTecnicoResource {
 	public ResponseEntity<Void> update(@Valid @RequestBody UsuarioTecnicoDTO objDto, @PathVariable Integer id)
 			throws ObjectNotFoundException {
 		UsuarioTecnico obj = service.fromDTO(objDto);
-		obj.setId(id);
+		obj.setId_usuario(id);
 		obj = service.update(obj);
 
 		return ResponseEntity.noContent().build();

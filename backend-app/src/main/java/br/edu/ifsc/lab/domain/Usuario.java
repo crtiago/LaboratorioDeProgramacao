@@ -100,14 +100,6 @@ public abstract class Usuario implements Serializable {
 		this.telefones = telefones;
 	}
 
-	public Integer getId() {
-		return id_usuario;
-	}
-
-	public void setId(Integer id) {
-		this.id_usuario = id;
-	}
-
 	public List<Endereco> getEnderecos() {
 		return enderecos;
 	}
