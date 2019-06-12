@@ -26,18 +26,26 @@ public class UsuarioClienteResource {
 	@Autowired
 	private UsuarioClienteService service;
 
-	@CrossOrigin
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+
+	/*@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+>>>>>>> 296bd7ceccdd70cce9392273d86be02ec4b0f21d
 	public ResponseEntity<UsuarioCliente> find(@PathVariable Integer id) throws ObjectNotFoundException {
 		UsuarioCliente obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
+	}*/
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public ResponseEntity<UsuarioClienteDTO> find(@PathVariable Integer id) throws ObjectNotFoundException {
+		UsuarioCliente obj = service.find(id);
+		UsuarioClienteDTO objDTO = new UsuarioClienteDTO(obj);
+		return ResponseEntity.ok().body(objDTO);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> update(@Valid @RequestBody UsuarioClienteDTO objDto, @PathVariable Integer id)
 			throws ObjectNotFoundException {
 		UsuarioCliente obj = service.fromDTO(objDto);
-		obj.setId(id);
+		obj.setId_usuario(id);
 		obj = service.update(obj);
 
 		return ResponseEntity.noContent().build();

@@ -19,14 +19,21 @@ public class UsuarioClienteService {
 	@Autowired
 	private UsuarioClienteRepository rep;
 
+	/*public UsuarioCliente find(Integer id) {
+		Optional<UsuarioCliente> obj = rep.findById(id);
+		return obj.orElseThrow(() -> new ObjectNotFoundException(
+				"" + "Objeto não encontrado! Id: " + id + ", Tipo: " + UsuarioCliente.class.getName()));
+	}*/
+	
 	public UsuarioCliente find(Integer id) {
 		Optional<UsuarioCliente> obj = rep.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"" + "Objeto não encontrado! Id: " + id + ", Tipo: " + UsuarioCliente.class.getName()));
 	}
+	
 
 	public UsuarioCliente update(UsuarioCliente obj) {
-		UsuarioCliente newObj = find(obj.getId());
+		UsuarioCliente newObj = find(obj.getId_usuario());
 		updateData(newObj, obj);
 		return rep.save(newObj);
 	}

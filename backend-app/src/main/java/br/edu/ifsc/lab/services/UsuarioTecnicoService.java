@@ -26,7 +26,7 @@ public class UsuarioTecnicoService {
 	}
 
 	public UsuarioTecnico update(UsuarioTecnico obj) {
-		find(obj.getId());
+		find(obj.getId_usuario());
 		return rep.save(obj);
 	}
 

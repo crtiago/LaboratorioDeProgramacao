@@ -26,7 +26,7 @@ public class UsuarioVendedorService {
 	}
 
 	public UsuarioVendedor update(UsuarioVendedor obj) {
-		find(obj.getId());
+		find(obj.getId_usuario());
 		return rep.save(obj);
 	}
 
