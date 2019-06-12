@@ -20,9 +20,6 @@ export class AppComponent {
 
   initializeApp() {
 
-    this.pages = [
-      {url: '/tasks', icon: 'checkmark', text: 'task'}
-    ]
 
 
     this.platform.ready().then(() => {

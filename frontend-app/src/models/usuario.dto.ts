@@ -1,11 +1,14 @@
 import { EnderecoDTO } from './endereco.dto';
 
-export interface UsuarioDTO {
-    id:any;
-    login:string;
-    senha:string;
-    nome:string;
-    cpf:any
+export interface UsuarioDTO{
+
+    tipo:any;
+    id: any;
+    email: string;
+    senha: string;
+    nome: string;
+    cpf:string;
+    enderecos: EnderecoDTO[];
     telefones: any[];
-    enderecos: EnderecoDTO;
+
 }

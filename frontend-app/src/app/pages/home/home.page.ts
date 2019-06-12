@@ -3,6 +3,9 @@ import { MenuController } from '@ionic/angular';
 import { ProdutoVendaDTO } from 'src/models/produtoVenda.dto';
 import { ProdutoVendaService } from 'src/services/domain/produtoVenda.service';
 import { StorageDataService } from 'src/services/storageData.service';
+import { UsuarioService } from 'src/services/domain/usuario.service';
+import { UsuarioDTO } from 'src/models/usuario.dto';
+import { UserProviderService } from 'src/app/user-provider.service';
 
 @Component({
   selector: "app-home",
@@ -13,10 +16,17 @@ export class HomePage implements OnInit {
   searchQuery: string = "";
   items: string[];
   produtos: ProdutoVendaDTO[];
+  user: UsuarioDTO
 
 
 
-  constructor(private menuCtrl: MenuController, private prodService: ProdutoVendaService, private storage: StorageDataService) {
+
+  constructor(private menuCtrl: MenuController,
+    private prodService: ProdutoVendaService, 
+    private storage: StorageDataService,
+    private userService: UsuarioService,
+    private userRepos: UserProviderService
+    ) {
     this.initializeItems();
     this.menuCtrl.enable(true);
   }
@@ -29,6 +39,12 @@ export class HomePage implements OnInit {
     this.prodService.findAll().subscribe(res => {
       this.produtos = res;
       console.log(this.produtos);
+    })
+
+    this.userService.findById(1).subscribe(res =>{
+      this.user = res;
+      console.log(this.user);
+      //this.userRepos.saveUser(this.user);
     })
   }
 
