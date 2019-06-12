@@ -25,10 +25,17 @@ public class UsuarioClienteResource {
 	@Autowired
 	private UsuarioClienteService service;
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<UsuarioCliente> find(@PathVariable Integer id) throws ObjectNotFoundException {
 		UsuarioCliente obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
+	}*/
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public ResponseEntity<UsuarioClienteDTO> find(@PathVariable Integer id) throws ObjectNotFoundException {
+		UsuarioCliente obj = service.find(id);
+		UsuarioClienteDTO objDTO = new UsuarioClienteDTO(obj);
+		return ResponseEntity.ok().body(objDTO);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
