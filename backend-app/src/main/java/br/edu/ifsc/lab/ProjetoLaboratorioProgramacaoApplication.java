@@ -101,13 +101,13 @@ public class ProjetoLaboratorioProgramacaoApplication implements CommandLineRunn
 
 		produtoVendaRepository.saveAll(Arrays.asList(p1, p2));
 
-		UsuarioCliente cli1 = new UsuarioCliente(null, "maria@gmail.com", "Maria Silva", "09890877684");
+		UsuarioCliente cli1 = new UsuarioCliente(null, "maria@gmail.com","dfsfsfsfdf", "Maria Silva", "09890877684");
 		cli1.getTelefones().addAll(Arrays.asList("49988769006"));
 
-		UsuarioTecnico tec1 = new UsuarioTecnico(null, "lucas@gmail.com", "Lucas Loregian", "09878964734", 3000);
+		UsuarioTecnico tec1 = new UsuarioTecnico(null, "lucas@gmail.com","234234242", "Lucas Loregian", "09878964734", 3000);
 		tec1.getTelefones().addAll(Arrays.asList("49987899987"));
 
-		UsuarioVendedor vend1 = new UsuarioVendedor(null, "paola@gmail.com", "Paola Santos", "9009988998",
+		UsuarioVendedor vend1 = new UsuarioVendedor(null, "paola@gmail.com", "efwerwrwrw", "Paola Santos", "9009988998",
 				(float) 2000);
 		vend1.getTelefones().addAll(Arrays.asList("49998095647"));
 

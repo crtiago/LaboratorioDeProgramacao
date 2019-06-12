@@ -27,8 +27,8 @@ public class UsuarioCliente extends Usuario implements Serializable {
 		super();
 	}
 
-	public UsuarioCliente(Integer id, String email, String nome, String cpf) {
-		super(id, email, nome, cpf);
+	public UsuarioCliente(Integer id, String email, String senha, String nome, String cpf) {
+		super(id, email, senha, nome, cpf);
 		// TODO Auto-generated constructor stub
 	}
 

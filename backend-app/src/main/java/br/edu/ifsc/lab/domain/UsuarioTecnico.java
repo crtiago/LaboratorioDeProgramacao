@@ -25,8 +25,8 @@ public class UsuarioTecnico extends Usuario implements Serializable {
 
 	}
 
-	public UsuarioTecnico(Integer id, String email, String nome, String cpf, float salario) {
-		super(id, email, nome, cpf);
+	public UsuarioTecnico(Integer id, String email, String senha, String nome, String cpf, float salario) {
+		super(id, email, senha, nome, cpf);
 		this.salario = salario;
 	}
 

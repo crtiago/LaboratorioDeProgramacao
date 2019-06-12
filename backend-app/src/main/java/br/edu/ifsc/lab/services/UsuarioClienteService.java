@@ -45,7 +45,7 @@ public class UsuarioClienteService {
 	}
 
 	public UsuarioCliente fromDTO(UsuarioClienteDTO objDto) {
-		return new UsuarioCliente(objDto.getId(), objDto.getNome(), objDto.getEmail(), null);
+		return new UsuarioCliente(objDto.getId(), objDto.getNome(), objDto.getSenha(), objDto.getEmail(), null);
 	}
 
 	private void updateData(UsuarioCliente newObj, UsuarioCliente obj) {
