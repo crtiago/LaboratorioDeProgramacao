@@ -5,7 +5,7 @@ import { ProdutoVendaService } from 'src/services/domain/produtoVenda.service';
 import { StorageDataService } from 'src/services/storageData.service';
 import { UsuarioService } from 'src/services/domain/usuario.service';
 import { UsuarioDTO } from 'src/models/usuario.dto';
-import { UserProviderService } from 'src/app/user-provider.service';
+import { UserRepository } from 'src/app/shared/globalData/user.service';
 
 @Component({
   selector: "app-home",
@@ -25,7 +25,7 @@ export class HomePage implements OnInit {
     private prodService: ProdutoVendaService, 
     private storage: StorageDataService,
     private userService: UsuarioService,
-    private userRepos: UserProviderService
+    private userRepos: UserRepository
     ) {
     this.initializeItems();
     this.menuCtrl.enable(true);
@@ -44,7 +44,7 @@ export class HomePage implements OnInit {
     this.userService.findById(1).subscribe(res =>{
       this.user = res;
       console.log(this.user);
-      //this.userRepos.saveUser(this.user);
+      this.userRepos.setUser(this.user);
     })
   }
 

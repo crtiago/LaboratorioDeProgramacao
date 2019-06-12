@@ -34,6 +34,7 @@ public class UsuarioClienteResource {
 		return ResponseEntity.ok().body(obj);
 	}*/
 	
+	@CrossOrigin
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<UsuarioClienteDTO> find(@PathVariable Integer id) throws ObjectNotFoundException {
 		UsuarioCliente obj = service.find(id);

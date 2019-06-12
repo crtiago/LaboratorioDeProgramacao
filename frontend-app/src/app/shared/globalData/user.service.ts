@@ -4,17 +4,17 @@ import { UsuarioDTO } from 'src/models/usuario.dto';
 @Injectable({
   providedIn: 'root'
 })
-export class UserProviderService {
+export class UserRepository {
 
-  constructor(public user: UsuarioDTO) { }
+  private user: UsuarioDTO;
 
+  constructor() { }
 
-  public saveUser(usuario){
-    this.user = usuario;
+  public setUser(user: UsuarioDTO) {
+    this.user = user;
   }
 
-  public getUser(){
+  public getUser() {
     return this.user;
   }
-
 }
