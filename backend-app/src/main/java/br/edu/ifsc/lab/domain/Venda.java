@@ -32,10 +32,6 @@ public class Venda implements Serializable {
 	private Date dataVenda;
 
 	@ManyToOne
-	@JoinColumn(name = "vendedor_id")
-	private UsuarioVendedor usuarioVendedor;
-
-	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private UsuarioCliente usuarioCliente;
 
@@ -52,11 +48,10 @@ public class Venda implements Serializable {
 
 	}
 
-	public Venda(Integer id, UsuarioCliente usuarioCliente, UsuarioVendedor usuarioVendedor, Date dataVenda) {
+	public Venda(Integer id, UsuarioCliente usuarioCliente, Date dataVenda) {
 		super();
 		this.id = id;
 		this.usuarioCliente = usuarioCliente;
-		this.usuarioVendedor = usuarioVendedor;
 		this.dataVenda = dataVenda;
 	}
 
@@ -75,15 +70,6 @@ public class Venda implements Serializable {
 
 	public void setCliente(UsuarioCliente usuarioCliente) {
 		this.usuarioCliente = usuarioCliente;
-	}
-
-	@JsonIgnore
-	public UsuarioVendedor getVendedor() {
-		return usuarioVendedor;
-	}
-
-	public void setVendedor(UsuarioVendedor usuarioVendedor) {
-		this.usuarioVendedor = usuarioVendedor;
 	}
 
 	public Date getDataVenda() {
@@ -112,14 +98,6 @@ public class Venda implements Serializable {
 
 	public void setUsuarioCliente(UsuarioCliente usuarioCliente) {
 		this.usuarioCliente = usuarioCliente;
-	}
-
-	public UsuarioVendedor getUsuarioVendedor() {
-		return usuarioVendedor;
-	}
-
-	public void setUsuarioVendedor(UsuarioVendedor usuarioVendedor) {
-		this.usuarioVendedor = usuarioVendedor;
 	}
 
 	public Pagamento getPagamento() {

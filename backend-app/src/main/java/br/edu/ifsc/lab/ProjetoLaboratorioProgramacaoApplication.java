@@ -19,8 +19,6 @@ import br.edu.ifsc.lab.domain.ProdutoCliente;
 import br.edu.ifsc.lab.domain.ProdutoVenda;
 import br.edu.ifsc.lab.domain.Servico;
 import br.edu.ifsc.lab.domain.UsuarioCliente;
-import br.edu.ifsc.lab.domain.UsuarioTecnico;
-import br.edu.ifsc.lab.domain.UsuarioVendedor;
 import br.edu.ifsc.lab.domain.Venda;
 import br.edu.ifsc.lab.domain.enums.EstadoPagamento;
 import br.edu.ifsc.lab.domain.enums.StatusServico;
@@ -34,8 +32,6 @@ import br.edu.ifsc.lab.repository.ProdutoClienteRepository;
 import br.edu.ifsc.lab.repository.ProdutoVendaRepository;
 import br.edu.ifsc.lab.repository.ServicoRepository;
 import br.edu.ifsc.lab.repository.UsuarioClienteRepository;
-import br.edu.ifsc.lab.repository.UsuarioTecnicoRepository;
-import br.edu.ifsc.lab.repository.UsuarioVendedorRepository;
 import br.edu.ifsc.lab.repository.VendaRepository;
 
 @SpringBootApplication
@@ -61,10 +57,6 @@ public class ProjetoLaboratorioProgramacaoApplication implements CommandLineRunn
 	private ServicoRepository servicoRepository;
 	@Autowired
 	private UsuarioClienteRepository usuarioClienteRepository;
-	@Autowired
-	private UsuarioTecnicoRepository usuarioTecnicoRepository;
-	@Autowired
-	private UsuarioVendedorRepository usuarioVendedorRepository;
 	@Autowired
 	private VendaRepository vendaRepository;
 
@@ -101,32 +93,19 @@ public class ProjetoLaboratorioProgramacaoApplication implements CommandLineRunn
 
 		produtoVendaRepository.saveAll(Arrays.asList(p1, p2));
 
-		UsuarioCliente cli1 = new UsuarioCliente(null, "maria@gmail.com","dfsfsfsfdf", "Maria Silva", "09890877684");
+		UsuarioCliente cli1 = new UsuarioCliente(null, "maria@gmail.com", "dfsfsfsfdf", "Maria Silva", "09890877684");
 		cli1.getTelefones().addAll(Arrays.asList("49988769006"));
 
-		UsuarioTecnico tec1 = new UsuarioTecnico(null, "lucas@gmail.com","234234242", "Lucas Loregian", "09878964734", 3000);
-		tec1.getTelefones().addAll(Arrays.asList("49987899987"));
-
-		UsuarioVendedor vend1 = new UsuarioVendedor(null, "paola@gmail.com", "efwerwrwrw", "Paola Santos", "9009988998",
-				(float) 2000);
-		vend1.getTelefones().addAll(Arrays.asList("49998095647"));
-
 		Endereco e1 = new Endereco(null, "Rua Flores", "88095387", 42, "Habitação", cli1, c1);
-		Endereco e2 = new Endereco(null, "Rua Sergio", "99087666", 57, "Popular", tec1, c2);
-		Endereco e3 = new Endereco(null, "Av Getulio", "99643309", 21, "São Paulo", vend1, c3);
 
 		cli1.getEnderecos().addAll(Arrays.asList(e1));
-		tec1.getEnderecos().addAll(Arrays.asList(e2));
-		vend1.getEnderecos().addAll(Arrays.asList(e3));
 
 		usuarioClienteRepository.saveAll(Arrays.asList(cli1));
-		usuarioTecnicoRepository.saveAll(Arrays.asList(tec1));
-		usuarioVendedorRepository.saveAll(Arrays.asList(vend1));
-		enderecoRepository.saveAll(Arrays.asList(e1, e2, e3));
+		enderecoRepository.saveAll(Arrays.asList(e1));
 
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
-		Venda venda1 = new Venda(null, cli1, vend1, sdf.parse("30/09/2017 10:32"));
+		Venda venda1 = new Venda(null, cli1, sdf.parse("30/09/2017 10:32"));
 
 		Pagamento pagto1 = new PagamentoCartao(null, EstadoPagamento.QUITADO, venda1, 6);
 		venda1.setPagamento(pagto1);
@@ -148,14 +127,11 @@ public class ProjetoLaboratorioProgramacaoApplication implements CommandLineRunn
 
 		ProdutoCliente prodc1 = new ProdutoCliente(null, "Asus", "Z5", "Microfone", sdf.parse("31/05/2019 10:32"),
 				sdf.parse("05/06/2019 13:40"), cli1);
-		Servico serv1 = new Servico(null, prodc1, "Arrumar microfone", (float) 100, StatusServico.ANALISE, tec1);
+		Servico serv1 = new Servico(null, prodc1, "Arrumar microfone", (float) 100, StatusServico.ANALISE);
 
 		cli1.getProdutoCliente().addAll(Arrays.asList(prodc1));
 		prodc1.setServico(serv1);
 		serv1.setProdutoCliente(prodc1);
-
-		tec1.getServicos().addAll(Arrays.asList(serv1));
-		serv1.setVenda(venda1);
 
 		venda1.getServico().addAll(Arrays.asList(serv1));
 

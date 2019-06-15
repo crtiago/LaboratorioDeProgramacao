@@ -32,10 +32,6 @@ public class Servico implements Serializable {
 	@JoinColumn(name = "PK_PRODUTO")
 	private ProdutoCliente produtoCliente;
 
-	@ManyToOne
-	@JoinColumn(name = "tecnico_id")
-	private UsuarioTecnico usuarioTecnico;
-
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "venda_id")
@@ -45,15 +41,13 @@ public class Servico implements Serializable {
 
 	}
 
-	public Servico(Integer id, ProdutoCliente produtoCliente, String descServico, Float valor, StatusServico status,
-			UsuarioTecnico usuarioTecnico) {
+	public Servico(Integer id, ProdutoCliente produtoCliente, String descServico, Float valor, StatusServico status) {
 		super();
 		this.id = id;
 		this.produtoCliente = produtoCliente;
 		this.descServico = descServico;
 		this.valor = valor;
 		this.status = status.getCod();
-		this.usuarioTecnico = usuarioTecnico;
 	}
 
 	public Integer getId() {
@@ -94,23 +88,6 @@ public class Servico implements Serializable {
 
 	public void setStatus(StatusServico status) {
 		this.status = status.getCod();
-	}
-
-	@JsonIgnore
-	public UsuarioTecnico getTecnico() {
-		return usuarioTecnico;
-	}
-
-	public void setTecnico(UsuarioTecnico usuarioTecnico) {
-		this.usuarioTecnico = usuarioTecnico;
-	}
-
-	public UsuarioTecnico getUsuarioTecnico() {
-		return usuarioTecnico;
-	}
-
-	public void setUsuarioTecnico(UsuarioTecnico usuarioTecnico) {
-		this.usuarioTecnico = usuarioTecnico;
 	}
 
 	public Venda getVenda() {
