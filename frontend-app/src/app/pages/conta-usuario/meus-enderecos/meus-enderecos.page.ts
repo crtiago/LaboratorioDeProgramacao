@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
+import { EnderecoService } from 'src/services/domain/endereco.service';
+import { EnderecoDTO } from 'src/models/endereco.dto';
+import { UsuarioDTO } from 'src/models/usuario.dto';
+import { UserRepository } from 'src/app/shared/globalData/user.service';
 
 @Component({
   selector: 'app-meus-enderecos',
@@ -8,10 +12,15 @@ import { ToastController } from '@ionic/angular';
 })
 export class MeusEnderecosPage implements OnInit {
 
-
-  constructor(private toastController: ToastController) { }
+  enderecos: EnderecoDTO[];
+  user: UsuarioDTO;
+  constructor(private toastController: ToastController, private endService: EnderecoService, private userRepo: UserRepository) { }
 
   ngOnInit() {
+    this.user = this.userRepo.getUser();
+    this.endService.findById(this.user.id).subscribe(res => {
+      this.enderecos = res;
+    });
   }
 
   public deleteAd() {

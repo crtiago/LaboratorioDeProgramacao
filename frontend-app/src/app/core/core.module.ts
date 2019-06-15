@@ -14,6 +14,7 @@ import { CategoriaService } from 'src/services/domain/categoria.service';
 import { UsuarioService } from 'src/services/domain/usuario.service';
 import { ProdutoVendaService } from 'src/services/domain/produtoVenda.service'
 import { CartItensService } from '../shared/globalData/cart-itens.service';
+import { EnderecoService } from 'src/services/domain/endereco.service';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { CartItensService } from '../shared/globalData/cart-itens.service';
     UsuarioService,
     ProdutoVendaService,
     CartItensService,
+    EnderecoService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
 })

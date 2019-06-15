@@ -47,6 +47,7 @@ public class UsuarioClienteResource {
 		return ResponseEntity.ok().body(objDTO);
 	}
 
+	@CrossOrigin
 	@RequestMapping(value = "/{usuarioId}/enderecos", method = RequestMethod.GET)
 	public ResponseEntity<List<Endereco>> findEnderecos(@PathVariable Integer usuarioId) {
 		List<Endereco> list = enderecoService.findByUsuario(usuarioId);
