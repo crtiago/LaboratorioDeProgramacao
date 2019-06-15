@@ -1,5 +1,6 @@
 package br.edu.ifsc.lab.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,5 +20,9 @@ public class EnderecoService {
 		Optional<Endereco> obj = rep.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"" + "Objeto não encontrado! Id: " + id + ", Tipo: " + Endereco.class.getName()));
+	}
+
+	public List<Endereco> findByUsuario(Integer usuarioId) {
+		return rep.findEndereco(usuarioId);
 	}
 }
