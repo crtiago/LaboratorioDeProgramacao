@@ -10,6 +10,7 @@ import { CartItensService } from './shared/globalData/cart-itens.service';
   templateUrl: "app.component.html"
 })
 export class AppComponent {
+  cart: any[] = [];
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -17,6 +18,7 @@ export class AppComponent {
     private cartS: CartItensService
   ) {
     this.initializeApp();
+    this.cart = cartS.getCart();
   }
 
   initializeApp() {

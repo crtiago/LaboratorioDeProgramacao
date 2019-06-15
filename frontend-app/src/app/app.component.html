@@ -42,7 +42,7 @@
 
       <ion-tab-button tab="carrinho">
         <ion-icon name="cart"></ion-icon>
-          
+        <ion-badge *ngIf="cart.length > 0" color="danger">{{ cart.length }}</ion-badge>
         <ion-label>Carrinho</ion-label>
       </ion-tab-button>
 

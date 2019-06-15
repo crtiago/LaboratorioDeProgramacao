@@ -13,6 +13,7 @@ registerLocaleData(localePt);
 import { CategoriaService } from 'src/services/domain/categoria.service';
 import { UsuarioService } from 'src/services/domain/usuario.service';
 import { ProdutoVendaService } from 'src/services/domain/produtoVenda.service'
+import { CartItensService } from '../shared/globalData/cart-itens.service';
 
 @NgModule({
   imports: [
@@ -30,6 +31,7 @@ import { ProdutoVendaService } from 'src/services/domain/produtoVenda.service'
     CategoriaService,
     UsuarioService,
     ProdutoVendaService,
+    CartItensService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
 })

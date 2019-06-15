@@ -6,14 +6,11 @@ import { ProdutoVendaDTO } from 'src/models/produtoVenda.dto';
 })
 export class CartItensService {
 
-  private cart: [{
-    produto: ProdutoVendaDTO,
-    quantidade: number;
-  }];
+  public cart: ProdutoVendaDTO[] = [];
   constructor() { }
 
-  public insertItem(produto: ProdutoVendaDTO, quantidade: number) {
-    this.cart.push({produto, quantidade});
+  public insertItem(prod: ProdutoVendaDTO) {
+    this.cart.push(prod);
   }
 
   public getCart() {

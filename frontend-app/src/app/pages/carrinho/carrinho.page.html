@@ -6,19 +6,21 @@
 
 <ion-content padding>
 
+  <p *ngIf="cartItens.length < 1"> Carrinho Vazio :(</p>
+
   <ion-list>
 
-    <ion-card>
+    <ion-card *ngFor="let cart of cartItens">
       <ion-item>
         <ion-thumbnail slot="start">
           <img src="https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2019/05/Asus-Zenfone-6.png">
         </ion-thumbnail>
-        <ion-label>Asus Zenfone 5</ion-label>
+        <ion-label>{{cart.modelo}}</ion-label>
       </ion-item>
 
       <ion-card-content>
-        <p>Valor : R$ 2000</p>
-        <ion-label>Quantidade</ion-label>
+        <p>Valor : R$ {{ cart.valor }}</p>
+        <ion-label>Quantidade:</ion-label>
         <ion-input class="input" inputmode="numeric" type="number" value="1" min="1"></ion-input>
 
         <ion-button text-right size="small" fill="clear">
@@ -29,5 +31,5 @@
     </ion-card>
 
   </ion-list>
-  <ion-button expand="full" color="success" [routerLink]="['/checkout']" routerLinkActive="router-link-active" >Finalizar Compra</ion-button>
+  <ion-button expand="full" color="success" [routerLink]="['/checkout']" routerLinkActive="router-link-active" *ngIf="cartItens.length > 0 ">Finalizar Compra</ion-button>
 </ion-content>

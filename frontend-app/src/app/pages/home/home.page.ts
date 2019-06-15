@@ -6,6 +6,7 @@ import { StorageDataService } from 'src/services/storageData.service';
 import { UsuarioService } from 'src/services/domain/usuario.service';
 import { UsuarioDTO } from 'src/models/usuario.dto';
 import { UserRepository } from 'src/app/shared/globalData/user.service';
+import { CartItensService } from 'src/app/shared/globalData/cart-itens.service';
 
 @Component({
   selector: "app-home",
@@ -21,11 +22,13 @@ export class HomePage implements OnInit {
 
 
 
-  constructor(private menuCtrl: MenuController,
+  constructor(
+    private menuCtrl: MenuController,
     private prodService: ProdutoVendaService, 
     private storage: StorageDataService,
     private userService: UsuarioService,
-    private userRepos: UserRepository
+    private userRepos: UserRepository,
+    private cartService: CartItensService
     ) {
     this.initializeItems();
     this.menuCtrl.enable(true);
@@ -48,6 +51,21 @@ export class HomePage implements OnInit {
     })
   }
 
+
+  toggleMenu() {
+    this.menuCtrl.toggle();
+  }
+
+  passData(prod: ProdutoVendaDTO) {
+    this.storage.setData(prod.id, prod);
+  }
+
+  addCart(prod) {
+    this.cartService.insertItem(prod);
+  }
+
+
+  // Pesquisa de itens
   getItems(ev: any) {
     // Reset items back to all of the items
     this.initializeItems();
@@ -61,13 +79,5 @@ export class HomePage implements OnInit {
         return item.toLowerCase().indexOf(val.toLowerCase()) > -1;
       });
     }
-  }
-
-  toggleMenu() {
-    this.menuCtrl.toggle();
-  }
-
-  passData(prod: ProdutoVendaDTO) {
-    this.storage.setData(prod.id, prod);
   }
 }
