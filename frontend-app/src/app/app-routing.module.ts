@@ -12,9 +12,11 @@ const routes: Routes = [
   { path: 'minha-conta', loadChildren: './pages/conta-usuario/minha-conta/minha-conta.module#MinhaContaPageModule' },
   { path: 'meus-pedidos', loadChildren: './pages/conta-usuario/meus-pedidos/meus-pedidos.module#MeusPedidosPageModule' },
   { path: 'meus-enderecos', loadChildren: './pages/conta-usuario/meus-enderecos/meus-enderecos.module#MeusEnderecosPageModule' },
+// tslint:disable-next-line: max-line-length
   { path: 'manutencao-lista', loadChildren: './pages/conta-usuario/manutencao/manutencao-lista/manutencao-lista.module#ManutencaoListaPageModule' },
+// tslint:disable-next-line: max-line-length
   { path: 'manutencao-item', loadChildren: './pages/conta-usuario/manutencao/manutencao-item/manutencao-item.module#ManutencaoItemPageModule' },
-  { path: 'pedido', loadChildren: './pages/conta-usuario/pedido/pedido.module#PedidoPageModule' },
+  { path: 'pedido/:id', loadChildren: './pages/conta-usuario/pedido/pedido.module#PedidoPageModule' },
 
 
 

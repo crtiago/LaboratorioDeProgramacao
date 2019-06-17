@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CompraService } from 'src/services/domain/compra.service';
+import { CompraDTO } from 'src/models/compra.dto';
+import { StorageDataService } from 'src/services/storageData.service';
 
 @Component({
   selector: 'app-meus-pedidos',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MeusPedidosPage implements OnInit {
 
-  constructor() { }
+  compras: CompraDTO;
+  constructor(private compraServ: CompraService,private storage: StorageDataService,) { }
 
   ngOnInit() {
+    this.compraServ.findById().subscribe(res => {
+      this.compras = res;
+      console.log(this.compras);
+    });
+  }
+
+  passData(compras){
+    this.storage.setData(compras.id, compras);
+
   }
 
 }

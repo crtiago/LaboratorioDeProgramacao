@@ -11,16 +11,16 @@
   <!-- List of Text Items -->
   <ion-list>
     <ion-item>
-      <ion-card button padding [routerLink]="['/pedido']" routerLinkActive="router-link-active">
+      <ion-card button padding [routerLink]="['/pedido', compras.id]" routerLinkActive="router-link-active" (click)="passData(compras)">
         <ion-item>
           <ion-icon name="basket" slot="start"></ion-icon>
-          <ion-label>Pedido N: xxx</ion-label>
+          <ion-label>Pedido N: {{ compras.id }}</ion-label>
         </ion-item>
 
         <ion-card-content>
           <p>Status do pedido:</p>
-          <p>Data do pedido:</p>
-          <p>Status do pagamento:</p>
+          <p>Data do pedido: {{ compras.dataVenda }}</p>
+          <p>Status do pagamento: {{ compras.pagamento.estadoPagamento }}</p>
         </ion-card-content>
       </ion-card>
     </ion-item>

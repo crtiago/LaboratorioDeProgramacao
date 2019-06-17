@@ -13,10 +13,10 @@
     <ion-list-header>
       <ion-label>Detalhe do pedido</ion-label>
     </ion-list-header>
-    <ion-item>Pedido: </ion-item>
-    <ion-item>Realizado em: </ion-item>
-    <ion-item>Valor total: </ion-item>
-    <ion-item>total de itens: </ion-item>
+    <ion-item>Pedido: {{ pedido.id }} </ion-item>
+    <ion-item>Realizado em: {{ pedido.dataVenda }}</ion-item>
+    <ion-item>Valor total: {{ pedido.valorTotal }}</ion-item>
+    <ion-item>total de itens: {{pedido.itens.length}}</ion-item>
   </ion-list>
 
   <ion-list inset>
