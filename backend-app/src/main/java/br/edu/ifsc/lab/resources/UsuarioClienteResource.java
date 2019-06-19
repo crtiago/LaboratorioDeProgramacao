@@ -38,9 +38,17 @@ public class UsuarioClienteResource {
 	private VendaService vendaService;
 
 	@CrossOrigin
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/id/{id}", method = RequestMethod.GET)
 	public ResponseEntity<UsuarioClienteDTO> find(@PathVariable Integer id) throws ObjectNotFoundException {
 		UsuarioCliente obj = service.find(id);
+		UsuarioClienteDTO objDTO = new UsuarioClienteDTO(obj);
+		return ResponseEntity.ok().body(objDTO);
+	}
+
+	@CrossOrigin
+	@RequestMapping(value = "/email/{email}", method = RequestMethod.GET)
+	public ResponseEntity<UsuarioClienteDTO> findUserEmail(@PathVariable String email) throws ObjectNotFoundException {
+		UsuarioCliente obj = service.findUserEmail(email);
 		UsuarioClienteDTO objDTO = new UsuarioClienteDTO(obj);
 		return ResponseEntity.ok().body(objDTO);
 	}
