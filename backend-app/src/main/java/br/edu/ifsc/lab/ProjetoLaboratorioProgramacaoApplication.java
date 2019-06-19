@@ -116,14 +116,14 @@ public class ProjetoLaboratorioProgramacaoApplication implements CommandLineRunn
 		pagamentoRepository.saveAll(Arrays.asList(pagto1));
 
 		ItemVenda iv1 = new ItemVenda(venda1, p1, 2);
-		ItemVenda iv2 = new ItemVenda(venda1, p2, 1);
+		// ItemVenda iv2 = new ItemVenda(venda1, p2, 1);
 
-		venda1.getItens().addAll(Arrays.asList(iv1, iv2));
+		venda1.getItens().addAll(Arrays.asList(iv1));
 
-		p1.getItens().addAll(Arrays.asList(iv1));
-		p2.getItens().addAll(Arrays.asList(iv2));
+		// p1.getItens().addAll(Arrays.asList(iv1));
+		// p2.getItens().addAll(Arrays.asList(iv2));
 
-		itemVendaRepository.saveAll(Arrays.asList(iv1, iv2));
+		itemVendaRepository.saveAll(Arrays.asList(iv1));
 
 		ProdutoCliente prodc1 = new ProdutoCliente(null, "Asus", "Z5", "Microfone", sdf.parse("31/05/2019 10:32"),
 				sdf.parse("05/06/2019 13:40"), cli1);

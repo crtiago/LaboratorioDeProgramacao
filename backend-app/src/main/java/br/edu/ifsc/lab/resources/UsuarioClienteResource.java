@@ -16,9 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.ifsc.lab.domain.Endereco;
 import br.edu.ifsc.lab.domain.UsuarioCliente;
+import br.edu.ifsc.lab.domain.Venda;
 import br.edu.ifsc.lab.dto.UsuarioClienteDTO;
+import br.edu.ifsc.lab.dto.VendaDTO;
 import br.edu.ifsc.lab.services.EnderecoService;
 import br.edu.ifsc.lab.services.UsuarioClienteService;
+import br.edu.ifsc.lab.services.VendaService;
 import javassist.tools.rmi.ObjectNotFoundException;
 
 @RestController
@@ -31,13 +34,8 @@ public class UsuarioClienteResource {
 	@Autowired
 	private EnderecoService enderecoService;
 
-	/*
-	 * @RequestMapping(value = "/{id}", method = RequestMethod.GET) >>>>>>>
-	 * 296bd7ceccdd70cce9392273d86be02ec4b0f21d public
-	 * ResponseEntity<UsuarioCliente> find(@PathVariable Integer id) throws
-	 * ObjectNotFoundException { UsuarioCliente obj = service.find(id); return
-	 * ResponseEntity.ok().body(obj); }
-	 */
+	@Autowired
+	private VendaService vendaService;
 
 	@CrossOrigin
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -52,6 +50,14 @@ public class UsuarioClienteResource {
 	public ResponseEntity<List<Endereco>> findEnderecos(@PathVariable Integer usuarioId) {
 		List<Endereco> list = enderecoService.findByUsuario(usuarioId);
 		return ResponseEntity.ok().body(list);
+	}
+
+	@CrossOrigin
+	@RequestMapping(value = "/{usuarioId}/compras", method = RequestMethod.GET)
+	public ResponseEntity<List<VendaDTO>> findVenda(@PathVariable Integer usuarioId) {
+		List<Venda> list = vendaService.findByUsuario(usuarioId);
+		List<VendaDTO> listDTO = list.stream().map(obj -> new VendaDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDTO);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)

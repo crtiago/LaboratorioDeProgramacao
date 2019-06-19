@@ -1,5 +1,6 @@
 package br.edu.ifsc.lab.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,5 +20,9 @@ public class VendaService {
 		Optional<Venda> obj = rep.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"" + "Objeto não encontrado! Id: " + id + ", Tipo: " + Venda.class.getName()));
+	}
+
+	public List<Venda> findByUsuario(Integer usuarioId) {
+		return rep.findVenda(usuarioId);
 	}
 }

@@ -31,6 +31,7 @@ public class Venda implements Serializable {
 	@JsonFormat(pattern = "dd/MM/yyyy  HH:mm")
 	private Date dataVenda;
 
+	
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	private UsuarioCliente usuarioCliente;
@@ -41,6 +42,7 @@ public class Venda implements Serializable {
 	@OneToMany(mappedBy = "id.venda")
 	private Set<ItemVenda> itens = new HashSet<>();
 
+	
 	@OneToMany(mappedBy = "venda")
 	private List<Servico> servico = new ArrayList<>();
 
