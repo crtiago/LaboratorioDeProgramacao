@@ -18,7 +18,7 @@ export class PedidoPage implements OnInit {
     this.pedido = this.storage.getData(this.ar.snapshot.paramMap.get('id'));
     this.itens = this.pedido.itens;
     console.log(this.pedido);
-    console.log("itens:" + this.itens);
+    console.log('itens:' + this.itens);
   }
 
 }

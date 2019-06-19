@@ -4,6 +4,74 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+
+<ion-content padding>
+
+  <ion-list inset="true">
+    <ion-list-header>
+      <ion-label>Items</ion-label>
+    </ion-list-header>
+    <ion-item>Item 1</ion-item>
+    <ion-item>Item 2</ion-item>
+    <ion-item>Item 3</ion-item>
+    <ion-item>Item 4</ion-item>
+    <ion-item>Item 5</ion-item>
+  </ion-list>
+
+
+  <ion-list inset="true">
+    <ion-list-header>
+      <ion-label>Endereco de Entrega</ion-label>
+    </ion-list-header>
+    <ion-item>
+      <ion-label>Endereco 1</ion-label>
+      <ion-radio slot="start"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-label>Endereco 2</ion-label>
+      <ion-radio slot="start"></ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-button size="small" slot="end">
+        <ion-icon name="add"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+
+  <ion-segment (ionChange)="segmentChanged($event)" value="boleto">
+    <ion-segment-button value="boleto">
+      <ion-label>Boleto</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="cartao">
+      <ion-label>Cartao</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+
+  <ion-list inset="true" *ngIf="payMethodCard">
+    <ion-item>
+      <ion-label position="floating">Numero do Cartão</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Nome do Titular</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">CPF do Titular</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">CVV</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Validade</ion-label>
+      <ion-input></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-button shape="round" expand="block">Confirmar Compra</ion-button>
 
 </ion-content>

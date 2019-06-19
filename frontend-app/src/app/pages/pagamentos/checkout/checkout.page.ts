@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CheckoutPage implements OnInit {
 
+  payMethodCard: boolean = false;
   constructor() { }
 
   ngOnInit() {
+  }
+
+
+  segmentChanged(ev: any) {
+    this.payMethodCard = !this.payMethodCard;
   }
 
 }

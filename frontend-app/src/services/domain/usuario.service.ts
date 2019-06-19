@@ -10,6 +10,6 @@ export class UsuarioService {
   constructor(public http: HttpClient) {}
 
   findById(id :number): Observable<UsuarioDTO> {
-    return this.http.get<UsuarioDTO>(`${API_CONFIG.baseUrl}/clientes/1`);
+    return this.http.get<UsuarioDTO>(`${API_CONFIG.baseUrl}/clientes/id/1`);
   }
 }
