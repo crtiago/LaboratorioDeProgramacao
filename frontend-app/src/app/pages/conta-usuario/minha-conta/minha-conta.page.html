@@ -7,7 +7,6 @@
 <ion-content>
   <div class="top">
     <p id="name">{{ user.nome }}</p>
-
   </div>
 
 
@@ -21,7 +20,7 @@
     <br>
 
     <ion-item color="#D7CEC7">
-      <ion-button fill="clear" expand="block" color="light">Dados Pessoais</ion-button>
+      <ion-button fill="outline" expand="block" color="light" [routerLink]="['/meus-dados']" routerLinkActive="router-link-active">Dados Pessoais</ion-button>
     </ion-item>
 
     <ion-item color="D7CEC7">

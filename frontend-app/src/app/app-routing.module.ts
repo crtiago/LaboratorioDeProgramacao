@@ -16,7 +16,8 @@ const routes: Routes = [
   { path: 'manutencao-lista', loadChildren: './pages/conta-usuario/manutencao/manutencao-lista/manutencao-lista.module#ManutencaoListaPageModule' },
 // tslint:disable-next-line: max-line-length
   { path: 'manutencao-item', loadChildren: './pages/conta-usuario/manutencao/manutencao-item/manutencao-item.module#ManutencaoItemPageModule' },
-  { path: 'pedido/:id', loadChildren: './pages/conta-usuario/pedido/pedido.module#PedidoPageModule' },
+  { path: 'pedido/:id', loadChildren: './pages/conta-usuario/pedido/pedido.module#PedidoPageModule' },  { path: 'meus-dados', loadChildren: './pages/conta-usuario/meus-dados/meus-dados.module#MeusDadosPageModule' },
+
 
 
 

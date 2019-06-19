@@ -16,4 +16,10 @@ export class CartItensService {
   public getCart() {
     return this.cart;
   }
+
+  public removeItem(prod: ProdutoVendaDTO):ProdutoVendaDTO[] {
+    let index = this.cart.indexOf(prod);
+    this.cart.splice(index,1);
+    return this.cart;
+  }
 }
