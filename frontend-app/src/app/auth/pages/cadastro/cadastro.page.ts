@@ -5,7 +5,9 @@ import {
   Validators,
   FormControl
 } from "@angular/forms";
-import { NavController } from '@ionic/angular';
+import { NavController } from "@ionic/angular";
+import { UsuarioService } from "src/services/domain/usuario.service";
+import { UsuarioDTO } from "src/models/usuario.dto";
 
 @Component({
   selector: "app-cadastro",
@@ -14,11 +16,15 @@ import { NavController } from '@ionic/angular';
 })
 export class CadastroPage implements OnInit {
   cadastroForm: FormGroup;
-
-  constructor(private fb: FormBuilder, private navCtrl: NavController) {}
+  user: UsuarioDTO;
+  constructor(
+    private fb: FormBuilder,
+    private navCtrl: NavController,
+    private userService: UsuarioService
+  ) {}
 
   ngOnInit() {
-     this.createForm();
+    this.createForm();
   }
 
   private createForm() {
@@ -45,7 +51,19 @@ export class CadastroPage implements OnInit {
     return <FormControl>this.cadastroForm.get("password");
   }
 
-  cancelar(){
+  onSubmit(): void {
+    this.setUser();
+    this.userService.registerUser(this.user);
+  }
+
+  cancelar() {
     this.navCtrl.back();
+  }
+
+  private setUser() {
+    this.user.nome = this.name.value;
+    this.user.email = this.email.value;
+    this.user.senha = this.password.value;
+    this.user.telefones = this.fone.value;
   }
 }

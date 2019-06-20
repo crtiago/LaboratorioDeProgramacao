@@ -5,8 +5,10 @@ import {
   Validators,
   FormControl
 } from "@angular/forms";
-import { CategoriaService } from "src/services/domain/categoria.service";
 import { NavController, MenuController } from "@ionic/angular";
+import { UsuarioService } from "src/services/domain/usuario.service";
+import { UsuarioDTO } from "src/models/usuario.dto";
+import { UserRepository } from "src/app/shared/globalData/user.service";
 
 @Component({
   selector: "app-login",
@@ -15,20 +17,18 @@ import { NavController, MenuController } from "@ionic/angular";
 })
 export class LoginPage implements OnInit {
   authForm: FormGroup;
-  // authProviders = AuthProvider;
+  user: UsuarioDTO;
 
   constructor(
     private fb: FormBuilder,
-    public catServ: CategoriaService,
     private navCtrl: NavController,
-    private menuCtrl: MenuController
+    private menuCtrl: MenuController,
+    private userService: UsuarioService,
+    private userRepos: UserRepository
   ) {}
 
   ngOnInit(): void {
     this.createForm();
-    this.catServ.findAll().subscribe(res => {
-      console.log(res);
-    });
     this.menuCtrl.enable(false);
   }
 
@@ -37,10 +37,6 @@ export class LoginPage implements OnInit {
       email: ["", [Validators.required, Validators.email]],
       password: ["", [Validators.required, Validators.minLength(6)]]
     });
-  }
-
-  get name(): FormControl {
-    return <FormControl>this.authForm.get("name");
   }
 
   get email(): FormControl {
@@ -52,7 +48,12 @@ export class LoginPage implements OnInit {
   }
 
   onSubmit(): void {
-    console.log("authForm", this.authForm.value);
-    this.navCtrl.navigateRoot("/home");
+    this.userService.findByEmail(this.email.value).subscribe(res => {
+      if (res.senha == this.password.value) {
+        this.user = res;
+        this.userRepos.setUser(this.user);
+        this.navCtrl.navigateRoot("/home");
+      }
+    });
   }
 }

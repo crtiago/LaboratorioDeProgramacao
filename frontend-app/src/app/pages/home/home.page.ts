@@ -3,9 +3,6 @@ import { MenuController } from '@ionic/angular';
 import { ProdutoVendaDTO } from 'src/models/produtoVenda.dto';
 import { ProdutoVendaService } from 'src/services/domain/produtoVenda.service';
 import { StorageDataService } from 'src/services/storageData.service';
-import { UsuarioService } from 'src/services/domain/usuario.service';
-import { UsuarioDTO } from 'src/models/usuario.dto';
-import { UserRepository } from 'src/app/shared/globalData/user.service';
 import { CartItensService } from 'src/app/shared/globalData/cart-itens.service';
 
 @Component({
@@ -17,7 +14,6 @@ export class HomePage implements OnInit {
   searchQuery: string = "";
   items: string[];
   produtos: ProdutoVendaDTO[];
-  user: UsuarioDTO
 
 
 
@@ -26,8 +22,6 @@ export class HomePage implements OnInit {
     private menuCtrl: MenuController,
     private prodService: ProdutoVendaService, 
     private storage: StorageDataService,
-    private userService: UsuarioService,
-    private userRepos: UserRepository,
     private cartService: CartItensService
     ) {
     this.initializeItems();
@@ -42,12 +36,6 @@ export class HomePage implements OnInit {
     this.prodService.findAll().subscribe(res => {
       this.produtos = res;
       console.log(this.produtos);
-    })
-
-    this.userService.findById(1).subscribe(res =>{
-      this.user = res;
-      console.log(this.user);
-      this.userRepos.setUser(this.user);
     })
   }
 

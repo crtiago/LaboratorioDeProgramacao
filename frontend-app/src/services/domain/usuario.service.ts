@@ -9,7 +9,15 @@ export class UsuarioService {
   // tslint:disable-next-line: align
   constructor(public http: HttpClient) {}
 
-  findById(id :number): Observable<UsuarioDTO> {
-    return this.http.get<UsuarioDTO>(`${API_CONFIG.baseUrl}/clientes/id/1`);
+  findById(id: number): Observable<UsuarioDTO> {
+    return this.http.get<UsuarioDTO>(`${API_CONFIG.baseUrl}/clientes/id/${id}`);
+  }
+
+  findByEmail(email: string): Observable<UsuarioDTO> {
+    return this.http.get<UsuarioDTO>(`${API_CONFIG.baseUrl}/clientes/email/${email}`);
+  }
+
+  registerUser(user:UsuarioDTO){
+    return this.http.put(`${API_CONFIG.baseUrl}/clientes/${null}`, user);
   }
 }

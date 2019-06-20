@@ -10,11 +10,14 @@ import { UserRepository } from 'src/app/shared/globalData/user.service';
 })
 export class MinhaContaPage implements OnInit {
 
-  user: UsuarioDTO;
+  user: UsuarioDTO = null;
   constructor(private navCtrl: NavController, private userRepo: UserRepository) { }
 
   ngOnInit() {
     this.user = this.userRepo.getUser();
+    if (this.user == null){
+      this.navCtrl.navigateRoot('login');
+    }
   }
 
   private navEnderecos(){
