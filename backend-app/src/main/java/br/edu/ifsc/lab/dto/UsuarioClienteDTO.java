@@ -1,11 +1,7 @@
 package br.edu.ifsc.lab.dto;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 
-import javax.persistence.CollectionTable;
-import javax.persistence.ElementCollection;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
@@ -28,9 +24,7 @@ public class UsuarioClienteDTO implements Serializable {
 
 	private String senha;
 
-	@ElementCollection
-	@CollectionTable(name = "TELEFONE")
-	private Set<String> telefones = new HashSet<>();
+	private String cpf;
 
 	public UsuarioClienteDTO() {
 
@@ -40,8 +34,8 @@ public class UsuarioClienteDTO implements Serializable {
 		id = cliente.getId_usuario();
 		nome = cliente.getNome();
 		email = cliente.getEmail();
-	    senha = cliente.getSenha();  
-	    telefones = cliente.getTelefones();
+		senha = cliente.getSenha();
+		cpf = cliente.getCpf();
 	}
 
 	public Integer getId() {
@@ -76,14 +70,12 @@ public class UsuarioClienteDTO implements Serializable {
 		this.senha = senha;
 	}
 
-	public Set<String> getTelefones() {
-		return telefones;
+	public String getCpf() {
+		return cpf;
 	}
 
-	public void setTelefones(Set<String> telefones) {
-		this.telefones = telefones;
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
-	
-	
 
 }

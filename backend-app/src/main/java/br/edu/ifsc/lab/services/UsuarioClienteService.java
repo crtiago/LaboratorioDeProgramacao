@@ -37,6 +37,11 @@ public class UsuarioClienteService {
 		return rep.save(newObj);
 	}
 
+	public UsuarioCliente insert(UsuarioCliente obj) {
+		obj.setId_usuario(null);
+		return rep.save(obj);
+	}
+
 	public void delete(Integer id) {
 		find(id);
 		try {
@@ -51,7 +56,8 @@ public class UsuarioClienteService {
 	}
 
 	public UsuarioCliente fromDTO(UsuarioClienteDTO objDto) {
-		return new UsuarioCliente(objDto.getId(), objDto.getNome(), objDto.getSenha(), objDto.getEmail(), null);
+		return new UsuarioCliente(objDto.getId(), objDto.getNome(), objDto.getSenha(), objDto.getEmail(),
+				objDto.getCpf());
 	}
 
 	private void updateData(UsuarioCliente newObj, UsuarioCliente obj) {

@@ -1,5 +1,6 @@
 package br.edu.ifsc.lab.resources;
 
+import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.edu.ifsc.lab.domain.Endereco;
 import br.edu.ifsc.lab.domain.UsuarioCliente;
@@ -51,6 +53,15 @@ public class UsuarioClienteResource {
 		UsuarioCliente obj = service.findUserEmail(email);
 		UsuarioClienteDTO objDTO = new UsuarioClienteDTO(obj);
 		return ResponseEntity.ok().body(objDTO);
+	}
+
+	@RequestMapping(method = RequestMethod.POST)
+	public ResponseEntity<Void> insert(@Valid @RequestBody UsuarioClienteDTO objDto) {
+		UsuarioCliente obj = service.fromDTO(objDto);
+		obj = service.insert(obj);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId_usuario())
+				.toUri();
+		return ResponseEntity.created(uri).build();
 	}
 
 	@CrossOrigin
