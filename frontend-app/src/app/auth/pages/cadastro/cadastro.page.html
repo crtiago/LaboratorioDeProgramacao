@@ -9,7 +9,9 @@
     <ion-row justify-content-center>
       <ion-col size-sm="8" size-md="4" size-lg="3" size-xl="3">
 
-
+        <h1 text-center>
+          <ion-icon name="contact" color="primary" class="icon-7em"></ion-icon>
+        </h1>
 
         <form [formGroup]="cadastroForm" (submit)="onSubmit()">
 
@@ -17,7 +19,7 @@
           <ion-item>
             <ion-icon name="person" color="primary" slot="start"></ion-icon>
             <ion-input type="text" placeholder="Nome Completo" formControlName="name"></ion-input>
-
+            
             <ion-note slot="end" color="danger" *ngIf="name.dirty && name.hasError('required')">
               Campo obrigatório
             </ion-note>
@@ -33,13 +35,13 @@
             <ion-input type="email" color="dark" placeholder="Email" formControlName="email" inputmode="email"
               autofocus="true">
             </ion-input>
-
+           
             <ion-note slot="end" color="danger" *ngIf="email.dirty && email.hasError('required')">
               Required
             </ion-note>
             <ion-note slot="end" color="danger" *ngIf="email.dirty && email.hasError('email')">
               Invalid email
-
+           
             </ion-note>
           </ion-item>
 
@@ -49,13 +51,13 @@
             <ion-input type="number" color="dark" placeholder="Telefone" formControlName="fone" inputmode="email"
               autofocus="true">
             </ion-input>
-
+           
             <ion-note slot="end" color="danger" *ngIf="email.dirty && email.hasError('required')">
               Campo Obrigatório
             </ion-note>
             <ion-note slot="end" color="danger" *ngIf="email.dirty && email.hasError('email')">
               Telefone Invalido
-
+           
             </ion-note>
           </ion-item>
 
@@ -63,18 +65,18 @@
           <ion-item>
             <ion-icon name="lock" color="primary" slot="start"></ion-icon>
             <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
-
+           
             <ion-note slot="end" color="danger" *ngIf="password.dirty && password.hasError('required')">
               Required
             </ion-note>
             <ion-note slot="end" color="danger" *ngIf="password.dirty && password.hasError('minlength')">
               Min 6 characters
-
+           
             </ion-note>
           </ion-item>
 
 
-          <ion-button expand="block" fill="outline" type="submit" [disabled]="authForm.invalid">
+          <ion-button expand="block" fill="outline" (click)="cadastrar()">
             Cadastrar
           </ion-button>
 

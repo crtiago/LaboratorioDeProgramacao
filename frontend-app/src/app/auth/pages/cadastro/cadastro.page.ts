@@ -8,6 +8,7 @@ import {
 import { NavController } from "@ionic/angular";
 import { UsuarioService } from "src/services/domain/usuario.service";
 import { UsuarioDTO } from "src/models/usuario.dto";
+import { UserRepository } from 'src/app/shared/globalData/user.service';
 
 @Component({
   selector: "app-cadastro",
@@ -16,11 +17,18 @@ import { UsuarioDTO } from "src/models/usuario.dto";
 })
 export class CadastroPage implements OnInit {
   cadastroForm: FormGroup;
-  user: UsuarioDTO;
+  user: UsuarioDTO = {
+    nome: '',
+    email: '',
+    id: '',
+    senha: '',
+    telefones: ['']
+  };
   constructor(
     private fb: FormBuilder,
     private navCtrl: NavController,
-    private userService: UsuarioService
+    private userService: UsuarioService,
+    private userRepo: UserRepository
   ) {}
 
   ngOnInit() {
@@ -51,9 +59,12 @@ export class CadastroPage implements OnInit {
     return <FormControl>this.cadastroForm.get("password");
   }
 
-  onSubmit(): void {
+  cadastrar(): void {
     this.setUser();
-    this.userService.registerUser(this.user);
+    this.userService.registerUser(this.user).subscribe(res => {
+      this.userRepo.setUser(this.user);
+    })
+    //this.navCtrl.navigateRoot('home');
   }
 
   cancelar() {

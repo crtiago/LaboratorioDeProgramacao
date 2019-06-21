@@ -68,6 +68,7 @@ public class UsuarioClienteResource {
 		return ResponseEntity.ok().body(listDTO);
 	}
 
+	@CrossOrigin
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Void> update(@Valid @RequestBody UsuarioClienteDTO objDto, @PathVariable Integer id)
 			throws ObjectNotFoundException {
