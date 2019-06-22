@@ -17,6 +17,7 @@ const routes: Routes = [
 // tslint:disable-next-line: max-line-length
   { path: 'manutencao-item', loadChildren: './pages/conta-usuario/manutencao/manutencao-item/manutencao-item.module#ManutencaoItemPageModule' },
   { path: 'pedido/:id', loadChildren: './pages/conta-usuario/pedido/pedido.module#PedidoPageModule' },  { path: 'meus-dados', loadChildren: './pages/conta-usuario/meus-dados/meus-dados.module#MeusDadosPageModule' },
+  { path: 'endereco', loadChildren: './pages/conta-usuario/endereco/endereco.module#EnderecoPageModule' },
 
 
 

@@ -40,7 +40,7 @@
               Required
             </ion-note>
             <ion-note slot="end" color="danger" *ngIf="email.dirty && email.hasError('email')">
-              Invalid email
+              Email Invalido
            
             </ion-note>
           </ion-item>
@@ -48,15 +48,15 @@
 
           <ion-item>
             <ion-icon name="phone-portrait" color="primary" slot="start"></ion-icon>
-            <ion-input type="number" color="dark" placeholder="Telefone" formControlName="fone" inputmode="email"
+            <ion-input type="number" color="dark" placeholder="CPF" formControlName="cpf"
               autofocus="true">
             </ion-input>
            
-            <ion-note slot="end" color="danger" *ngIf="email.dirty && email.hasError('required')">
+            <ion-note slot="end" color="danger" *ngIf="cpf.dirty && cpf.hasError('required')">
               Campo Obrigatório
             </ion-note>
-            <ion-note slot="end" color="danger" *ngIf="email.dirty && email.hasError('email')">
-              Telefone Invalido
+            <ion-note slot="end" color="danger" *ngIf="cpf.dirty && email.hasError('minLength')">
+              CPF Invalido
            
             </ion-note>
           </ion-item>
