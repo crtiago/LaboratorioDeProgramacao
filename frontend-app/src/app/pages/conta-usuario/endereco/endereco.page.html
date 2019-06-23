@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>endereco</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="enderecoForm" (submit)="onSubmit()">
+
+    <ion-list>
+
+      <ion-item>
+        <ion-icon name="person" color="primary" slot="start"></ion-icon>
+        <ion-input type="text" placeholder="Rua" formControlName="rua"></ion-input>
+
+        <ion-note slot="end" color="danger" *ngIf="rua.dirty && rua.hasError('required')">
+          Campo obrigatório
+        </ion-note>
+        <ion-note slot="end" color="danger" *ngIf="rua.dirty && rua.hasError('minlength')">
+          Min 3 characters
+        </ion-note>
+
+      </ion-item>
+
+
+      <ion-item>
+        <ion-icon name="mail" color="primary" slot="start"></ion-icon>
+        <ion-input type="number" color="dark" placeholder="CEP" formControlName="cep" inputmode="email"
+          autofocus="true">
+        </ion-input>
+
+        <ion-note slot="end" color="danger" *ngIf="cep.dirty && cep.hasError('required')">
+          Required
+        </ion-note>
+        <ion-note slot="end" color="danger" *ngIf="cep.dirty && cep.hasError('email')">
+          Email Invalido
+
+        </ion-note>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-icon name="phone-portrait" color="primary" slot="start"></ion-icon>
+        <ion-input type="number" color="dark" placeholder="Numero" formControlName="numero" autofocus="true">
+        </ion-input>
+
+        <ion-note slot="end" color="danger" *ngIf="numero.dirty && numero.hasError('required')">
+          Campo Obrigatório
+        </ion-note>
+        <ion-note slot="end" color="danger" *ngIf="numero.dirty && numero.hasError('minLength')">
+          CPF Invalido
+
+        </ion-note>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="phone-portrait" color="primary" slot="start"></ion-icon>
+        <ion-input type="text" color="dark" placeholder="Bairro" formControlName="bairro" autofocus="true">
+        </ion-input>
+
+        <ion-note slot="end" color="danger" *ngIf="bairro.dirty && bairro.hasError('required')">
+          Campo Obrigatório
+        </ion-note>
+        <ion-note slot="end" color="danger" *ngIf="bairro.dirty && bairro.hasError('minLength')">
+          CPF Invalido
+
+        </ion-note>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Estado</ion-label>
+        <ion-select placeholder="Selecione">
+          <ion-select-option value="f">Female</ion-select-option>
+          <ion-select-option value="m">Male</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Cidade</ion-label>
+        <ion-select placeholder="Selecione">
+          <ion-select-option value="f">Female</ion-select-option>
+          <ion-select-option value="m">Male</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+    </ion-list>
+
+
+    <ion-button expand="block" fill="outline" (click)="cadastrar()">
+      Cadastrar
+    </ion-button>
+
+  </form>
+
+  <ion-button expand="block" fill="outline" (click)="cancelar()">Cancelar</ion-button>
+</ion-content>

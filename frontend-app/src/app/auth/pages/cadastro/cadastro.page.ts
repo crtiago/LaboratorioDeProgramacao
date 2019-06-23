@@ -5,10 +5,10 @@ import {
   Validators,
   FormControl
 } from "@angular/forms";
-import { NavController } from "@ionic/angular";
+import { NavController, ToastController } from "@ionic/angular";
 import { UsuarioService } from "src/services/domain/usuario.service";
 import { UsuarioDTO } from "src/models/usuario.dto";
-import { UserRepository } from 'src/app/shared/globalData/user.service';
+import { UserRepository } from "src/app/shared/globalData/user.service";
 
 @Component({
   selector: "app-cadastro",
@@ -17,18 +17,19 @@ import { UserRepository } from 'src/app/shared/globalData/user.service';
 })
 export class CadastroPage implements OnInit {
   cadastroForm: FormGroup;
-  user: UsuarioDTO = {
-    nome: '',
-    email: '',
-    id: '',
-    senha: '',
-    telefones: ['']
+  user: UsuarioDTO = { 
+    id: "",
+    cpf: "",
+    email: "",
+    nome: "",
+    senha: ""
   };
   constructor(
     private fb: FormBuilder,
     private navCtrl: NavController,
     private userService: UsuarioService,
-    private userRepo: UserRepository
+    private userRepo: UserRepository,
+    private toastController: ToastController
   ) {}
 
   ngOnInit() {
@@ -37,10 +38,10 @@ export class CadastroPage implements OnInit {
 
   private createForm() {
     this.cadastroForm = this.fb.group({
-      name: ["", [Validators.required, Validators.minLength(10)]],
+      name: ["", [Validators.required, Validators.minLength(5)]],
       email: ["", [Validators.required, Validators.email]],
       password: ["", [Validators.required, Validators.minLength(6)]],
-      fone: ["", [Validators.required, Validators.minLength(11)]]
+      cpf: ["", [Validators.required, Validators.minLength(11)]]
     });
   }
 
@@ -51,8 +52,8 @@ export class CadastroPage implements OnInit {
   get email(): FormControl {
     return <FormControl>this.cadastroForm.get("email");
   }
-  get fone(): FormControl {
-    return <FormControl>this.cadastroForm.get("fone");
+  get cpf(): FormControl {
+    return <FormControl>this.cadastroForm.get("cpf");
   }
 
   get password(): FormControl {
@@ -63,18 +64,30 @@ export class CadastroPage implements OnInit {
     this.setUser();
     this.userService.registerUser(this.user).subscribe(res => {
       this.userRepo.setUser(this.user);
-    })
-    //this.navCtrl.navigateRoot('home');
+      this.presentToast();
+      this.navCtrl.navigateRoot("login");
+    });
   }
 
   cancelar() {
     this.navCtrl.back();
   }
 
+  async presentToast() {
+    const toast = await this.toastController.create({
+      message: 'Cadastro realizado com sucesso.',
+      duration: 2000
+    });
+    toast.present();
+  }
+
+
+
   private setUser() {
     this.user.nome = this.name.value;
     this.user.email = this.email.value;
     this.user.senha = this.password.value;
-    this.user.telefones = this.fone.value;
+    this.user.cpf = this.cpf.value;
+    console.log(this.user);
   }
 }

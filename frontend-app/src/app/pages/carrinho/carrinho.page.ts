@@ -17,11 +17,11 @@ export class CarrinhoPage implements OnInit {
     this.checkTotalValue();
   }
 
-  deleteItem(cart){
-    this.cartItens = this.cartService.removeItem(cart);
-    this.checkTotalValue();
-    console.log(this.cartItens);
-  }
+  // deleteItem(cart){
+  //   this.cartItens = this.cartService.removeItem(cart);
+  //   this.checkTotalValue();
+  //   console.log(this.cartItens);
+  // }
 
   private checkTotalValue(){
     this.cartTotal = 0;

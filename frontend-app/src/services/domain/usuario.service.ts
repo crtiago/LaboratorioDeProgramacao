@@ -17,7 +17,10 @@ export class UsuarioService {
     return this.http.get<UsuarioDTO>(`${API_CONFIG.baseUrl}/clientes/email/${email}`);
   }
 
-  registerUser(user:UsuarioDTO){
-    return this.http.put(`${API_CONFIG.baseUrl}/clientes/${null}`, user);
+  registerUser(user: UsuarioDTO){
+    return this.http.post(`${API_CONFIG.baseUrl}/clientes`, user, {
+      observe: 'response',
+      responseType: 'text'
+    });
   }
 }

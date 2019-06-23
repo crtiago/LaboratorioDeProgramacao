@@ -56,6 +56,7 @@ public class UsuarioClienteResource {
 		return ResponseEntity.ok().body(objDTO);
 	}
 
+	@CrossOrigin
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> insert(@Valid @RequestBody UsuarioClienteDTO objDto) {
 		UsuarioCliente obj = service.fromDTO(objDto);
