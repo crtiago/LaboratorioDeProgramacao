@@ -19,6 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import br.edu.ifsc.lab.domain.Endereco;
 import br.edu.ifsc.lab.domain.UsuarioCliente;
 import br.edu.ifsc.lab.domain.Venda;
+import br.edu.ifsc.lab.dto.EnderecoDTO;
 import br.edu.ifsc.lab.dto.UsuarioClienteDTO;
 import br.edu.ifsc.lab.dto.VendaDTO;
 import br.edu.ifsc.lab.services.EnderecoService;
@@ -61,6 +62,15 @@ public class UsuarioClienteResource {
 		obj = service.insert(obj);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId_usuario())
 				.toUri();
+		return ResponseEntity.created(uri).build();
+	}
+
+	@RequestMapping(value = "/id/{id}/endereco", method = RequestMethod.POST)
+	public ResponseEntity<Void> insert(@PathVariable Integer id, @Valid @RequestBody EnderecoDTO objDto) {
+		UsuarioCliente cli = service.find(id);
+		Endereco obj = service.fromDTO(objDto, cli);
+		obj = service.insert(obj);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 		return ResponseEntity.created(uri).build();
 	}
 

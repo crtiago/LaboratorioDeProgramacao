@@ -25,4 +25,5 @@ public class EnderecoService {
 	public List<Endereco> findByUsuario(Integer usuarioId) {
 		return rep.findEndereco(usuarioId);
 	}
+
 }

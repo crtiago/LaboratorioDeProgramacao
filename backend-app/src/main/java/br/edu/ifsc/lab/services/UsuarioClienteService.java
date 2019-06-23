@@ -7,8 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import br.edu.ifsc.lab.domain.Cidade;
+import br.edu.ifsc.lab.domain.Endereco;
 import br.edu.ifsc.lab.domain.UsuarioCliente;
+import br.edu.ifsc.lab.dto.EnderecoDTO;
 import br.edu.ifsc.lab.dto.UsuarioClienteDTO;
+import br.edu.ifsc.lab.repository.CidadeRepository;
+import br.edu.ifsc.lab.repository.EnderecoRepository;
 import br.edu.ifsc.lab.repository.UsuarioClienteRepository;
 import br.edu.ifsc.lab.services.exceptions.DataIntegrityException;
 import br.edu.ifsc.lab.services.exceptions.ObjectNotFoundException;
@@ -18,6 +23,12 @@ public class UsuarioClienteService {
 
 	@Autowired
 	private UsuarioClienteRepository rep;
+
+	@Autowired
+	private EnderecoRepository repEnd;
+
+	@Autowired
+	private CidadeRepository cidRep;
 
 	public UsuarioCliente find(Integer id) {
 		Optional<UsuarioCliente> obj = rep.findById(id);
@@ -42,6 +53,11 @@ public class UsuarioClienteService {
 		return rep.save(obj);
 	}
 
+	public Endereco insert(Endereco obj) {
+		obj.setId(null);
+		return repEnd.save(obj);
+	}
+
 	public void delete(Integer id) {
 		find(id);
 		try {
@@ -56,8 +72,24 @@ public class UsuarioClienteService {
 	}
 
 	public UsuarioCliente fromDTO(UsuarioClienteDTO objDto) {
-		return new UsuarioCliente(objDto.getId(), objDto.getNome(), objDto.getSenha(), objDto.getEmail(),
+		return new UsuarioCliente(objDto.getId(), objDto.getEmail(), objDto.getSenha(), objDto.getNome(),
 				objDto.getCpf());
+	}
+
+	public Endereco fromDTO(EnderecoDTO objDto, UsuarioCliente cli) {
+
+		Optional<Cidade> cidadeOp = cidRep.findById(objDto.getCidadeId());
+
+		Cidade cidade = new Cidade(cidadeOp.get().getId(), cidadeOp.get().getNome(), cidadeOp.get().getEstado());
+		Endereco end = new Endereco(null, objDto.getRua(), objDto.getCep(), objDto.getNumero(), objDto.getBairro(), cli,
+				cidade);
+
+		cli.getEnderecos().add(end);
+		rep.save(cli);
+		cidRep.save(cidade);
+
+		return end;
+
 	}
 
 	private void updateData(UsuarioCliente newObj, UsuarioCliente obj) {

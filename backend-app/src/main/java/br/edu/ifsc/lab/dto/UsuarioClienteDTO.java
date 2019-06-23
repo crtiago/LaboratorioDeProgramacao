@@ -31,11 +31,11 @@ public class UsuarioClienteDTO implements Serializable {
 	}
 
 	public UsuarioClienteDTO(UsuarioCliente cliente) {
-		id = cliente.getId_usuario();
-		nome = cliente.getNome();
-		email = cliente.getEmail();
-		senha = cliente.getSenha();
-		cpf = cliente.getCpf();
+		this.id = cliente.getId_usuario();
+		this.nome = cliente.getNome();
+		this.email = cliente.getEmail();
+		this.senha = cliente.getSenha();
+		this.cpf = cliente.getCpf();
 	}
 
 	public Integer getId() {
