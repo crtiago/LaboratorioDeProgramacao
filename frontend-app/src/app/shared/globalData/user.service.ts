@@ -17,4 +17,8 @@ export class UserRepository {
   public getUser() {
     return this.user;
   }
+
+  public logOut(){
+    this.user = null;
+  }
 }

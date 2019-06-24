@@ -32,6 +32,11 @@ export class LoginPage implements OnInit {
     this.menuCtrl.enable(false);
   }
 
+  ionViewWillLeave() {
+    this.menuCtrl.enable(true);
+
+  }
+
   private createForm() {
     this.authForm = this.fb.group({
       email: ["", [Validators.required, Validators.email]],
