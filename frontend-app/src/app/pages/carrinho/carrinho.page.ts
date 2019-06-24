@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { CartItensService } from 'src/app/shared/globalData/cart-itens.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { CartItensService } from 'src/app/shared/globalData/cart-itens.service';
   templateUrl: './carrinho.page.html',
   styleUrls: ['./carrinho.page.scss'],
 })
-export class CarrinhoPage implements OnInit {
+export class CarrinhoPage implements OnInit, DoCheck {
 
   cartItens: any[];
   cartTotal: number = 0;
@@ -17,16 +17,20 @@ export class CarrinhoPage implements OnInit {
     this.checkTotalValue();
   }
 
-  // deleteItem(cart){
-  //   this.cartItens = this.cartService.removeItem(cart);
-  //   this.checkTotalValue();
-  //   console.log(this.cartItens);
-  // }
+  ngDoCheck(){
+    this.checkTotalValue();
+  }
+
+  deleteItem(cart){
+    this.cartItens = this.cartService.removeItem(cart);
+    this.checkTotalValue();
+    console.log(this.cartItens);
+  }
 
   private checkTotalValue(){
     this.cartTotal = 0;
     this.cartItens.forEach(element => {
-      this.cartTotal += element.valor;
+      this.cartTotal = this.cartTotal + (element.produto.valor * element.quantidade);
     });
   }
 

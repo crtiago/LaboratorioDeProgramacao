@@ -15,15 +15,18 @@ export class CartItensService {
     if(position == -1){
       this.cart.push({quantidade: 1, produto: prod});
     }
+    else{
+      this.cart[position].quantidade ++;
+    }
   }
 
   public getCart() {
     return this.cart;
   }
 
-  // public removeItem(prod: ProdutoVendaDTO):ProdutoVendaDTO[] {
-  //   let index = this.cart.indexOf({quantidade:  ,produto: prod});
-  //   this.cart.splice(index,1);
-  //   return this.cart;
-  // }
+  public removeItem(prod: ProdutoVendaDTO):CartItem[] {
+    let index = this.cart.indexOf({quantidade: 1,produto: prod});
+    this.cart.splice(index,1);
+    return this.cart;
+  }
 }
