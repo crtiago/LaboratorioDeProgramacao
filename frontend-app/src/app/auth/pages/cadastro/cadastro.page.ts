@@ -5,7 +5,7 @@ import {
   Validators,
   FormControl
 } from "@angular/forms";
-import { NavController, ToastController } from "@ionic/angular";
+import { NavController, ToastController, MenuController } from "@ionic/angular";
 import { UsuarioService } from "src/services/domain/usuario.service";
 import { UsuarioDTO } from "src/models/usuario.dto";
 import { UserRepository } from "src/app/shared/globalData/user.service";
@@ -29,10 +29,13 @@ export class CadastroPage implements OnInit {
     private navCtrl: NavController,
     private userService: UsuarioService,
     private userRepo: UserRepository,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private menuCtrl: MenuController,
+
   ) {}
 
   ngOnInit() {
+    this.menuCtrl.enable(false);
     this.createForm();
   }
 

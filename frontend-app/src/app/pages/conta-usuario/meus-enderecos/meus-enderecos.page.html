@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-back-button defaultHref="/minha-conta"></ion-back-button>
     </ion-buttons>
     <ion-title>Meus Enderecos</ion-title>
   </ion-toolbar>
@@ -13,7 +13,7 @@
       <ion-item color="light">
         <ion-icon name="locate"></ion-icon>
         <ion-label>
-           {{endereco.cidade.nome}}
+          {{endereco.cidade.nome}}
         </ion-label>
         <p>{{ endereco.rua }}
           {{ endereco.numero }}
