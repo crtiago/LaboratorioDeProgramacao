@@ -10,6 +10,8 @@
           <ion-label color="light" *ngIf="user == null">Usuario</ion-label>
           <ion-label color="light" *ngIf="user != null">{{ user.nome }}</ion-label>
         </ion-chip>
+        <ion-button size="small" color="light" *ngIf="user == null" fill="outline" [routerLink]="['/login']"
+          routerLinkActive="router-link-active">Login</ion-button>
       </ion-toolbar>
     </ion-header>
 
@@ -34,7 +36,7 @@
   </ion-menu>
 
   <ion-router-outlet id="menu-content"></ion-router-outlet>
-  <ion-tabs slots="bottomstart"  >
+  <ion-tabs slots="bottomstart">
     <ion-tab-bar slot="bottom" color="dark">
       <ion-tab-button tab="home">
         <ion-icon name="home"></ion-icon>

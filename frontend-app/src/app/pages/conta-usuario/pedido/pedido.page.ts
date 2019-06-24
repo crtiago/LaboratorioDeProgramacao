@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { StorageDataService } from 'src/services/storageData.service';
 import { CompraDTO } from 'src/models/compra.dto';
-import { ProdutoVendaDTO } from 'src/models/produtoVenda.dto';
+import { ProdutoCompraDTO } from 'src/models/produtoCompra.dto';
 
 @Component({
   selector: 'app-pedido',
@@ -11,13 +11,13 @@ import { ProdutoVendaDTO } from 'src/models/produtoVenda.dto';
 })
 export class PedidoPage implements OnInit {
   pedido: CompraDTO = null;
-  itens: ProdutoVendaDTO[] = [];
+  itens: ProdutoCompraDTO[] = [];
   constructor(private ar: ActivatedRoute, private storage: StorageDataService) { }
 
   ngOnInit() {
     this.pedido = this.storage.getData(this.ar.snapshot.paramMap.get('id'));
-    this.itens = this.pedido.itens;
-    console.log(this.pedido);
+    this.itens = this.storage.getData(999);
+    console.log('pedido:' + this.pedido.itens);
     console.log('itens:' + this.itens);
   }
 

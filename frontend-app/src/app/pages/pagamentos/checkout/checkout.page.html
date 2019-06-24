@@ -11,11 +11,9 @@
     <ion-list-header>
       <ion-label>Items</ion-label>
     </ion-list-header>
-    <ion-item>Item 1</ion-item>
-    <ion-item>Item 2</ion-item>
-    <ion-item>Item 3</ion-item>
-    <ion-item>Item 4</ion-item>
-    <ion-item>Item 5</ion-item>
+    <ion-item *ngFor="let item of itens"> {{item.quantidade}}x {{ item.produto.marca }} {{ item.produto.modelo }}
+    </ion-item>
+
   </ion-list>
 
 
@@ -23,18 +21,12 @@
     <ion-list-header>
       <ion-label>Endereco de Entrega</ion-label>
     </ion-list-header>
-    <ion-item>
-      <ion-label>Endereco 1</ion-label>
+    <ion-item *ngFor="let endereco of enderecos">
+      <ion-label>{{ endereco.rua }}
+                 {{ endereco.numero }}
+                 {{ endereco.bairro }}
+      </ion-label>
       <ion-radio slot="start"></ion-radio>
-    </ion-item>
-    <ion-item>
-      <ion-label>Endereco 2</ion-label>
-      <ion-radio slot="start"></ion-radio>
-    </ion-item>
-    <ion-item>
-      <ion-button size="small" slot="end">
-        <ion-icon name="add"></ion-icon>
-      </ion-button>
     </ion-item>
   </ion-list>
 

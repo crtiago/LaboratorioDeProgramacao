@@ -16,12 +16,13 @@ export class MeusPedidosPage implements OnInit {
   ngOnInit() {
     this.compraServ.findById().subscribe(res => {
       this.compras = res;
-      console.log(this.compras);
+      console.log('compra:' + res);
     });
   }
 
   passData(compras){
     this.storage.setData(compras.id, compras);
+    this.storage.setData(999, compras.itens);
 
   }
 

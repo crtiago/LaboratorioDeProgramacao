@@ -1,5 +1,6 @@
 import { Component, OnInit, DoCheck } from '@angular/core';
 import { CartItensService } from 'src/app/shared/globalData/cart-itens.service';
+import { StorageDataService } from 'src/services/storageData.service';
 
 @Component({
   selector: 'app-carrinho',
@@ -10,7 +11,7 @@ export class CarrinhoPage implements OnInit, DoCheck {
 
   cartItens: any[];
   cartTotal: number = 0;
-  constructor(private cartService: CartItensService) { }
+  constructor(private cartService: CartItensService, private storage: StorageDataService) { }
 
   ngOnInit() {
     this.cartItens = this.cartService.getCart();
@@ -32,6 +33,10 @@ export class CarrinhoPage implements OnInit, DoCheck {
     this.cartItens.forEach(element => {
       this.cartTotal = this.cartTotal + (element.produto.valor * element.quantidade);
     });
+  }
+
+  passData() {
+    this.storage.setData(1, this.cartItens);
   }
 
 }
