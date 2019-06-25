@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { EnderecoPage } from './endereco.page';
+import { CidadeEstadoService } from 'src/services/domain/cidade-estado.service';
 
 const routes: Routes = [
   {
@@ -22,6 +23,9 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [EnderecoPage]
+  declarations: [EnderecoPage],
+  providers: [
+    CidadeEstadoService
+  ]
 })
 export class EnderecoPageModule {}

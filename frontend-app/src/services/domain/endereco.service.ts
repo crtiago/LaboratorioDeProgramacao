@@ -14,4 +14,11 @@ export class EnderecoService{
         return this.http.get<EnderecoDTO[]>(`${API_CONFIG.baseUrl}/clientes/` + id + `/enderecos`);
     }
 
+    registerAdress(endereco: EnderecoDTO, userId: number){
+        return this.http.post(`${API_CONFIG.baseUrl}/clientes/${userId}/endereco`, endereco, {
+          observe: 'response',
+          responseType: 'text'
+        });
+      }
+
 }

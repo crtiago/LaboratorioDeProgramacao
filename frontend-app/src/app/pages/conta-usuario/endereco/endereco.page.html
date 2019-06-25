@@ -1,96 +1,101 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>endereco</ion-title>
+    <ion-title>Endereco</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <form [formGroup]="enderecoForm" (submit)="onSubmit()">
+  <form [formGroup]="enderecoForm" (submit)="onSubmit(); $event.preventDefault()">
 
-    <ion-list>
+    <ion-list padding>
 
       <ion-item>
-        <ion-icon name="person" color="primary" slot="start"></ion-icon>
+        <ion-icon name="arrow-dropright" color="primary" slot="start"></ion-icon>
         <ion-input type="text" placeholder="Rua" formControlName="rua"></ion-input>
 
         <ion-note slot="end" color="danger" *ngIf="rua.dirty && rua.hasError('required')">
           Campo obrigatório
         </ion-note>
         <ion-note slot="end" color="danger" *ngIf="rua.dirty && rua.hasError('minlength')">
-          Min 3 characters
+          Min 10 characters
         </ion-note>
 
       </ion-item>
 
 
       <ion-item>
-        <ion-icon name="mail" color="primary" slot="start"></ion-icon>
-        <ion-input type="number" color="dark" placeholder="CEP" formControlName="cep" inputmode="email"
-          autofocus="true">
+        <ion-icon name="arrow-dropright" color="primary" slot="start"></ion-icon>
+        <ion-input type="number" color="dark" placeholder="CEP" formControlName="cep" inputmode="email">
         </ion-input>
 
         <ion-note slot="end" color="danger" *ngIf="cep.dirty && cep.hasError('required')">
-          Required
+          Campo Obrigatório
         </ion-note>
-        <ion-note slot="end" color="danger" *ngIf="cep.dirty && cep.hasError('email')">
-          Email Invalido
-
+        <ion-note slot="end" color="danger" *ngIf="cep.dirty && cep.hasError('minLength')">
+          Cep Incorreto
+        </ion-note>
+        <ion-note slot="end" color="danger" *ngIf="cep.dirty && cep.hasError('maxLength')">
+          Cep Incorreto
         </ion-note>
       </ion-item>
 
 
       <ion-item>
-        <ion-icon name="phone-portrait" color="primary" slot="start"></ion-icon>
-        <ion-input type="number" color="dark" placeholder="Numero" formControlName="numero" autofocus="true">
+        <ion-icon name="arrow-dropright" color="primary" slot="start"></ion-icon>
+        <ion-input type="number" color="dark" placeholder="Numero" formControlName="numero">
         </ion-input>
 
         <ion-note slot="end" color="danger" *ngIf="numero.dirty && numero.hasError('required')">
           Campo Obrigatório
         </ion-note>
-        <ion-note slot="end" color="danger" *ngIf="numero.dirty && numero.hasError('minLength')">
-          CPF Invalido
-
-        </ion-note>
       </ion-item>
 
       <ion-item>
-        <ion-icon name="phone-portrait" color="primary" slot="start"></ion-icon>
-        <ion-input type="text" color="dark" placeholder="Bairro" formControlName="bairro" autofocus="true">
+        <ion-icon name="arrow-dropright" color="primary" slot="start"></ion-icon>
+        <ion-input type="text" color="dark" placeholder="Bairro" formControlName="bairro">
         </ion-input>
 
         <ion-note slot="end" color="danger" *ngIf="bairro.dirty && bairro.hasError('required')">
           Campo Obrigatório
         </ion-note>
         <ion-note slot="end" color="danger" *ngIf="bairro.dirty && bairro.hasError('minLength')">
-          CPF Invalido
+          Min 6 characters
 
         </ion-note>
       </ion-item>
 
       <ion-item>
         <ion-label>Estado</ion-label>
-        <ion-select placeholder="Selecione">
-          <ion-select-option value="f">Female</ion-select-option>
-          <ion-select-option value="m">Male</ion-select-option>
+        <ion-select placeholder="Selecione" formControlName="estadoId" (ionChange)="updateCidades()">
+          <ion-select-option *ngFor="let estado of estados" [value]="estado.id">
+            {{ estado.nome }}</ion-select-option>
         </ion-select>
+
+        <ion-note slot="end" color="danger" *ngIf="estadoId.dirty && estadoId.hasError('required')">
+          Campo Obrigatório
+        </ion-note>
+
       </ion-item>
 
       <ion-item>
         <ion-label>Cidade</ion-label>
-        <ion-select placeholder="Selecione">
-          <ion-select-option value="f">Female</ion-select-option>
-          <ion-select-option value="m">Male</ion-select-option>
+        <ion-select placeholder="Selecione" formControlName="cidadeId">
+          <ion-select-option *ngFor="let cidade of cidades" [value]="cidade.id">
+            {{ cidade.nome }}</ion-select-option>
         </ion-select>
+
+        <ion-note slot="end" color="danger" *ngIf="cidadeId.dirty && cidadeId.hasError('required')">
+          Campo Obrigatório
+        </ion-note>
       </ion-item>
 
     </ion-list>
 
 
-    <ion-button expand="block" fill="outline" (click)="cadastrar()">
+    <ion-button color="dark" expand="block" fill="outline" type="submit" [disabled]="enderecoForm.invalid">
       Cadastrar
     </ion-button>
-
   </form>
 
-  <ion-button expand="block" fill="outline" (click)="cancelar()">Cancelar</ion-button>
+  <ion-button color="danger" expand="block" fill="outline" (click)="cancelar()">Cancelar</ion-button>
 </ion-content>

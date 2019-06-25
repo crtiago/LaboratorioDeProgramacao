@@ -16,7 +16,7 @@ export class PedidoPage implements OnInit {
 
   ngOnInit() {
     this.pedido = this.storage.getData(this.ar.snapshot.paramMap.get('id'));
-    this.itens = this.storage.getData(999);
+    this.itens = this.pedido.itens;
     console.log('pedido:' + this.pedido.itens);
     console.log('itens:' + this.itens);
   }

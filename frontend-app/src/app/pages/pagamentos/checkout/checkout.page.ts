@@ -27,9 +27,13 @@ export class CheckoutPage implements OnInit {
     this.user = this.userRepo.getUser();
     this.endService.findById(this.user.id).subscribe(res => {
       this.enderecos = res;
+      console.log('end: ' + this.enderecos[0]);
+      console.log('end: ' + this.enderecos[0].cidade);
+
     });
     this.itens = this.storage.getData(1);
   }
+  
 
   segmentChanged(ev: any) {
     this.payMethodCard = !this.payMethodCard;
