@@ -16,6 +16,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.edu.ifsc.lab.domain.enums.StatusServico;
 
+/*
+* Classe representando o servico que será prestado ao {@link UsuarioCliente} quando o mesmo deixar um {@link ProdutoCliente}
+*/
+
 @Entity
 public class Servico implements Serializable {
 	private static final long serialVersionUID = 1L;

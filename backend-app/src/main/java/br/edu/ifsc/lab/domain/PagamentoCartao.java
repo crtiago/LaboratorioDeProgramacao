@@ -6,6 +6,11 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 
 import br.edu.ifsc.lab.domain.enums.EstadoPagamento;
 
+/*
+* Classe representando a forma de pagamento que o {@link Usuario} utilizará ao  realizar uma compra {@link Venda}
+* Esta classe estende a classe {@link Pagamento}
+*/
+
 @Entity
 @JsonTypeName("pagamentoCartao")
 public class PagamentoCartao extends Pagamento {

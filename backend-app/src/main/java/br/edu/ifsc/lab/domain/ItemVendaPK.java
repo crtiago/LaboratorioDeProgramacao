@@ -6,15 +6,18 @@ import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+/*
+* Classe representando o ItemVendaPK que é uma classe para representar ID do  {@link ItemVenda}
+*/
+
 @Embeddable
 public class ItemVendaPK implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	
 	@ManyToOne
 	@JoinColumn(name = "venda_id")
 	private Venda venda;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "produto_id")
 	private ProdutoVenda produtoVenda;
@@ -65,5 +68,4 @@ public class ItemVendaPK implements Serializable {
 			return false;
 		return true;
 	}
-
 }

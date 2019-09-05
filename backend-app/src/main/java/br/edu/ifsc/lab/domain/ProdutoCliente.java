@@ -13,6 +13,11 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
+/*
+* Classe representando o produto que o {@link Usuario} poderá deixar para reparos
+* esta classe herda da classe {@link Produto}
+*/
+
 @Entity
 @JsonTypeName("produtoCliente")
 public class ProdutoCliente extends Produto {

@@ -15,6 +15,10 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import br.edu.ifsc.lab.domain.enums.EstadoPagamento;
 
+/*
+* Classe representando o pagamento que o  {@link Usuario} realizará ao fazer uma compra {@link Venda}
+*/
+
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@type")

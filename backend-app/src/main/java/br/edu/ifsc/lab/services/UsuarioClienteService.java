@@ -1,7 +1,10 @@
 package br.edu.ifsc.lab.services;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Optional;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -9,12 +12,19 @@ import org.springframework.stereotype.Service;
 
 import br.edu.ifsc.lab.domain.Cidade;
 import br.edu.ifsc.lab.domain.Endereco;
+import br.edu.ifsc.lab.domain.ItemVenda;
+import br.edu.ifsc.lab.domain.ProdutoVenda;
 import br.edu.ifsc.lab.domain.UsuarioCliente;
+import br.edu.ifsc.lab.domain.Venda;
 import br.edu.ifsc.lab.dto.EnderecoDTO;
 import br.edu.ifsc.lab.dto.UsuarioClienteDTO;
+import br.edu.ifsc.lab.dto.VendaDTO;
 import br.edu.ifsc.lab.repository.CidadeRepository;
 import br.edu.ifsc.lab.repository.EnderecoRepository;
+import br.edu.ifsc.lab.repository.ItemVendaRepository;
+import br.edu.ifsc.lab.repository.ProdutoVendaRepository;
 import br.edu.ifsc.lab.repository.UsuarioClienteRepository;
+import br.edu.ifsc.lab.repository.VendaRepository;
 import br.edu.ifsc.lab.services.exceptions.DataIntegrityException;
 import br.edu.ifsc.lab.services.exceptions.ObjectNotFoundException;
 
@@ -29,6 +39,15 @@ public class UsuarioClienteService {
 
 	@Autowired
 	private CidadeRepository cidRep;
+
+	@Autowired
+	private VendaRepository vendaRep;
+
+	@Autowired
+	private ProdutoVendaRepository prodVenda;
+
+	@Autowired
+	private ItemVendaRepository iv;
 
 	public UsuarioCliente find(Integer id) {
 		Optional<UsuarioCliente> obj = rep.findById(id);
@@ -56,6 +75,11 @@ public class UsuarioClienteService {
 	public Endereco insert(Endereco obj) {
 		obj.setId(null);
 		return repEnd.save(obj);
+	}
+
+	public Venda insert(Venda obj) {
+		obj.setId(null);
+		return vendaRep.save(obj);
 	}
 
 	public void delete(Integer id) {
@@ -90,6 +114,29 @@ public class UsuarioClienteService {
 
 		return end;
 
+	}
+
+	public Venda fromDTO(VendaDTO objDto, UsuarioCliente cli) {
+
+		Venda venda = new Venda(null, cli, objDto.getDataVenda());
+
+		venda.getItens().addAll(objDto.getItens());
+		venda.getServico().addAll(objDto.getServico());
+
+		cli.getVendas().add(venda);
+		
+
+		for (ItemVenda iv : objDto.getItens()) {
+			Optional<ProdutoVenda> produto = prodVenda.findById((iv.getProdutoVenda().getIdProduto()));
+			iv.setPreco(produto.get().getValor());
+			iv.setVenda(venda);
+		}
+
+
+
+		iv.saveAll(objDto.getItens());
+		rep.save(cli);
+		return venda;
 	}
 
 	private void updateData(UsuarioCliente newObj, UsuarioCliente obj) {

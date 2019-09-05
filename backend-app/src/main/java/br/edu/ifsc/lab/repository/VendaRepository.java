@@ -16,4 +16,6 @@ public interface VendaRepository extends JpaRepository<Venda, Integer> {
 	@Transactional(readOnly = true)
 	@Query("SELECT obj FROM Venda obj where obj.usuarioCliente.id = :usuarioId")
 	public List<Venda> findVenda(@Param("usuarioId") Integer usuario_id);
+	
+	
 }

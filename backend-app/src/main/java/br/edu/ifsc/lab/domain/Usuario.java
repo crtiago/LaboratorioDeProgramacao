@@ -18,6 +18,12 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
+/*
+* Classe representando os usuarios do sistema
+* está classe é herdada pelas classe {@link UsuarioCliente}
+* Futuramente esta classe facilitará a inclusão de novos usuarios, como por exemplo um usuario administrador ou usuario tecnico
+*/
+
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@type")

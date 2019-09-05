@@ -7,6 +7,10 @@ import javax.persistence.Entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/*
+* Classe representando o ItemVenda e o ID da classe é linkado a classe {@link ItemVendaPK}
+*/
+
 @Entity
 public class ItemVenda implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -37,6 +41,14 @@ public class ItemVenda implements Serializable {
 	@JsonIgnore
 	public Venda getVenda() {
 		return id.getVenda();
+	}
+
+	public void setVenda(Venda venda) {
+		id.setVenda(venda);
+	}
+
+	public void setProdutoVenda(ProdutoVenda produto) {
+		id.setProdutoVenda(produto);
 	}
 
 	public ProdutoVenda getProdutoVenda() {

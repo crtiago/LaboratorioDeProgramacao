@@ -75,6 +75,15 @@ public class UsuarioClienteResource {
 		return ResponseEntity.created(uri).build();
 	}
 
+	@RequestMapping(value = "/id/{id}/compras", method = RequestMethod.POST)
+	public ResponseEntity<Void> insert(@PathVariable Integer id, @Valid @RequestBody VendaDTO objDto) {
+		UsuarioCliente cli = service.find(id);
+		Venda obj = service.fromDTO(objDto, cli);
+		obj = service.insert(obj);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+		return ResponseEntity.created(uri).build();
+	}
+
 	@CrossOrigin
 	@RequestMapping(value = "/{usuarioId}/enderecos", method = RequestMethod.GET)
 	public ResponseEntity<List<Endereco>> findEnderecos(@PathVariable Integer usuarioId) {

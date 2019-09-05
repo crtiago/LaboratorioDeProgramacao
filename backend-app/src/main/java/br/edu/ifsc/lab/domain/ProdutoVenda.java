@@ -13,8 +13,13 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
+/*
+* Classe representando o produto que o {@link Usuario} poderá comprar
+* esta classe herda da classe {@link Produto}
+*/
+
 @Entity
-@JsonTypeName("pagamentoVenda")
+@JsonTypeName("produtoVenda")
 public class ProdutoVenda extends Produto {
 	private static final long serialVersionUID = 1L;
 

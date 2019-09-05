@@ -20,6 +20,10 @@ import javax.persistence.OneToOne;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/*
+* Classe representando uma compra que o {@link UsuarioCliente} fará no sistema
+*/
+
 @Entity
 public class Venda implements Serializable {
 	private static final long serialVersionUID = 1L;

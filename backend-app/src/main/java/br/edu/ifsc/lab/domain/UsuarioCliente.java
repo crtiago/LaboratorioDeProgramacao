@@ -10,6 +10,10 @@ import javax.persistence.OneToMany;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
+/*
+* Classe representando o usuario que fará compras ou deixará produtos para reparo
+*/
+
 @Entity
 @JsonTypeName("usuarioCliente")
 public class UsuarioCliente extends Usuario implements Serializable {

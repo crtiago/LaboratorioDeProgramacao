@@ -16,16 +16,6 @@ public class EnderecoDTO implements Serializable {
 
 	}
 
-	/*public EnderecoDTO(Endereco end) {
-		super();
-		this.rua = end.getRua();
-		this.cep = end.getCep();
-		this.numero = end.getNumero();
-		this.bairro = end.getBairro();
-		this.cidade = end.getCidade();
-		this.cli = end.getUsuario();
-	}*/
-
 	public String getRua() {
 		return rua;
 	}

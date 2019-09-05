@@ -1,5 +1,9 @@
 package br.edu.ifsc.lab.domain;
 
+/*
+ * Classe representando a categoria do {@link Produto} 
+ */
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

@@ -11,6 +11,11 @@ import javax.persistence.InheritanceType;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
+/*
+* Classe representando o produto que o {@link Usuario} poderá comprar  {@link ProdutoVenda} ou deixar para reparo {@link ProdutoCliente}
+* Esta classe é  herdada pelas classes {@link ProdutoCliente} e {@link ProdutoVenda}
+*/
+
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "@type")

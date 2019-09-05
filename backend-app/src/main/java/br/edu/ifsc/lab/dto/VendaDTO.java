@@ -19,10 +19,12 @@ public class VendaDTO implements Serializable {
 
 	private Integer id;
 
-	@JsonFormat(pattern = "dd/MM/yyyy  HH:mm")
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm", timezone = "GMT-3")
 	private Date dataVenda;
 
 	private Pagamento pagamento;
+
+	private Integer usuarioCliente;
 
 	private Set<ItemVenda> itens = new HashSet<>();
 
@@ -36,9 +38,8 @@ public class VendaDTO implements Serializable {
 		super();
 		this.id = venda.getId();
 		this.dataVenda = venda.getDataVenda();
+		this.usuarioCliente = venda.getUsuarioCliente().getId_usuario();
 		this.pagamento = venda.getPagamento();
-		this.itens = venda.getItens();
-		this.servico = venda.getServico();
 	}
 
 	public Integer getId() {
@@ -63,6 +64,14 @@ public class VendaDTO implements Serializable {
 
 	public void setPagamento(Pagamento pagamento) {
 		this.pagamento = pagamento;
+	}
+
+	public Integer getUsuarioCliente() {
+		return usuarioCliente;
+	}
+
+	public void setUsuarioCliente(Integer usuarioCliente) {
+		this.usuarioCliente = usuarioCliente;
 	}
 
 	public Set<ItemVenda> getItens() {

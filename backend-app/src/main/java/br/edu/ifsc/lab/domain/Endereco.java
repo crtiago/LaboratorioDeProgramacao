@@ -11,6 +11,11 @@ import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/*
+* Classe representando o Endereço do {@link Usuario} e possui uma {@link Cidade}
+*/
+
+
 @Entity
 public class Endereco implements Serializable {
 	private static final long serialVersionUID = 1L;
